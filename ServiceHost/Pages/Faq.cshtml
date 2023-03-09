@@ -1,0 +1,400 @@
+﻿@page
+@model ServiceHost.Pages.FaqModel
+@{
+    ViewData["Title"] = "سوالات متداول";
+}
+
+<div class="faq-header d-flex flex-column justify-content-center align-items-center mb-4">
+    <h3 class="text-center"> میتونیم کمکتون کنیم؟ </h3>
+    <div class="input-wrapper my-3 input-group input-group-merge">
+        <span class="input-group-text" id="basic-addon1"><i class="bx bx-search-alt bx-xs text-muted"></i></span>
+        <input type="text" class="form-control form-control-lg" placeholder="جستجو کنید..." aria-label="جستجو" aria-describedby="basic-addon1" />
+    </div>
+    <p class="text-center mb-0 px-3">یا از بین موضوعات زیر انتخاب کنید</p>
+</div>
+
+<div class="row mb-4">
+    <!-- Navigation -->
+    <div class="col-lg-3 col-md-4 col-12 mb-md-0 mb-3">
+        <div class="d-flex justify-content-between flex-column mb-2 mb-md-0">
+            <ul class="nav nav-align-left nav-pills flex-column">
+                <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#payment">
+                        <i class="bx bx-credit-card faq-nav-icon me-1"></i>
+                        <span class="align-middle">پرداخت</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#delivery">
+                        <i class='bx bx-shopping-bag faq-nav-icon me-1'></i>
+                        <span class="align-middle">شرکت در رویداد</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancellation">
+                        <i class='bx bx-rotate-left faq-nav-icon me-1'></i>
+                        <span class="align-middle">بازگشت وجه</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#orders">
+                        <i class='bx bx-cube faq-nav-icon me-1'></i>
+                        <span class="align-middle">رویداد های من</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#product">
+                        <i class='bx bx-cog faq-nav-icon me-1'></i>
+                        <span class="align-middle">سرویس ها</span>
+                    </button>
+                </li>
+            </ul>
+            <div class="d-none d-md-block">
+                <div class="mt-5">
+                    <img src="~/theme/assets/img/illustrations/sitting-girl-with-laptop-light.png" class="img-fluid w-px-200" alt="FAQ Image" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Navigation -->
+    <!-- FAQ's -->
+    <div class="col-lg-9 col-md-8 col-12">
+        <div class="tab-content py-0">
+            <div class="tab-pane fade show active" id="payment" role="tabpanel">
+                <div class="d-flex mb-3 gap-3">
+                    <div>
+                        <span class="badge bg-label-primary rounded-2">
+                            <i class="bx bx-credit-card bx-md"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">
+                            <span class="align-middle">پرداخت</span>
+                        </h4>
+                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟</span>
+                    </div>
+                </div>
+                <div id="accordionPayment" class="accordion">
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordionPayment-1" aria-controls="accordionPayment-1">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟
+                            </button>
+                        </h2>
+
+                        <div id="accordionPayment-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionPayment-2" aria-controls="accordionPayment-2">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟
+                            </button>
+                        </h2>
+                        <div id="accordionPayment-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionPayment-3" aria-controls="accordionPayment-3">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionPayment-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionPayment-4" aria-controls="accordionPayment-4">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionPayment-4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionPayment-5" aria-controls="accordionPayment-5">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionPayment-5" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="delivery" role="tabpanel">
+                <div class="d-flex mb-3 gap-3">
+                    <div>
+                        <span class="badge bg-label-primary rounded-2">
+                            <i class="bx bx-cart bx-md"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">
+                            <span class="align-middle">شرکت در رویداد</span>
+                        </h4>
+                        <span>لورم ایپسوم متن ساختگی</span>
+                    </div>
+                </div>
+                <div id="accordionDelivery" class="accordion">
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordionDelivery-1" aria-controls="accordionDelivery-1">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+
+                        <div id="accordionDelivery-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionDelivery-2" aria-controls="accordionDelivery-2">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionDelivery-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionDelivery-4" aria-controls="accordionDelivery-4">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionDelivery-4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="cancellation" role="tabpanel">
+                <div class="d-flex mb-3 gap-3">
+                    <div>
+                        <span class="badge bg-label-primary rounded-2">
+                            <i class="bx bx-revision bx-md"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h4 class="mb-0"><span class="align-middle">بازگشت وجه</span></h4>
+                        <span>لورم ایپسوم متن ساختگی با تولید سادگی</span>
+                    </div>
+                </div>
+                <div id="accordionCancellation" class="accordion">
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordionCancellation-1" aria-controls="accordionCancellation-1">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+
+                        <div id="accordionCancellation-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionCancellation-2" aria-controls="accordionCancellation-2">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionCancellation-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-controls="accordionCancellation-3" data-bs-target="#accordionCancellation-3">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionCancellation-3" class="accordion-collapse collapse">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="orders" role="tabpanel">
+                <div class="d-flex mb-3 gap-3">
+                    <div>
+                        <span class="badge bg-label-primary rounded-2">
+                            <i class="bx bx-box bx-md"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">
+                            <span class="align-middle">شرکت در رویداد</span>
+                        </h4>
+                        <span>شرکت در رویداد</span>
+                    </div>
+                </div>
+                <div id="accordionOrders" class="accordion">
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordionOrders-1" aria-controls="accordionOrders-1">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+
+                        <div id="accordionOrders-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionOrders-2" aria-controls="accordionOrders-2">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionOrders-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionOrders-3" aria-controls="accordionOrders-3">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionOrders-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="product" role="tabpanel">
+                <div class="d-flex mb-3 gap-3">
+                    <div>
+                        <span class="badge bg-label-primary rounded-2">
+                            <i class="bx bx-camera bx-md"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">
+                            <span class="align-middle">سرویس ها</span>
+                        </h4>
+                        <span>خدمات و سرویس ها</span>
+                    </div>
+                </div>
+                <div id="accordionProduct" class="accordion">
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordionProduct-1" aria-controls="accordionProduct-1">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+
+                        <div id="accordionProduct-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProduct-2" aria-controls="accordionProduct-2">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionProduct-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProduct-3" aria-controls="accordionProduct-3">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم؟
+                            </button>
+                        </h2>
+                        <div id="accordionProduct-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-12 text-center mb-4">
+        <div class="badge bg-label-primary">سوال؟</div>
+        <h4 class="my-2">همچنان سوال دارید؟</h4>
+        <p>اگر سوالتان را از بین سوالات بالا پیدا نکردید با ما تماس بگیرید!</p>
+    </div>
+</div>
+<div class="row text-center justify-content-center gap-sm-0 gap-3">
+    <div class="col-sm-6">
+        <div class=" py-3 rounded bg-faq-section text-center">
+            <span class="badge bg-label-primary rounded-2 my-3">
+                <i class="bx bx-phone bx-sm"></i>
+            </span>
+            <h4 class="mb-2"><a class="h4" href="tel:+98251234567">0251234567</a></h4>
+            <p>خوشحال میشیم کمکتون کنیم</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class=" py-3 rounded bg-faq-section text-center">
+            <span class="badge bg-label-primary rounded-2 my-3">
+                <i class="bx bx-envelope bx-sm"></i>
+            </span>
+            <h4 class="mb-2"><a class="h4" href="mailto:help@help.com">help@help.com</a></h4>
+            <p>بهترین راه برای رسیدن شما به جواب!</p>
+        </div>
+    </div>
+</div>
+
+@section Css
+{
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-faq.css" />
+}

@@ -1,0 +1,40 @@
+﻿@page "{id:long}"
+@model ServiceHost.Areas.Administration.Pages.Events.EventCategories.EditModel
+@{
+    ViewData["Title"] = "ویرایش موضوع:" + @Model.Command.CategoryName;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">ویرایش موضوع: @Model.Command.CategoryName</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.CategoryName" class="form-label">نام</label>
+                                <input type="text" class="form-control" asp-for="Command.CategoryName">
+                                <span asp-validation-for="Command.CategoryName" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Slug" class="form-label">اسلاگ</label>
+                                <input type="text" class="form-control" asp-for="Command.Slug">
+                                <span asp-validation-for="Command.Slug" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="Command.CategoryId" value="@Model.Command.CategoryId" />
+                    <button type="submit" class="btn btn-success">ویرایش</button>
+                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

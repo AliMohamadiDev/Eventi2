@@ -1,0 +1,75 @@
+﻿@page "{id}"
+@model ServiceHost.Pages.ArticleModel
+@{
+    ViewData["Title"] = Model.Article.Title;
+    ViewData["keywords"] = Model.Article.Keywords;
+    ViewData["metaDescription"] = Model.Article.MetaDescription;
+}
+
+<h4 class="fw-bold py-3 mb-4">
+    <span class="text-muted fw-light">Help Center /</span> Article
+</h4>
+
+<div class="row">
+    <!-- Categories -->
+    <div class="col-xl-3 col-lg-4 col-md-4 mb-lg-0 mb-4">
+        <h5>eCommerce</h5>
+        <div class="nav-align-left">
+            <ul class="nav nav-pills w-100 gap-3">
+
+                @foreach (var category in Model.ArticleCategories)
+                {
+                    if (Model.Article.CategorySlug== category.Slug)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-page="./ArticleCategory" asp-route-id="@category.Slug">
+                                @category.Name
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <a class="nav-link" asp-page="./ArticleCategory" asp-route-id="@category.Slug">
+                            @category.Name
+                        </a>
+                    }
+                }
+
+            </ul>
+        </div>
+    </div>
+    <!-- /Categories -->
+    <!-- Article -->
+    <div class="col-xl-9 col-lg-8 col-md-8">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <a class="btn btn-label-primary mb-4" asp-page="./ArticleCategory" asp-route-id="@Model.Article.CategorySlug">
+                    <i class="bx bx-chevron-left scaleX-n1-rtl me-1"></i>
+                    <span class="align-middle">بازگشت</span>
+                </a>
+                <h4 class="d-flex align-items-center mt-2 mb-4">
+                    <span class="badge bg-label-secondary p-2 rounded me-3">
+                        <i class="bx bx-directions bx-sm"></i>
+                    </span>
+                    @Model.Article.Title
+                </h4>
+                
+                @Html.Raw(Model.Article.Description)
+                
+                <hr class="container-m-nx">
+                <div class="d-flex justify-content-between flex-wrap gap-3 mb-2">
+                    @*<div class="article-info">
+                        <h5 class="mb-1">این مقاله برای شما مفید بود؟</h5>
+                        <p class="card-text">55 People found this helpful</p>
+                    </div>*@
+                    <h5>همچنان به کمک نیاز دارید؟ <a asp-page="./ContactUs">با ما تماس بگیرید</a></h5>
+                </div>
+                @*<div class="article-votes">
+                    <a href="javascript:void(0);" class="badge bg-label-primary me-2"><i class="bx bx-like"></i></a>
+                    <a href="javascript:void(0);" class="badge bg-label-primary"><i class="bx bx-dislike"></i></a>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <!-- /Article -->
+</div>

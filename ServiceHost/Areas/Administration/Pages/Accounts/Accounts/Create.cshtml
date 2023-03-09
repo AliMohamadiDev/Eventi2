@@ -1,0 +1,72 @@
+﻿@page
+@model ServiceHost.Areas.Administration.Pages.Accounts.Accounts.CreateModel
+@{
+    ViewData["Title"] = "ایجاد کاربر جدید";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">ایجاد کاربر جدید</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Firstname" class="form-label">نام</label>
+                                <input type="text" class="form-control" asp-for="Command.Firstname">
+                                <span asp-validation-for="Command.Firstname" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Lastname" class="form-label">نام خانوادگی</label>
+                                <input type="text" class="form-control" asp-for="Command.Lastname">
+                                <span asp-validation-for="Command.Lastname" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Email" class="form-label">ایمیل</label>
+                                <input type="text" class="form-control" asp-for="Command.Email">
+                                <span asp-validation-for="Command.Email" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Mobile" class="form-label">موبایل</label>
+                                <input type="text" class="form-control" asp-for="Command.Mobile">
+                                <span asp-validation-for="Command.Mobile" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Password" class="form-label">پسورد</label>
+                                <input type="text" class="form-control" asp-for="Command.Password">
+                                <span asp-validation-for="Command.Password" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.RoleId" class="form-label">نقش ها</label>
+                                <select class="form-select" asp-for="Command.RoleId" asp-items="Model.Roles">
+                                    <option value="0">موضوع اصلی...</option>
+                                </select>
+                                <span asp-validation-for="Command.RoleId" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">ایجاد</button>
+                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

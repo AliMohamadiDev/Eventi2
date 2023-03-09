@@ -1,0 +1,72 @@
+﻿@page "{id}"
+@model ServiceHost.Pages.EventCategoryModel
+@{
+    ViewData["Title"] = Model.EventCategory.CategoryName;
+}
+
+<h4 class="fw-bold py-3 mb-4">
+    <span class="text-muted fw-light">Help Center /</span> Categories
+</h4>
+
+<div class="row">
+    <!-- Categories -->
+    <div class="col-xl-3 col-lg-4 col-md-4 mb-lg-0 mb-4">
+        <h5>eCommerce</h5>
+        <div class="nav-align-left">
+            <ul class="nav nav-pills w-100 gap-3">
+
+                @foreach (var category in Model.EventCategories)
+                {
+                    if (Model.EventCategory.Slug == category.Slug)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-page="./EventCategory" asp-route-id="@category.Slug">
+                                @category.CategoryName
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <a class="nav-link" asp-page="./EventCategory" asp-route-id="@category.Slug">
+                            @category.CategoryName
+                        </a>
+                    }
+                }
+
+            </ul>
+        </div>
+    </div>
+    <!-- /Categories -->
+    <!-- Article list -->
+    <div class="col-xl-9 col-lg-8 col-md-8">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <h4 class="d-flex align-items-center">
+                    <span class="badge bg-label-secondary p-2 rounded  me-3">
+                        <i class="bx bx-cube bx-sm"></i>
+                    </span>
+                    @Model.EventCategory.CategoryName
+                </h4>
+                <ul class="list-unstyled my-4">
+
+                    @foreach (var article in Model.EventCategory.EventSubcategories)
+                    {
+                        <li class="mb-3">
+                            <a asp-page="./EventCategory" asp-route-id="@article.Slug" class="d-flex fw-semibold">
+                                <i class="bx bx-chevron-right scaleX-n1-rtl text-muted me-1"></i>
+                                @article.SubcategoryName
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+
+                <a class="btn btn-label-primary" href="./pages-help-center-landing.html">
+                    <i class="bx bx-chevron-left scaleX-n1-rtl me-1"></i>
+                    <span class="align-middle">Back to help center</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /Article list -->
+</div>

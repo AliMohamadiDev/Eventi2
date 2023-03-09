@@ -1,0 +1,70 @@
+﻿@page
+@model ServiceHost.Areas.Administration.Pages.Events.EventCategories.IndexModel
+@{
+    ViewData["title"] = "مدیریت گروه رویدادها";
+}
+
+
+<div class="navbar-nav-right d-flex align-items-center mb-4" id="navbar-collapse">
+    <div class="navbar-nav align-items-center">
+        <h4 class="card-header">@ViewData["title"]</h4>
+    </div>
+    <div class="navbar-nav flex-row align-items-center ms-auto">
+        <a class="btn btn-primary btn-lg" asp-page="Create">ایجاد موضوع جدید</a>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h5 class="card-header">جستجو در موضوعات</h5>
+    <div class="card-body">
+        <form role="form" method="get">
+
+            <div class="row gx-3 gy-2 align-items-center">
+                <div class="col-md-3">
+                    <input class="form-control" asp-for="SearchModel.Name" placeholder="نام موضوع">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary d-inline-block">جستجو</button>
+                    <a class="btn btn-outline-primary d-inline-block" asp-page="./Index">مشاهده همه</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">موضوعات</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>نام</th>
+                <th>تاریخ تولید</th>
+                <th>عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.EventCategories)
+            {
+                <tr>
+                    <td>@item.CategoryId</td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.CreationDate</td>
+                        <td>
+                            <a class="" asp-page="Edit" asp-route-id="@item.CategoryId">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#666" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+

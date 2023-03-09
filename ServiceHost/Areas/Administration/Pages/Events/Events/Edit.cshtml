@@ -1,0 +1,139 @@
+﻿@page "{id:long}"
+@model ServiceHost.Areas.Administration.Pages.Events.Events.EditModel
+@{
+    ViewData["Title"] = "ویرایش رویداد" + @Model.Command.Name;
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">ویرایش رویداد: @Model.Command.Name</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Name" class="form-label">نام رویداد</label>
+                                <input type="text" class="form-control" asp-for="Command.Name">
+                                <span asp-validation-for="Command.Name" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Slug" class="form-label">Slug</label>
+                                <input type="text" class="form-control" asp-for="Command.Slug">
+                                <span asp-validation-for="Command.Slug" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <select class="form-select" asp-items="Model.Categories">
+                                <option value="0">موضوع اصلی...</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select" asp-for="Command.SubcategoryId" asp-items="Model.Subcategories">
+                                <option value="0">زیرموضوع...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.PresenterId" class="form-label">شماره ارائه دهنده</label>
+                                <input type="text" class="form-control" asp-for="Command.PresenterId">
+                                <span asp-validation-for="Command.PresenterId" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.AccountSideId" class="form-label">آی دی طرف حساب</label>
+                                <input class="form-control" asp-for="Command.AccountSideId" />
+                                <span asp-validation-for="Command.AccountSideId" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.ImageCover" class="form-label">آدرس عکس</label>
+                                <input class="form-control" asp-for="Command.ImageCover" />
+                                <span asp-validation-for="Command.ImageCover" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.ImageCoverAlt" class="form-label">Alt عکس</label>
+                                <input type="text" class="form-control" asp-for="Command.ImageCoverAlt">
+                                <span asp-validation-for="Command.ImageCoverAlt" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.ImageCoverTitle" class="form-label">عنوان عکس</label>
+                                <input type="text" class="form-control" asp-for="Command.ImageCoverTitle">
+                                <span asp-validation-for="Command.ImageCoverTitle" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Link" class="form-label">لینک</label>
+                                <input type="text" class="form-control" asp-for="Command.Link">
+                                <span asp-validation-for="Command.Link" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Tags" class="form-label">تگ ها</label>
+                                <input type="text" class="form-control" asp-for="Command.Tags">
+                                <span asp-validation-for="Command.Tags" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.IsPrivate" class="form-label">خصوصی؟</label>
+                                <input type="checkbox" asp-for="Command.IsPrivate">
+                                <span asp-validation-for="Command.IsPrivate" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.IsWebinar" class="form-label">غیرحضوری؟</label>
+                                <input type="checkbox" asp-for="Command.IsWebinar">
+                                <span asp-validation-for="Command.IsWebinar" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.PayByCustomer" class="form-label">پرداخت توسط مشتری؟</label>
+                                <input type="checkbox" asp-for="Command.PayByCustomer">
+                                <span asp-validation-for="Command.PayByCustomer" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id" />
+                    <button type="submit" class="btn btn-success">ویرایش</button>
+                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

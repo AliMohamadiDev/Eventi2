@@ -1,0 +1,81 @@
+﻿@page
+@model ServiceHost.Areas.Administration.Pages.Events.Departments.CreateModel
+@{
+    ViewData["Title"] = "ایجاد طرف حساب جدید";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">ایجاد طرف حساب جدید</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Name" class="form-label">نام</label>
+                                <input type="text" class="form-control" asp-for="Command.Name">
+                                <span asp-validation-for="Command.Name" class="error"></span>
+                            </div>
+                        </div>
+                        @*<div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.LastName" class="form-label">نام خانوادگی</label>
+                                <input type="text" class="form-control" asp-for="Command.LastName">
+                                <span asp-validation-for="Command.LastName" class="error"></span>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.NationalCode" class="form-label">کد ملی</label>
+                                <input type="text" class="form-control" asp-for="Command.NationalCode">
+                                <span asp-validation-for="Command.NationalCode" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.PostalCode" class="form-label">کد پستی</label>
+                                <input type="text" class="form-control" asp-for="Command.PostalCode">
+                                <span asp-validation-for="Command.PostalCode" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.Address" class="form-label">آدرس</label>
+                                <textarea class="form-control" asp-for="Command.Address" rows="4"></textarea>
+                                <span asp-validation-for="Command.Address" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="m-0"/>
+
+                    <div class="card-body">
+                        <div class="row gy-3">
+                            @*<div class="col-md">
+                                <div class="form-check form-check-inline mt-3">
+                                    @Html.RadioButtonFor(x => x.Command.IsReal, true)
+                                    <label class="form-check-label" asp-for="Command.IsReal">حقیقی</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.Command.IsReal, false)
+                                    <label class="form-check-label" asp-for="Command.IsReal">حقوقی</label>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">ایجاد</button>
+                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

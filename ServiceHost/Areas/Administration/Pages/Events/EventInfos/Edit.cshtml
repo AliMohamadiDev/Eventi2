@@ -1,0 +1,151 @@
+﻿@page "{id:long}"
+@model ServiceHost.Areas.Administration.Pages.Events.EventInfos.EditModel
+@{
+    ViewData["Title"] = "ویرایش اطلاعات رویداد:" + @Model.Command.Id;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">ویرایش اطلاعات رویداد: @Model.Command.Id</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Length" class="form-label">مدت زمان رویداد</label>
+                                <input type="text" class="form-control" asp-for="Command.Length">
+                                <span asp-validation-for="Command.Length" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.EventId" class="form-label">رویداد</label>
+                                <select class="form-select" asp-for="Command.EventId" asp-items="Model.Events">
+                                    <option value="0">رویداد...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.StartTime" class="form-label">تاریخ شروع</label>
+                                <input type="text" class="form-control" asp-for="Command.StartTime">
+                                <span asp-validation-for="Command.StartTime" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.EndTime" class="form-label">تاریخ پایان</label>
+                                <input type="text" class="form-control" asp-for="Command.EndTime">
+                                <span asp-validation-for="Command.EndTime" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr/>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.State" class="form-label">استان</label>
+                                <input type="text" class="form-control" asp-for="Command.State">
+                                <span asp-validation-for="Command.State" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.City" class="form-label">شهر</label>
+                                <input type="text" class="form-control" asp-for="Command.City">
+                                <span asp-validation-for="Command.City" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.Address" class="form-label">آدرس</label>
+                                <textarea class="form-control" asp-for="Command.Address"></textarea>
+                                <span asp-validation-for="Command.Address" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr/>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.TotalHours" class="form-label">ساعت کل</label>
+                                <input type="text" class="form-control" asp-for="Command.TotalHours">
+                                <span asp-validation-for="Command.TotalHours" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.RoomCapacity" class="form-label">ظرفیت اتاق</label>
+                                <input type="text" class="form-control" asp-for="Command.RoomCapacity">
+                                <span asp-validation-for="Command.RoomCapacity" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr/>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.HostingService" class="form-label">سرویس میزبانی</label>
+                                <input type="text" class="form-control" asp-for="Command.HostingService">
+                                <span asp-validation-for="Command.HostingService" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.LoginLink" class="form-label">لینک ورود</label>
+                                <input type="text" class="form-control" asp-for="Command.LoginLink">
+                                <span asp-validation-for="Command.LoginLink" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.Description" class="form-label">توضیحات</label>
+                                <textarea class="form-control" asp-for="Command.Description"></textarea>
+                                <span asp-validation-for="Command.Description" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr/>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.IsPersonalSystem" class="form-label">سیستم شخصی؟</label>
+                                <input type="checkbox" asp-for="Command.IsPersonalSystem">
+                                <span asp-validation-for="Command.IsPersonalSystem" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.IsWebinar" class="form-label">غیرحضوری؟</label>
+                                <input type="checkbox" asp-for="Command.IsWebinar">
+                                <span asp-validation-for="Command.IsWebinar" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id"/>
+                    <button type="submit" class="btn btn-success">ویرایش</button>
+                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,91 @@
+﻿@page
+@model ServiceHost.Areas.Administration.Pages.Events.Tickets.CreateModel
+@{
+    ViewData["Title"] = "ایجاد بلیط جدید";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">ایجاد بلیط جدید</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Title" class="form-label">عنوان</label>
+                                <input type="text" class="form-control" asp-for="Command.Title">
+                                <span asp-validation-for="Command.Title" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Number" class="form-label">تعداد</label>
+                                <input type="text" class="form-control" asp-for="Command.Number">
+                                <span asp-validation-for="Command.Number" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Price" class="form-label">قیمت</label>
+                                <input type="text" class="form-control" asp-for="Command.Price">
+                                <span asp-validation-for="Command.Price" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.EventId" class="form-label">رویداد</label>
+                                <select class="form-select" asp-for="Command.EventId" asp-items="Model.Events">
+                                    <option value="0">رویداد...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.StartTime" class="form-label">تاریخ شروع</label>
+                                <input type="text" class="form-control" asp-for="Command.StartTime">
+                                <span asp-validation-for="Command.StartTime" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.EndTime" class="form-label">تاریخ پایان</label>
+                                <input type="text" class="form-control" asp-for="Command.EndTime">
+                                <span asp-validation-for="Command.EndTime" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.Description" class="form-label">توضیحات</label>
+                                <textarea class="form-control" asp-for="Command.Description" rows="5"></textarea>
+                                <span asp-validation-for="Command.Description" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.IsFree" class="form-label">رایگان؟</label>
+                                <input type="checkbox" asp-for="Command.IsFree">
+                                <span asp-validation-for="Command.IsFree" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">ایجاد</button>
+                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

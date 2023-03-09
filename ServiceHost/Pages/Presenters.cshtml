@@ -1,0 +1,46 @@
+﻿@page
+@model ServiceHost.Pages.PresentersModel
+@{
+    ViewData["Title"] = "برگزارکنندگان";
+}
+
+
+<div class="faq-header d-flex flex-column justify-content-center align-items-center mb-4">
+    <h3 class="text-center"> جستجو در ارائه دهندگان </h3>
+    <div class="input-wrapper my-3 input-group input-group-merge">
+        <span class="input-group-text" id="basic-addon1"><i class="bx bx-search-alt bx-xs text-muted"></i></span>
+        <input type="text" class="form-control form-control-lg" placeholder="جستجو..." aria-label="Search" aria-describedby="basic-addon1">
+    </div>
+</div>
+
+
+<div class="row mb-4">
+    @foreach (var item in Model.Presenters)
+    {
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img class="card-img card-img-right" src="~/AdminTheme/assets/img/elements/12.jpg" alt="Card image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">
+                                @item.Number
+                            </p>
+                            <p class="card-text"><small class="text-muted">@item.Slug</small></p>
+                            <a asp-page="./Presenter" asp-route-id="@item.Slug" class="btn btn-primary">اطلاعات بیشتر</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Css
+{
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-faq.css" />
+}

@@ -1,0 +1,76 @@
+﻿@page "{id:long}"
+@model ServiceHost.Areas.Administration.Pages.Events.Presenters.EditModel
+@{
+    ViewData["Title"] = "ویرایش ارائه دهنده";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="panel panel-default">
+                <h3 class="card-header">ویرایش ارائه دهنده : @Model.Command.Name</h3>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label asp-for="Command.Logo" class="form-label">لوگو</label>
+                                <input type="text" class="form-control" asp-for="Command.Logo">
+                                <span asp-validation-for="Command.Logo" class="error"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label asp-for="Command.Name" class="form-label">نام</label>
+                                        <input type="text" class="form-control" asp-for="Command.Name">
+                                        <span asp-validation-for="Command.Name" class="error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label asp-for="Command.Number" class="form-label">شماره</label>
+                                        <input type="text" class="form-control" asp-for="Command.Number">
+                                        <span asp-validation-for="Command.Number" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label asp-for="Command.Website" class="form-label">وبسایت</label>
+                                        <input type="text" class="form-control" asp-for="Command.Website">
+                                        <span asp-validation-for="Command.Website" class="error"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Command.Policy" class="form-label">سیاست عودت وجه</label>
+                                    <textarea class="form-control" asp-for="Command.Policy" rows="4"></textarea>
+                                    <span asp-validation-for="Command.Policy" class="error"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Command.Description" class="form-label">توضیحات</label>
+                                    <textarea class="form-control" asp-for="Command.Description" rows="4"></textarea>
+                                    <span asp-validation-for="Command.Description" class="error"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id"/>
+                        <button type="submit" class="btn btn-success">ویرایش</button>
+                        <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

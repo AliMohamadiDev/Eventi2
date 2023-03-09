@@ -1,0 +1,133 @@
+﻿@page
+@using _0_Framework.Application
+@model ServiceHost.Pages.EventsModel
+@{
+    ViewData["Title"] = "رویداد ها";
+}
+
+<div class="faq-header d-flex flex-column justify-content-center align-items-center mb-4">
+    <h3 class="text-center"> دنبال رویداد خاصی میگردید؟ </h3>
+    <div class="input-wrapper my-3 input-group input-group-merge">
+        <span class="input-group-text" id="basic-addon1"><i class="bx bx-search-alt bx-xs text-muted"></i></span>
+        <input type="text" class="form-control form-control-lg" placeholder="جستجو کنید..." aria-label="جستجو" aria-describedby="basic-addon1" />
+    </div>
+    <p class="text-center mb-0 px-3">یا از بین رویداد های زیر انتخاب کنید</p>
+</div>
+
+
+
+<h6 class="pb-1 mb-4 text-muted">رویداد ها</h6>
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    @foreach (var item in Model.Events)
+    {
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100">
+                <img class="card-img-top" src="~/AdminTheme/assets/img/elements/2.jpg" alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a asp-page="./Event" asp-route-id="@item.Slug">
+                            @item.Name
+                        </a>
+                    </h5>
+                    @{
+                        if (item.EventInfo != null)
+                        {
+                            if (item.EventInfo.City != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.EventInfo.City
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    مجازی
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                مجازی
+                            </p>
+                        }
+                    }
+                    @{
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.Tickets.FirstOrDefault().Price
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    رایگان
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                رایگان
+                            </p>
+                        }
+                    }
+                    @{
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    اعلام نشده
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                اعلام نشده
+                            </p>
+                        }
+                    }
+
+                    <p class="card-text">@item.Presenter.Name</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Css{
+    <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css" />
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/ui-carousel.css" />
+
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-profile.css" />
+
+}
+
+    @section Script
+    {
+    <script src="~/theme/assets/vendor/libs/swiper/swiper.js"></script>
+    <script src="~/theme/assets/js/ui-carousel.js"></script>
+
+    <script src="~/theme/assets/js/pages-profile.js"></script>
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-faq.css" />
+    }

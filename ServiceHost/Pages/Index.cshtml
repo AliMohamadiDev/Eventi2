@@ -1,0 +1,163 @@
+﻿@page
+@using _0_Framework.Application
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="col-12">
+    <h6 class="text-muted mt-3">گالری</h6>
+    <div id="swiper-gallery">
+        <div class="swiper gallery-top">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/19.jpg)">Slide 1</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 2</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 3</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 4</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 5</div>
+            </div>
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+        <div class="swiper gallery-thumbs">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/19.jpg)">Slide 1</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 2</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 3</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 4</div>
+                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 5</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h6 class="pb-1 mb-4 text-muted">رویداد ها</h6>
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    @foreach (var item in Model.Events)
+    {
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100">
+                <img class="card-img-top" src="~/AdminTheme/assets/img/elements/2.jpg" alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a asp-page="./Event" asp-route-id="@item.Slug">
+                            @item.Name
+                        </a>
+                    </h5>
+                    @{
+                        if (item.EventInfo != null)
+                        {
+                            if (item.EventInfo.City != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.EventInfo.City
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    مجازی
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                مجازی
+                            </p>
+                        }
+                    }
+                    @{
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.Tickets.FirstOrDefault().Price
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    رایگان
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                رایگان
+                            </p>
+                        }
+                    }
+                    @{
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    اعلام نشده
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                اعلام نشده
+                            </p>
+                        }
+                    }
+
+                    <p class="card-text">@item.Presenter.Name</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div class="col-12 mb-4">
+    <h6 class="text-muted mt-3">آخرین رویداد ها</h6>
+    <div class="swiper" id="swiper-multiple-slides">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/13.jpg)">Slide 1</div>
+            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/19.jpg)">Slide 2</div>
+            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/18.jpg)">Slide 3</div>
+            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/7.jpg)">Slide 4</div>
+            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/20.jpg)">Slide 5</div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+
+@section Css{
+    <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css" />
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/ui-carousel.css" />
+    
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-profile.css" />
+
+}
+
+@section Script
+{
+    <script src="~/theme/assets/vendor/libs/swiper/swiper.js"></script>
+    <script src="~/theme/assets/js/ui-carousel.js"></script>
+    
+    <script src="~/theme/assets/js/pages-profile.js"></script>
+}
