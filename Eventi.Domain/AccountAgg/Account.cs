@@ -1,5 +1,4 @@
-﻿using _0_Framework.Domain;
-using Eventi.Domain.EventAgg;
+﻿using Eventi.Domain.EventAgg;
 using Eventi.Domain.RoleAgg;
 
 namespace Eventi.Domain.AccountAgg;

@@ -9,7 +9,7 @@ public class Department
     public string Address { get; private set; }
     public DateTime CreationDate { get; private set; }
     public List<Event> Events { get; private set; } = new();
-    //public List<DepartmentAccount> DepartmentAccounts { get; private set; }
+    public List<DepartmentAccount> DepartmentAccounts { get; private set; }
 
     protected Department()
     {
