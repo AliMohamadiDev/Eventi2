@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>_01_EventiQuery</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\Article\" />
+    <Folder Include="Contracts\ArticleCategory\" />
+    <Folder Include="Contracts\Event\" />
+    <Folder Include="Contracts\EventCategory\" />
+    <Folder Include="Contracts\Presenter\" />
+    <Folder Include="Query\" />
+  </ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\Eventi.Infrastructure.EfCore\Eventi.Infrastructure.EfCore.csproj" />
+  </ItemGroup>
+
+</Project>
