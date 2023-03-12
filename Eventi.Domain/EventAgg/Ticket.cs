@@ -10,8 +10,10 @@ public class Ticket
     public string? Description { get; private set; }
     public DateTime StartTime { get; private set; }
     public DateTime EndTime { get; private set; }
-    public Event Event { get; private set; }
     public long EventId { get; private set; }
+    public Event Event { get; private set; }
+    public List<AccountTicket> AccountTickets { get; private set; } = new();
+
 
     protected Ticket()
     {

@@ -42,5 +42,7 @@ public class EventMapping : IEntityTypeConfiguration<Event>
         /*builder.HasOne(e => e.Department)
             .WithOne(e => e.Event)
             .HasForeignKey<Department>(x => x.EventId);*/
+
+        //builder.HasMany(x=>x.)
     }
 }

@@ -21,9 +21,10 @@ public class EventiContext : DbContext
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<EventInfo> EventInfos { get; set; }
     public DbSet<EventPresenters> EventPresenters { get; set; }
-    //public DbSet<DepartmentAccount> DepartmentAccounts { get; set; }
+    public DbSet<DepartmentAccount> DepartmentAccounts { get; set; }
     public DbSet<Article> Articles { get; set; }
     public DbSet<ArticleCategory> ArticleCategories { get; set; }
+    public DbSet<AccountTicket> AccountTickets { get; set; }
 
     public EventiContext(DbContextOptions<EventiContext> options) : base(options)
     {

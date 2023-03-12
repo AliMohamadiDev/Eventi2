@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eventi.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(EventiContext))]
-    [Migration("20230309134608_init")]
+    [Migration("20230312175618_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -218,6 +218,26 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                     b.ToTable("ArticleCategories", (string)null);
                 });
 
+            modelBuilder.Entity("Eventi.Domain.EventAgg.AccountTicket", b =>
+                {
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TicketId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AccountId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("EventId", "TicketId", "AccountId");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("AccountTicket", (string)null);
+                });
+
             modelBuilder.Entity("Eventi.Domain.EventAgg.Department", b =>
                 {
                     b.Property<long>("Id")
@@ -273,9 +293,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<long?>("AccountId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -329,8 +346,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                         .HasColumnType("nvarchar(2024)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
 
                     b.HasIndex("DepartmentId");
 
@@ -483,9 +498,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<long?>("AccountId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Description")
                         .HasMaxLength(2048)
                         .HasColumnType("nvarchar(2048)");
@@ -514,8 +526,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
 
                     b.HasIndex("EventId");
 
@@ -622,6 +632,33 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Eventi.Domain.EventAgg.AccountTicket", b =>
+                {
+                    b.HasOne("Eventi.Domain.AccountAgg.Account", "Account")
+                        .WithMany("AccountTickets")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eventi.Domain.EventAgg.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eventi.Domain.EventAgg.Ticket", "Ticket")
+                        .WithMany("AccountTickets")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Ticket");
+                });
+
             modelBuilder.Entity("Eventi.Domain.EventAgg.DepartmentAccount", b =>
                 {
                     b.HasOne("Eventi.Domain.AccountAgg.Account", "Account")
@@ -643,10 +680,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
 
             modelBuilder.Entity("Eventi.Domain.EventAgg.Event", b =>
                 {
-                    b.HasOne("Eventi.Domain.AccountAgg.Account", null)
-                        .WithMany("MyEvents")
-                        .HasForeignKey("AccountId");
-
                     b.HasOne("Eventi.Domain.EventAgg.Department", "Department")
                         .WithMany("Events")
                         .HasForeignKey("DepartmentId")
@@ -696,10 +729,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
 
             modelBuilder.Entity("Eventi.Domain.EventAgg.Ticket", b =>
                 {
-                    b.HasOne("Eventi.Domain.AccountAgg.Account", null)
-                        .WithMany("Tickets")
-                        .HasForeignKey("AccountId");
-
                     b.HasOne("Eventi.Domain.EventAgg.Event", "Event")
                         .WithMany("Tickets")
                         .HasForeignKey("EventId")
@@ -753,11 +782,9 @@ namespace Eventi.Infrastructure.EfCore.Migrations
 
             modelBuilder.Entity("Eventi.Domain.AccountAgg.Account", b =>
                 {
+                    b.Navigation("AccountTickets");
+
                     b.Navigation("DepartmentAccounts");
-
-                    b.Navigation("MyEvents");
-
-                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("Eventi.Domain.ArticleCategoryAgg.ArticleCategory", b =>
@@ -785,6 +812,11 @@ namespace Eventi.Infrastructure.EfCore.Migrations
             modelBuilder.Entity("Eventi.Domain.EventAgg.Presenter", b =>
                 {
                     b.Navigation("EventPresenters");
+                });
+
+            modelBuilder.Entity("Eventi.Domain.EventAgg.Ticket", b =>
+                {
+                    b.Navigation("AccountTickets");
                 });
 
             modelBuilder.Entity("Eventi.Domain.EventCategoryAgg.EventCategory", b =>

@@ -203,6 +203,43 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    ImageCover = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false),
+                    ImageCoverTitle = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
+                    ImageCoverAlt = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
+                    SubcategoryId = table.Column<long>(type: "bigint", nullable: false),
+                    Tags = table.Column<string>(type: "nvarchar(2024)", maxLength: 2024, nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DepartmentId = table.Column<long>(type: "bigint", nullable: false),
+                    IsWebinar = table.Column<bool>(type: "bit", nullable: false),
+                    IsPrivate = table.Column<bool>(type: "bit", nullable: false),
+                    PayByCustomer = table.Column<bool>(type: "bit", nullable: false),
+                    Link = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Slug = table.Column<string>(type: "nvarchar(360)", maxLength: 360, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Events_EventSubcategories_SubcategoryId",
+                        column: x => x.SubcategoryId,
+                        principalTable: "EventSubcategories",
+                        principalColumn: "SubcategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DepartmentAccounts",
                 columns: table => new
                 {
@@ -223,49 +260,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Events",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    ImageCover = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false),
-                    ImageCoverTitle = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
-                    ImageCoverAlt = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
-                    SubcategoryId = table.Column<long>(type: "bigint", nullable: false),
-                    Tags = table.Column<string>(type: "nvarchar(2024)", maxLength: 2024, nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DepartmentId = table.Column<long>(type: "bigint", nullable: false),
-                    IsWebinar = table.Column<bool>(type: "bit", nullable: false),
-                    IsPrivate = table.Column<bool>(type: "bit", nullable: false),
-                    PayByCustomer = table.Column<bool>(type: "bit", nullable: false),
-                    Link = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(360)", maxLength: 360, nullable: false),
-                    AccountId = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Events", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Events_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Events_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Departments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Events_EventSubcategories_SubcategoryId",
-                        column: x => x.SubcategoryId,
-                        principalTable: "EventSubcategories",
-                        principalColumn: "SubcategoryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -338,17 +332,11 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                     Description = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: true),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EventId = table.Column<long>(type: "bigint", nullable: false),
-                    AccountId = table.Column<long>(type: "bigint", nullable: true)
+                    EventId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tickets_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Tickets_Events_EventId",
                         column: x => x.EventId,
@@ -357,10 +345,51 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AccountTicket",
+                columns: table => new
+                {
+                    AccountId = table.Column<long>(type: "bigint", nullable: false),
+                    TicketId = table.Column<long>(type: "bigint", nullable: false),
+                    EventId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountTicket", x => new { x.EventId, x.TicketId, x.AccountId });
+                    table.ForeignKey(
+                        name: "FK_AccountTicket_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AccountTicket_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AccountTicket_Tickets_TicketId",
+                        column: x => x.TicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_RoleId",
                 table: "Accounts",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountTicket_AccountId",
+                table: "AccountTicket",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountTicket_TicketId",
+                table: "AccountTicket",
+                column: "TicketId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Articles_CategoryId",
@@ -384,11 +413,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                 column: "PresenterId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Events_AccountId",
-                table: "Events",
-                column: "AccountId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Events_DepartmentId",
                 table: "Events",
                 column: "DepartmentId");
@@ -409,11 +433,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tickets_AccountId",
-                table: "Tickets",
-                column: "AccountId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tickets_EventId",
                 table: "Tickets",
                 column: "EventId");
@@ -421,6 +440,9 @@ namespace Eventi.Infrastructure.EfCore.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AccountTicket");
+
             migrationBuilder.DropTable(
                 name: "Articles");
 
@@ -443,22 +465,22 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                 name: "ArticleCategories");
 
             migrationBuilder.DropTable(
+                name: "Accounts");
+
+            migrationBuilder.DropTable(
                 name: "Presenters");
 
             migrationBuilder.DropTable(
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "EventSubcategories");
-
-            migrationBuilder.DropTable(
-                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "EventCategories");

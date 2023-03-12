@@ -20,9 +20,9 @@ public class Account
     public long RoleId { get; private set; }
     public Role Role { get; private set; }
 
-    public List<Event> MyEvents { get; private set; } = new();
-    public List<Ticket> Tickets { get; private set; } = new();
-    public List<DepartmentAccount> DepartmentAccounts { get; private set; }
+    //public List<Event> MyEvents { get; private set; } = new();
+    public List<AccountTicket> AccountTickets { get; private set; } = new();
+    public List<DepartmentAccount> DepartmentAccounts { get; private set; } = new();
 
     protected Account()
     {
