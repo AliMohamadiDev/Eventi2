@@ -9,25 +9,25 @@
         <h4 class="card-header">@ViewData["title"]</h4>
     </div>
     <div class="navbar-nav flex-row align-items-center ms-auto">
-        <a class="btn btn-primary btn-lg" asp-page="Create">ایجاد طرف حساب جدید</a>
+        <a class="btn btn-primary btn-lg" asp-page="Create">ایجاد دپارتمان جدید</a>
     </div>
 </div>
 
 
 <div class="card mb-4">
-    <h5 class="card-header">جستجو در طرف حساب ها</h5>
+    <h5 class="card-header">جستجو در دپارتمان ها</h5>
     <div class="card-body">
         <form role="form" method="get">
 
             <div class="row gx-3 gy-2 align-items-center">
                 <div class="col-md-3">
-                    <input class="form-control" asp-for="SearchModel.Id" placeholder="شماره ارائه دهنده">
+                    <input class="form-control" asp-for="SearchModel.Id" placeholder="آی دی دپارتمان">
                 </div>
                 <div class="col-md-3">
-                    <input class="form-control" asp-for="SearchModel.Name" placeholder="نام ارائه دهنده">
+                    <input class="form-control" asp-for="SearchModel.Name" placeholder="نام دپارتمان">
                 </div>
                 <div class="col-md-3">
-                    <input class="form-control" asp-for="SearchModel.NationalCode" placeholder="کد پستی طرف حساب">
+                    <input class="form-control" asp-for="SearchModel.NationalCode" placeholder="کد پستی دپارتمان">
                 </div>
                 @*<div class="col-md-3">
                     <label asp-for="SearchModel.IsReal">حقیقی؟</label>
@@ -44,7 +44,7 @@
 
 
 <div class="card">
-    <h5 class="card-header">ارائه دهندگان</h5>
+    <h5 class="card-header">دپارتمان ها</h5>
     <div class="table-responsive text-nowrap">
         <table class="table">
             <thead>
@@ -54,7 +54,7 @@
                 <th>کد ملی</th>
                 <th>کد پستی</th>
                 <th>آدرس</th>
-                <th>نوع</th>
+                @*<th>نوع</th>*@
                 <th>عملیات</th>
             </tr>
             </thead>
