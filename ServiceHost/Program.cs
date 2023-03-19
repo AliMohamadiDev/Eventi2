@@ -3,6 +3,7 @@ using ServiceHost;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using _0_Framework.Application.ZarinPal;
+using _0_Framework.Infrastructure;
 using Eventi.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -27,14 +28,15 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
     {
-        //o.LoginPath = new PathString("/Account");
-        //o.LogoutPath = new PathString("/Account");
-        //o.AccessDeniedPath = new PathString("/AccessDenied");
+        o.LoginPath = new PathString("/Login");
+        o.LogoutPath = new PathString("/Login");
+        o.AccessDeniedPath = new PathString("/AccessDenied");
     });
 
 builder.Services.AddAuthorization(options =>
 {
-    //options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {"XXX"}));
+    options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin}));
+    options.AddPolicy("Account", b => b.RequireRole(new List<string> {Roles.Administration}));
 
 });
 
@@ -42,8 +44,8 @@ builder.Services.AddRazorPages()
     //.AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
     .AddRazorPagesOptions(options =>
     {
-        //options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
-
+        options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+        options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
     });
 
 var app = builder.Build();
@@ -54,8 +56,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseAuthentication();
+
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
+
+app.UseCookiePolicy();
 
 app.UseRouting();
 

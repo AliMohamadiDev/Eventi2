@@ -26,10 +26,10 @@ public class RegisterModel : PageModel
         if (result.IsSucceeded)
         {
             RegisterMessage = result.Message;
-            return RedirectToPage("/Account");
+            return RedirectToPage("/Index");
         }
 
         RegisterMessage = result.Message;
-        return RedirectToPage("/Account");
+        return RedirectToPage("/Index");
     }
 }

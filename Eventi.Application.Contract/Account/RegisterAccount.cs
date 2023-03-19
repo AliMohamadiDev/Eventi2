@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using _0_Framework.Application;
 using Eventi.Application.Contract.Role;
+using Microsoft.AspNetCore.Http;
 
 namespace Eventi.Application.Contract.Account;
 
@@ -20,6 +21,8 @@ public class RegisterAccount
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Mobile { get; set; }
+
+    public IFormFile? ProfilePhoto { get; set; }
 
     public long RoleId { get; set; }
 

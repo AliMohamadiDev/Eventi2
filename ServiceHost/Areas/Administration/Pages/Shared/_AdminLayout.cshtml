@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using _0_Framework.Infrastructure
+@inject _0_Framework.Application.IAuthHelper _authHelper;
+@{
+    var currentAccount = _authHelper.CurrentAccountInfo();
+}
+
+<!DOCTYPE html>
 
 <html
     lang="en"
@@ -266,8 +272,8 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">علی</span>
-                                        <small class="text-muted">ادمین</small>
+                                        <span class="fw-semibold d-block">@currentAccount.Firstname @currentAccount.Lastname</span>
+                                        <small class="text-muted">@currentAccount.Role</small>
                                     </div>
                                 </div>
                             </a>

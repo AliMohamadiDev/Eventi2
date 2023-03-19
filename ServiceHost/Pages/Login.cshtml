@@ -46,7 +46,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="app-brand justify-content-center">
-                            <a href="index.html" class="app-brand-link gap-2">
+                            <a asp-page="/Index" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
                                     <svg width="25"
                                          viewBox="0 0 25 42"
@@ -98,12 +98,12 @@
 
                         <form id="formAuthentication" class="mb-3" method="post">
                             <div class="mb-3">
-                                <label for="email" class="form-label">نام کاربری</label>
+                                <label for="email" class="form-label">ایمیل</label>
                                 <input type="text"
                                        class="form-control"
                                        id="email"
-                                       name="username"
-                                       placeholder="نام کاربری"
+                                       name="email"
+                                       placeholder="ایمیل"
                                        autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">

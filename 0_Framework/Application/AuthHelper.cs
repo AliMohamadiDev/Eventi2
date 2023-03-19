@@ -33,13 +33,13 @@ namespace _0_Framework.Application
             var permissions = JsonConvert.SerializeObject(account.Permissions);
             var claims = new List<Claim>
             {
-                new Claim("AccountId", account.Id.ToString()),
-                new Claim("Firstname", account.Firstname),
-                new Claim("Lastname", account.Lastname),
-                new Claim(ClaimTypes.Role, account.RoleId.ToString()),
-                new Claim(ClaimTypes.Email, account.Email), 
-                new Claim("Permissions", permissions),
-                new Claim("ProfilePhoto", account.ProfilePhoto!)
+                new("AccountId", account.Id.ToString()),
+                new("Firstname", account.Firstname),
+                new("Lastname", account.Lastname),
+                new(ClaimTypes.Role, account.RoleId.ToString()),
+                //new(ClaimTypes.Email, account.Email), 
+                new("Permissions", permissions),
+                new("ProfilePhoto", account.ProfilePhoto!)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -65,7 +65,7 @@ namespace _0_Framework.Application
             result.Firstname = claims.FirstOrDefault(x => x.Type == "Firstname")!.Value;
             result.Lastname = claims.FirstOrDefault(x => x.Type == "Lastname")!.Value;
             result.RoleId = long.Parse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)!.Value);
-            result.Email = claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)!.Value;
+            //result.Email = claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)!.Value;
             result.Role = Roles.GetRoleBy(result.RoleId);
             result.ProfilePhoto = claims.FirstOrDefault(x => x.Type == "ProfilePhoto")!.Value;
             
