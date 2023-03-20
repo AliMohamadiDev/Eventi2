@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eventi.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(EventiContext))]
-    [Migration("20230312175618_init")]
-    partial class init
+    [Migration("20230320064828_LastnameRemoved")]
+    partial class LastnameRemoved
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,16 +43,10 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Fullname")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Lastname")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");

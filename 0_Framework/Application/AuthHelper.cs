@@ -34,10 +34,9 @@ namespace _0_Framework.Application
             var claims = new List<Claim>
             {
                 new("AccountId", account.Id.ToString()),
-                new("Firstname", account.Firstname),
-                new("Lastname", account.Lastname),
+                new("Fullname", account.Fullname),
                 new(ClaimTypes.Role, account.RoleId.ToString()),
-                //new(ClaimTypes.Email, account.Email), 
+                new(ClaimTypes.Email, account.Email!), 
                 new("Permissions", permissions),
                 new("ProfilePhoto", account.ProfilePhoto!)
             };
@@ -62,10 +61,9 @@ namespace _0_Framework.Application
 
             var claims = _contextAccessor.HttpContext.User.Claims.ToList();
             result.Id = long.Parse(claims.FirstOrDefault(x => x.Type == "AccountId")!.Value);
-            result.Firstname = claims.FirstOrDefault(x => x.Type == "Firstname")!.Value;
-            result.Lastname = claims.FirstOrDefault(x => x.Type == "Lastname")!.Value;
+            result.Fullname = claims.FirstOrDefault(x => x.Type == "Fullname")!.Value;
             result.RoleId = long.Parse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)!.Value);
-            //result.Email = claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)!.Value;
+            result.Email = claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)!.Value;
             result.Role = Roles.GetRoleBy(result.RoleId);
             result.ProfilePhoto = claims.FirstOrDefault(x => x.Type == "ProfilePhoto")!.Value;
             

@@ -8,7 +8,7 @@ namespace Eventi.Application.Contract.Account;
 public class RegisterAccount
 {
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
-    public string Firstname { get; set; }
+    public string Fullname { get; set; }
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Lastname { get; set; }

@@ -34,7 +34,7 @@ public class AccountApplication : IAccountApplication
         var path = $"profilePhotos";
         //var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
         var picturePath = $"{path}\\DefaultProfilePicture.jpg";
-        var account = new Account(command.Firstname, command.Lastname, null, null, command.Mobile, command.Email,
+        var account = new Account(command.Fullname, null, null, command.Mobile, command.Email,
             password, picturePath, null, command.RoleId);
         await _accountRepository.CreateAsync(account);
         await _accountRepository.SaveChangesAsync();
@@ -56,7 +56,7 @@ public class AccountApplication : IAccountApplication
         var path = $"profilePhotos";
         //var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
         var picturePath = $"{path}\\DefaultProfilePicture.jpg";
-        account?.Edit(command.Firstname, command.Lastname, null, null, command.Mobile, command.Email, picturePath, null,
+        account?.Edit(command.Fullname, null, null, command.Mobile, command.Email, picturePath, null,
             command.RoleId);
         await _accountRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -101,7 +101,7 @@ public class AccountApplication : IAccountApplication
             .Select(x => x.Code)
             .ToList();
 
-        var authViewModel = new AuthViewModel(account.Id, account.RoleId, account.Firstname, account.Lastname,
+        var authViewModel = new AuthViewModel(account.Id, account.RoleId, account.Fullname,
             account.Email, permissions, account.ProfilePhoto);
 
         _authHelper.Signin(authViewModel);

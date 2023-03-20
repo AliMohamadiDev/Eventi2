@@ -11,8 +11,7 @@ public class AccountMapping : IEntityTypeConfiguration<Account>
         builder.ToTable("Accounts");
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Firstname).HasMaxLength(100).IsRequired();
-        builder.Property(x => x.Lastname).HasMaxLength(100).IsRequired();
+        builder.Property(x => x.Fullname).HasMaxLength(100).IsRequired();
         builder.Property(x => x.Email).HasMaxLength(100);
         builder.Property(x => x.State).HasMaxLength(100);
         builder.Property(x => x.City).HasMaxLength(100);

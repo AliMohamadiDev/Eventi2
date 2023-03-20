@@ -6,12 +6,11 @@ namespace Eventi.Domain.AccountAgg;
 public class Account
 {
     public long Id { get; private set; }
-    public string Firstname { get; private set; }
-    public string Lastname { get; private set; }
+    public string Fullname { get; private set; }
     public string? State { get; private set; }
     public string? City { get; private set; }
     public string Mobile { get; private set; }
-    public string Email { get; private set; }
+    public string? Email { get; private set; }
     public string Password { get; private set; }
     public string? ProfilePhoto { get; private set; }
     public DateTime? Birthday { get; private set; }
@@ -28,11 +27,10 @@ public class Account
     {
     }
 
-    public Account(string firstname, string lastname, string? state, string? city, string mobile, string? email,
+    public Account(string fullname, string? state, string? city, string mobile, string? email,
         string password, string? profilePhoto, DateTime? birthday, long roleId)
     {
-        Firstname = firstname;
-        Lastname = lastname;
+        Fullname = fullname;
         State = state;
         City = city;
         Mobile = mobile;
@@ -50,11 +48,10 @@ public class Account
         CreationDate = DateTime.Now;
     }
 
-    public void Edit(string firstname, string lastname, string? state, string? city, string mobile, string? email,
+    public void Edit(string firstname, string? state, string? city, string mobile, string? email,
         string? profilePhoto, DateTime? birthday, long roleId)
     {
-        Firstname = firstname;
-        Lastname = lastname;
+        Fullname = firstname;
         State = state;
         City = city;
         Mobile = mobile;

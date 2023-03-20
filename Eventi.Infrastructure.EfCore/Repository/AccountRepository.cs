@@ -20,8 +20,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         return await _context.Accounts.Select(x => new EditAccount
         {
             Id = x.Id,
-            Firstname = x.Firstname,
-            Lastname = x.Lastname,
+            Fullname = x.Fullname,
             Mobile = x.Mobile,
             RoleId = x.RoleId,
             Email = x.Email
@@ -33,8 +32,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         return await _context.Accounts.Select(x => new AccountViewModel
         {
             Id = x.Id,
-            Firstname = x.Firstname,
-            Lastname = x.Lastname
+            Fullname = x.Fullname,
         }).ToListAsync();
     }
 
@@ -45,8 +43,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
             .Select(x => new AccountViewModel
         {
             Id = x.Id,
-            Firstname = x.Firstname,
-            Lastname = x.Lastname,
+            Fullname = x.Fullname,
             Mobile = x.Mobile,
             ProfilePhoto = x.ProfilePhoto,
             Role = x.Role.Name,
@@ -58,12 +55,12 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         if (!string.IsNullOrWhiteSpace(searchModel.Fullname))
         {
             query = query.Where(x =>
-                x.Firstname.Contains(searchModel.Fullname) || x.Lastname.Contains(searchModel.Fullname));
+                x.Fullname.Contains(searchModel.Fullname));
         }
 
         if (!string.IsNullOrWhiteSpace(searchModel.Email))
         {
-            query = query.Where(x => x.Email.Contains(searchModel.Email));
+            query = query.Where(x => x.Email!.Contains(searchModel.Email));
         }
 
         if (!string.IsNullOrWhiteSpace(searchModel.Mobile))
