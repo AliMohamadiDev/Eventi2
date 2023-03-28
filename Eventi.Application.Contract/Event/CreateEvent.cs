@@ -1,9 +1,11 @@
-﻿namespace Eventi.Application.Contract.Event;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Eventi.Application.Contract.Event;
 
 public class CreateEvent
 {
     public string Name { get; set; }
-    public string ImageCover { get; set; }
+    public IFormFile? ImageCover { get; set; }
     public string ImageCoverTitle { get; set; }
     public string ImageCoverAlt { get; set; }
     public long SubcategoryId { get; set; }

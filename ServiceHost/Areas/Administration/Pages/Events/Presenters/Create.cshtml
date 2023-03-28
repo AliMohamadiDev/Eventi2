@@ -15,7 +15,7 @@
                         <div class="row mb-4">
                             <div class="col-md-4">
                                 <label asp-for="Command.Logo" class="form-label">لوگو</label>
-                                <input type="text" class="form-control" asp-for="Command.Logo">
+                                <input type="file" accept="image/*" class="form-control" asp-for="Command.Logo">
                                 <span asp-validation-for="Command.Logo" class="error"></span>
                             </div>
                             <div class="col-md-8">

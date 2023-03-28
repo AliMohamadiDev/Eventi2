@@ -36,7 +36,6 @@ public class Presenter
     public void Edit(string name, string logo, string logoTitle, string logoAlt, string? website, string? number, string? policy, string? description, string slug)
     {
         Name = name;
-        Logo = logo;
         LogoTitle = logoTitle;
         LogoAlt = logoAlt;
         Website = website;
@@ -44,6 +43,9 @@ public class Presenter
         Policy = policy;
         Description = description;
         Slug = slug;
+
+        if (!string.IsNullOrWhiteSpace(logo))
+            Logo = logo;
     }
 
 }

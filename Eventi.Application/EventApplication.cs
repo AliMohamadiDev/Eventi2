@@ -7,10 +7,12 @@ namespace Eventi.Application;
 public class EventApplication : IEventApplication
 {
     private readonly IEventRepository _eventRepository;
+    private readonly IFileUploader _fileUploader;
 
-    public EventApplication(IEventRepository eventRepository)
+    public EventApplication(IEventRepository eventRepository, IFileUploader fileUploader)
     {
         _eventRepository = eventRepository;
+        _fileUploader = fileUploader;
     }
 
     public async Task<EditEvent?> GetDetailsAsync(long id)
@@ -28,7 +30,10 @@ public class EventApplication : IEventApplication
         var operation = new OperationResult();
         var Event = _eventRepository.GetEvent(command.Id);
 
-        Event.Edit(command.Name, command.ImageCover, command.ImageCoverTitle, command.ImageCoverAlt,
+        var path = $"Events/{command.Name}";
+        var image = _fileUploader.Upload(command.ImageCover, path);
+
+        Event.Edit(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
             command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Link, command.Slug,
             command.SubcategoryId, command.AccountSideId);
 
@@ -40,7 +45,10 @@ public class EventApplication : IEventApplication
     {
         var operation = new OperationResult();
 
-        var Event = new Event(command.Name, command.ImageCover, command.ImageCoverTitle, command.ImageCoverAlt,
+        var path = $"Events/{command.Name}";
+        var image = _fileUploader.Upload(command.ImageCover, path);
+
+        var Event = new Event(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
             command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Link, command.Slug,
             command.SubcategoryId, command.AccountSideId);
 

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using _0_Framework.Application;
+using Microsoft.AspNetCore.Http;
 
 namespace Eventi.Application.Contract.Presenter;
 
@@ -9,7 +10,7 @@ public class CreatePresenter
     public string Name { get; set; }
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
-    public string Logo { get; set; }
+    public IFormFile? Logo { get; set; }
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string LogoTitle { get; set; }

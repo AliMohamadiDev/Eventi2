@@ -25,7 +25,7 @@ public class PresenterRepository : RepositoryBase<long, Presenter>, IPresenterRe
         {
             Id = x.Id,
             Name = x.Name,
-            Logo = x.Logo,
+            //Logo = x.Logo,
             LogoAlt = x.LogoAlt,
             LogoTitle = x.LogoTitle,
             Slug = x.Slug,

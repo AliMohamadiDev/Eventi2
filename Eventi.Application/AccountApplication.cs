@@ -57,8 +57,8 @@ public class AccountApplication : IAccountApplication
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
         var path = $"profilePhotos";
-        //var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
-        var picturePath = $"{path}\\DefaultProfilePicture.jpg";
+        var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
+        //var picturePath = $"{path}\\DefaultProfilePicture.jpg";
         account?.Edit(command.Fullname, null, null, command.Mobile, command.Email?.ToLower(), picturePath, null,
             command.RoleId);
         await _accountRepository.SaveChangesAsync();

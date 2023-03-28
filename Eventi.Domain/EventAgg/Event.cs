@@ -57,7 +57,6 @@ public class Event
         bool isWebinar, bool isPrivate, bool payByCustomer, string link, string slug, long subcategoryId, long accountSideId)
     {
         Name = name;
-        ImageCover = imageCover;
         ImageCoverTitle = imageCoverTitle;
         ImageCoverAlt = imageCoverAlt;
         Tags = tags;
@@ -68,5 +67,8 @@ public class Event
         Slug = slug;
         SubcategoryId = subcategoryId;
         DepartmentId = accountSideId;
+
+        if (!string.IsNullOrWhiteSpace(imageCover))
+            ImageCover = imageCover;
     }
 }

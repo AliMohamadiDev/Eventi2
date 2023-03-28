@@ -7,10 +7,12 @@ namespace Eventi.Application;
 public class PresenterApplication : IPresenterApplication
 {
     private readonly IPresenterRepository _presenterRepository;
+    private readonly IFileUploader _fileUploader;
 
-    public PresenterApplication(IPresenterRepository presenterRepository)
+    public PresenterApplication(IPresenterRepository presenterRepository, IFileUploader fileUploader)
     {
         _presenterRepository = presenterRepository;
+        _fileUploader = fileUploader;
     }
 
     public async Task<EditPresenter> GetDetailsAsync(long id)
@@ -37,7 +39,10 @@ public class PresenterApplication : IPresenterApplication
         var logoAlt = $"لوگوی {command.Name}";
         var slug = $"{command.Name} {command.Number}".Slugify();
 
-        presenter.Edit(command.Name, command.Logo, logoTitle, logoAlt, command.Website,
+        var path = $"Presenters/{command.Name}";
+        var logo = _fileUploader.Upload(command.Logo, path);
+
+        presenter.Edit(command.Name, logo, logoTitle, logoAlt, command.Website,
             command.Number, command.Policy, command.Description, slug);
 
         await _presenterRepository.SaveChangesAsync();
@@ -57,7 +62,10 @@ public class PresenterApplication : IPresenterApplication
         var logoAlt = $"لوگوی {command.Name}";
         var slug = $"{command.Name} {command.Number}".Slugify();
 
-        var presenter = new Presenter(command.Name, command.Logo, logoTitle, logoAlt, command.Website,
+        var path = $"Presenters/{command.Name}";
+        var logo = _fileUploader.Upload(command.Logo, path);
+
+        var presenter = new Presenter(command.Name, logo, logoTitle, logoAlt, command.Website,
             command.Number, command.Policy, command.Description, slug);
 
         await _presenterRepository.CreateAsync(presenter);

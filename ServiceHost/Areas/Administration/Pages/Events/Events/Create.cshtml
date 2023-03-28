@@ -249,8 +249,8 @@
                         <div class="row mb-4">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label asp-for="Command.ImageCover" class="form-label">آدرس عکس</label>
-                                    <input class="form-control" asp-for="Command.ImageCover" />
+                                    <label asp-for="Command.ImageCover" class="form-label">عکس</label>
+                                    <input type="file" accept="image/*" class="form-control" asp-for="Command.ImageCover" />
                                     <span asp-validation-for="Command.ImageCover" class="error"></span>
                                 </div>
                             </div>

@@ -31,7 +31,7 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             Slug = x.Slug,
             //PresenterId = x.PresenterId,
             AccountSideId = x.DepartmentId,
-            ImageCover = x.ImageCover,
+            //ImageCover = x.ImageCover,
             ImageCoverTitle = x.ImageCoverTitle,
             ImageCoverAlt = x.ImageCoverAlt,
             Link = x.Link,
