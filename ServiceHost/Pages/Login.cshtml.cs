@@ -7,6 +7,7 @@ namespace ServiceHost.Pages;
 public class LoginModel : PageModel
 {
     [TempData] public string LoginMessage { get; set; }
+    public Login Command;
 
     private readonly IAccountApplication _accountApplication;
 
@@ -36,6 +37,6 @@ public class LoginModel : PageModel
     public IActionResult OnPostLogoutAsync()
     {
         _accountApplication.Logout();
-        return RedirectToPage("./Index");
+        return RedirectToPage("/Index");
     }
 }

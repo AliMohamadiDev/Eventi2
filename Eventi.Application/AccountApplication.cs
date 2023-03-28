@@ -33,9 +33,12 @@ public class AccountApplication : IAccountApplication
         var password = _passwordHasher.Hash(command.Password);
         var path = $"profilePhotos";
         //var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
-        var picturePath = $"{path}\\DefaultProfilePicture.jpg";
-        var account = new Account(command.Fullname, null, null, command.Mobile, command.Email,
-            password, picturePath, null, command.RoleId);
+        var picturePath = $"{path}\\DefaultProfilePicture.svg";
+
+        long roleId = command.RoleId == 0 ? 2 : command.RoleId;
+
+        var account = new Account(command.Fullname, null, null, command.Mobile, command.Email?.ToLower(),
+            password, picturePath, null, roleId);
         await _accountRepository.CreateAsync(account);
         await _accountRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -56,7 +59,7 @@ public class AccountApplication : IAccountApplication
         var path = $"profilePhotos";
         //var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
         var picturePath = $"{path}\\DefaultProfilePicture.jpg";
-        account?.Edit(command.Fullname, null, null, command.Mobile, command.Email, picturePath, null,
+        account?.Edit(command.Fullname, null, null, command.Mobile, command.Email?.ToLower(), picturePath, null,
             command.RoleId);
         await _accountRepository.SaveChangesAsync();
         return operation.Succeeded();

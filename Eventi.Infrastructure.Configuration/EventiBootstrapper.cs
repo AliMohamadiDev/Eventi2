@@ -1,4 +1,5 @@
-﻿using _01_EventiQuery.Contracts.Article;
+﻿using _0_Framework.Infrastructure;
+using _01_EventiQuery.Contracts.Article;
 using _01_EventiQuery.Contracts.ArticleCategory;
 using _01_EventiQuery.Contracts.Event;
 using _01_EventiQuery.Contracts.EventCategory;
@@ -22,6 +23,7 @@ using Eventi.Domain.ArticleCategoryAgg;
 using Eventi.Domain.EventAgg;
 using Eventi.Domain.EventCategoryAgg;
 using Eventi.Domain.RoleAgg;
+using Eventi.Infrastructure.Configuration.Permissions;
 using Eventi.Infrastructure.EfCore;
 using Eventi.Infrastructure.EfCore.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -72,6 +74,8 @@ public class EventiBootstrapper
 
         services.AddTransient<IArticleQuery, ArticleQuery>();
         services.AddTransient<IArticleCategoryQuery, ArticleCategoryQuery>();
+
+        services.AddTransient<IPermissionExposer, EventiPermissionExposer>();
 
         services.AddDbContext<EventiContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Transient);
     }

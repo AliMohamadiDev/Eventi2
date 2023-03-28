@@ -35,17 +35,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin}));
-    options.AddPolicy("Account", b => b.RequireRole(new List<string> {Roles.Administration}));
+    //options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin}));
+    //options.AddPolicy("Account", b => b.RequireRole(new List<string> {Roles.Administration}));
 
 });
 
 builder.Services.AddRazorPages()
-    //.AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
+    .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
     .AddRazorPagesOptions(options =>
     {
-        options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
-        options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+        //options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+        //options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
     });
 
 var app = builder.Build();

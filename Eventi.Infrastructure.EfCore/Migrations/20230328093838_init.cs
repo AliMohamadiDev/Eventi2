@@ -159,12 +159,11 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Firstname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Lastname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Fullname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     State = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Mobile = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     ProfilePhoto = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),

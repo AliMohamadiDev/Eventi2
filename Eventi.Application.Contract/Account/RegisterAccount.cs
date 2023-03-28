@@ -11,9 +11,6 @@ public class RegisterAccount
     public string Fullname { get; set; }
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
-    public string Lastname { get; set; }
-    
-    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Password { get; set; }
     
     [Required(ErrorMessage = ValidationMessage.IsRequired)]

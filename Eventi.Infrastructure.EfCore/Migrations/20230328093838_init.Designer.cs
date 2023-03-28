@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eventi.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(EventiContext))]
-    [Migration("20230320064828_LastnameRemoved")]
-    partial class LastnameRemoved
+    [Migration("20230328093838_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

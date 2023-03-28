@@ -101,23 +101,21 @@
                                 <label for="email" class="form-label">ایمیل</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="email"
-                                       name="email"
+                                       asp-for="Command.Email"
                                        placeholder="ایمیل"
                                        autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
-                                    <label class="form-label" for="password">رمز عبور</label>
+                                    <label class="form-label" asp-for="Command.Password">رمز عبور</label>
                                     <a asp-page="./ForgotPassword">
                                         <small>رمز عبور خود را فراموش کرده اید؟</small>
                                     </a>
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password"
-                                           id="password"
                                            class="form-control"
-                                           name="password"
+                                           asp-for="Command.Password"
                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                            aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>

@@ -7,6 +7,7 @@ namespace ServiceHost.Pages;
 public class RegisterModel : PageModel
 {
     [TempData] public string RegisterMessage { get; set; }
+    public RegisterAccount Command;
 
     private readonly IAccountApplication _accountApplication;
 

@@ -100,32 +100,26 @@
                         <form id="formAuthentication" class="mb-3" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">نام کامل</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="نام" />
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">نام کاربری</label>
-                                <input type="text" class="form-control" id="email" name="username" placeholder="ایمیل" />
+                                <input type="text" class="form-control" asp-for="Command.Fullname" placeholder="نام کامل" />
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">موبایل</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="mobile"
-                                       name="mobile"
+                                       asp-for="Command.Mobile"
                                        placeholder="موبایل"
-                                       autofocus/>
+                                       />
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">ایمیل</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="ایمیل"/>
+                                <label asp-for="Command.Email" class="form-label">ایمیل</label>
+                                <input type="text" class="form-control" asp-for="Command.Email" placeholder="ایمیل"/>
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">رمز عبور</label>
                                 <div class="input-group input-group-merge">
                                     <input type="password"
-                                           id="password"
                                            class="form-control"
-                                           name="password"
+                                           asp-for="Command.Password"
                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                            aria-describedby="password"/>
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>

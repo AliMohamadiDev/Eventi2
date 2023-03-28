@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@inject _0_Framework.Application.IAuthHelper _authHelper;
+@{
+    var currentAccount = _authHelper.CurrentAccountInfo();
+}
+
+<!DOCTYPE html>
 
 <html lang="en" class="light-style layout-menu-fixed " dir="rtl" data-theme="theme-default" data-assets-path="/AdminTheme/assets/" data-template="horizontal-menu-template">
 
@@ -124,8 +129,8 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">علی</span>
-                                        <small class="text-muted">ادمین</small>
+                                        <span class="fw-semibold d-block">@currentAccount.Fullname</span>
+                                        <small class="text-muted">@currentAccount.Role</small>
                                     </div>
                                 </div>
                             </a>
@@ -150,9 +155,9 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" asp-page="./Login" asp-page-handler="Logout" target="_blank">
+                            <a class="dropdown-item" asp-page="/Logout">
                                 <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">Log Out</span>
+                                <span class="align-middle">خروج</span>
                             </a>
                         </li>
                     </ul>
