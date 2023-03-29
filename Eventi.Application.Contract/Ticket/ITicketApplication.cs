@@ -9,4 +9,6 @@ public interface ITicketApplication
     Task<OperationResult> EditTicketAsync(EditTicket command);
     Task<OperationResult> CreateTicketAsync(CreateTicket command);
     Task<List<TicketViewModel>> SearchAsync(TicketSearchModel searchModel);
+    void Deactivate(long id);
+    void Activate(long id);
 }

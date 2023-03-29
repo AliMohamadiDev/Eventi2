@@ -9,4 +9,6 @@ public interface IAccountRepository : IRepository<long, Account>
     Task<EditAccount?> GetDetailsAsync(long id);
     Task<List<AccountViewModel>> GetAccountsAsync();
     Task<List<AccountViewModel>> SearchAsync(AccountSearchModel searchModel);
+    void Deactivate(long id);
+    void Activate(long id);
 }

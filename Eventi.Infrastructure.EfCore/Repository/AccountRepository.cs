@@ -76,6 +76,16 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         return await query.OrderByDescending(x => x.Id).ToListAsync();
     }
 
+    public void Deactivate(long id)
+    {
+        _context.Accounts.Find(id).Deactivate();
+    }
+
+    public void Activate(long id)
+    {
+        _context.Accounts.Find(id).Activate();
+    }
+
     public  async Task<Account?> GetByAsync(string email)
     {
         return await _context.Accounts.FirstOrDefaultAsync(x => x.Email == email);

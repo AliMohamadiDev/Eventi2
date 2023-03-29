@@ -78,4 +78,14 @@ public class ArticleApplication : IArticleApplication
     {
         return await _articleRepository.SearchAsync(searchModel);
     }
+
+    public void Remove(long id)
+    {
+        _articleRepository.Remove(id);
+    }
+
+    public void Restore(long id)
+    {
+        _articleRepository.Restore(id);
+    }
 }

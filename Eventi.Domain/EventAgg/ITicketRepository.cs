@@ -9,4 +9,6 @@ public interface ITicketRepository : IRepository<long, Ticket>
     Task<EditTicket?> GetDetailsAsync(long id);
     Task<List<TicketViewModel>> GetTicketsAsync();
     Task<List<TicketViewModel>> SearchAsync(TicketSearchModel searchModel);
+    void Deactivate(long id);
+    void Activate(long id);
 }

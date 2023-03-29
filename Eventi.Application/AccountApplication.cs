@@ -122,6 +122,16 @@ public class AccountApplication : IAccountApplication
         return await _accountRepository.SearchAsync(searchModel);
     }
 
+    public void Deactivate(long id)
+    {
+        _accountRepository.Deactivate(id);
+    }
+
+    public void Activate(long id)
+    {
+        _accountRepository.Activate(id);
+    }
+
     public void Logout()
     {
         _authHelper.SignOut();

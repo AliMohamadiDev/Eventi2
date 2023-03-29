@@ -9,4 +9,6 @@ public interface IEventRepository : IRepository<long, Event>
     Task<EditEvent?> GetDetailsAsync(long id);
     Task<List<EventViewModel>> GetEventsAsync();
     Task<List<EventViewModel>> SearchAsync(EventSearchModel searchModel);
+    void Remove(long id);
+    void Restore(long id);
 }

@@ -62,4 +62,14 @@ public class ArticleRepository : RepositoryBase<long, Article>, IArticleReposito
 
         return await query.OrderByDescending(x => x.Id).ToListAsync();
     }
+
+    public void Remove(long id)
+    {
+        _blogContext.Articles.Find(id).Remove();
+    }
+
+    public void Restore(long id)
+    {
+        _blogContext.Articles.Find(id).Restore();
+    }
 }

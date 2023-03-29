@@ -111,4 +111,14 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
 
         return await query.OrderByDescending(x => x.Id).ToListAsync();
     }
+
+    public void Remove(long id)
+    {
+        _context.Events.Find(id).Remove();
+    }
+
+    public void Restore(long id)
+    {
+        _context.Events.Find(id).Restore();
+    }
 }

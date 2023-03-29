@@ -12,4 +12,6 @@ public interface IAccountApplication
     Task<OperationResult> RegisterAsync(RegisterAccount command);
     Task<OperationResult> ChangePasswordAsync(ChangePassword command);
     Task<List<AccountViewModel>> SearchAsync(AccountSearchModel searchModel);
+    void Deactivate(long id);
+    void Activate(long id);
 }

@@ -15,7 +15,7 @@ public class TicketApplication : ITicketApplication
 
     public async Task<EditTicket> GetDetailsAsync(long id)
     {
-        return await _ticketRepository.GetDetailsAsync(id);
+        return (await _ticketRepository.GetDetailsAsync(id))!;
     }
 
     public async Task<List<TicketViewModel>> GetTicketsAsync()
@@ -70,5 +70,15 @@ public class TicketApplication : ITicketApplication
     public async Task<List<TicketViewModel>> SearchAsync(TicketSearchModel searchModel)
     {
         return await _ticketRepository.SearchAsync(searchModel);
+    }
+
+    public void Deactivate(long id)
+    {
+        _ticketRepository.Deactivate(id);
+    }
+
+    public void Activate(long id)
+    {
+        _ticketRepository.Activate(id);
     }
 }

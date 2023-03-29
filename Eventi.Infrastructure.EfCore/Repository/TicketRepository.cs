@@ -16,7 +16,7 @@ public class TicketRepository : RepositoryBase<long, Ticket>, ITicketRepository
 
     public Ticket GetTicket(long id)
     {
-        return _context.Tickets.Find(id);
+        return _context.Tickets.Find(id)!;
     }
 
     public async Task<EditTicket?> GetDetailsAsync(long id)
@@ -90,5 +90,15 @@ public class TicketRepository : RepositoryBase<long, Ticket>, ITicketRepository
         }
 
         return await query.OrderByDescending(x => x.Id).ToListAsync();
+    }
+
+    public void Deactivate(long id)
+    {
+        _context.Tickets.Find(id)?.Deactivate();
+    }
+
+    public void Activate(long id)
+    {
+        _context.Tickets.Find(id)?.Activate();
     }
 }

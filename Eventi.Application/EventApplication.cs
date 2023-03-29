@@ -61,4 +61,14 @@ public class EventApplication : IEventApplication
     {
         return await _eventRepository.SearchAsync(searchModel);
     }
+
+    public void Remove(long id)
+    {
+        _eventRepository.Remove(id);
+    }
+
+    public void Restore(long id)
+    {
+        _eventRepository.Restore(id);
+    }
 }
