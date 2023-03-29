@@ -39,7 +39,7 @@
 <div class="card">
     <h5 class="card-header">ارائه دهندگان</h5>
     <div class="table-responsive text-nowrap">
-        <table class="table">
+        <table class="table" id="Datatable">
             <thead>
             <tr>
                 <th>#</th>
@@ -56,9 +56,9 @@
             {
                 <tr>
                     <td>@item.Id</td>
-                        <td>
-                            <img src="~/Pictures/@item.Logo" style="width: 70px; height: 70px" />
-                        </td>
+                    <td>
+                        <img src="~/Pictures/@item.Logo" style="width: 70px; height: 70px" />
+                    </td>
                     <td>@item.Name</td>
                     <td>@item.Number</td>
                     <td>@item.Website</td>
@@ -79,3 +79,20 @@
         </table>
     </div>
 </div>
+
+@section Css
+    {
+    <link rel="stylesheet" href="~/AdminTheme/assets/costum/css/dataTables.bootstrap5.min.css" />
+}
+
+    @section Script
+    {
+    <script>
+        $(document).ready(function () {
+            $('#Datatable').DataTable();
+        });
+    </script>
+
+    <script src="~/AdminTheme/assets/costum/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminTheme/assets/costum/js/dataTables.bootstrap5.min.js"></script>
+}

@@ -40,7 +40,7 @@
 <div class="card">
     <h5 class="card-header">مقاله ها</h5>
     <div class="table-responsive text-nowrap">
-        <table class="table">
+        <table class="table" id="Datatable">
             <thead>
             <tr>
                 <th>#</th>
@@ -82,3 +82,20 @@
 </div>
 
 
+
+@section Css
+    {
+    <link rel="stylesheet" href="~/AdminTheme/assets/costum/css/dataTables.bootstrap5.min.css" />
+}
+
+    @section Script
+    {
+    <script>
+        $(document).ready(function () {
+            $('#Datatable').DataTable();
+        });
+    </script>
+
+    <script src="~/AdminTheme/assets/costum/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminTheme/assets/costum/js/dataTables.bootstrap5.min.js"></script>
+}

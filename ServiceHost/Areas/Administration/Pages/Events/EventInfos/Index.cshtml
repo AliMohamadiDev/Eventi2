@@ -52,7 +52,7 @@
 <div class="card">
     <h5 class="card-header">اطلاعات رویداد ها</h5>
     <div class="table-responsive text-nowrap">
-        <table class="table">
+        <table class="table" id="Datatable">
             <thead>
             <tr>
                 <th>#</th>
@@ -72,11 +72,11 @@
                     <td>@item.StartTime</td>
                     <td>@item.EndTime</td>
                     <td>@item.Event</td>
-                        <td class="text-center">
+                    <td class="text-center">
                         @if (item.IsPersonalSystem)
                         {
                             <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
                                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                                 </svg>
                             </span>
@@ -84,17 +84,17 @@
                         else
                         {
                             <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
                                     <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                                 </svg>
                             </span>
                         }
                     </td>
-                        <td class="text-center">
+                    <td class="text-center">
                         @if (item.IsWebinar)
                         {
                             <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
                                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                                 </svg>
                             </span>
@@ -102,7 +102,7 @@
                         else
                         {
                             <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
                                     <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                                 </svg>
                             </span>
@@ -124,3 +124,20 @@
         </table>
     </div>
 </div>
+
+@section Css
+    {
+    <link rel="stylesheet" href="~/AdminTheme/assets/costum/css/dataTables.bootstrap5.min.css" />
+}
+
+    @section Script
+    {
+    <script>
+        $(document).ready(function () {
+            $('#Datatable').DataTable();
+        });
+    </script>
+
+    <script src="~/AdminTheme/assets/costum/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminTheme/assets/costum/js/dataTables.bootstrap5.min.js"></script>
+}
