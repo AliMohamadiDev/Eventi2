@@ -49,14 +49,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Command.StartTime" class="form-label">تاریخ شروع</label>
-                                <input type="text" class="form-control" asp-for="Command.StartTime">
+                                <input type="text" class="form-control persianDateInput" asp-for="Command.StartTime">
                                 <span asp-validation-for="Command.StartTime" class="error"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Command.EndTime" class="form-label">تاریخ پایان</label>
-                                <input type="text" class="form-control" asp-for="Command.EndTime">
+                                <input type="text" class="form-control persianDateInput" asp-for="Command.EndTime">
                                 <span asp-validation-for="Command.EndTime" class="error"></span>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label asp-for="Command.Description" class="form-label">توضیحات</label>
-                                <textarea class="form-control" asp-for="Command.Description" rows="5"></textarea>
+                                <textarea class="form-control" id="BodyContent" asp-for="Command.Description" rows="5"></textarea>
                                 <span asp-validation-for="Command.Description" class="error"></span>
                             </div>
                         </div>
@@ -89,3 +89,34 @@
         </div>
     </div>
 </div>
+
+                                
+@section Css
+{
+    <link href="~/AdminTheme/assets/costum/css/persian-datepicker.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section Script
+{
+    <script src="https://cdn.tiny.cloud/1/03bywyfc22f080o11wndvso5su892zkphj49li728tkw9f3f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#BodyContent',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+    </script>
+
+
+    <script src="~/AdminTheme/assets/costum/js/persian-date.min.js"></script>
+    <script src="~/AdminTheme/assets/costum/js/persian-datepicker.min.js"></script>
+
+    <script>
+        $('.persianDateInput').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            autoClose: true,
+            initialValueType: "persian"
+        });
+    </script>
+
+}
