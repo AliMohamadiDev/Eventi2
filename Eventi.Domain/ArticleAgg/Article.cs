@@ -18,6 +18,7 @@ public class Article : EntityBase
     public string? CanonicalAddress { get; private set; }
     public long CategoryId { get; private set; }
     public ArticleCategory Category { get; private set; }
+    public bool IsRemoved { get; private set; }
 
     public Article(string title, string shortDescription, string description, string? picture, string pictureAlt,
         string pictureTitle, DateTime publishDate, string slug, string keywords, string metaDescription, string? canonicalAddress,
@@ -35,6 +36,7 @@ public class Article : EntityBase
         MetaDescription = metaDescription;
         CanonicalAddress = canonicalAddress;
         CategoryId = categoryId;
+        IsRemoved = false;
     }
 
     public void Edit(string title, string shortDescription, string description, string? picture, string pictureAlt,
@@ -54,5 +56,15 @@ public class Article : EntityBase
         MetaDescription = metaDescription;
         CanonicalAddress = canonicalAddress;
         CategoryId = categoryId;
+    }
+
+    public void Remove()
+    {
+        IsRemoved = true;
+    }
+
+    public void Restore()
+    {
+        IsRemoved = false;
     }
 }

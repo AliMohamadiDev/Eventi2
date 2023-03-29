@@ -13,6 +13,7 @@ public class Ticket
     public long EventId { get; private set; }
     public Event Event { get; private set; }
     public List<AccountTicket> AccountTickets { get; private set; } = new();
+    public bool IsDeactived { get; private set; }
 
 
     protected Ticket()
@@ -29,7 +30,9 @@ public class Ticket
         StartTime = startTime;
         EndTime = endTime;
         EventId = eventId;
+        IsDeactived = false;
     }
+
 
     public void Edit(string title, string? description, int number, bool isFree, double price, DateTime startTime, DateTime endTime, long eventId)
     {
@@ -43,4 +46,13 @@ public class Ticket
         EventId = eventId;
     }
 
+    public void Deactivate()
+    {
+        IsDeactived = true;
+    }
+
+    public void Activate()
+    {
+        IsDeactived = false;
+    }
 }

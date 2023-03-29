@@ -30,6 +30,7 @@ public class Event
     public bool PayByCustomer { get; private set; }
     public string Link { get; private set; }
     public string Slug { get; private set; }
+    public bool IsRemoved { get; private set; }
 
     protected Event()
     {
@@ -51,6 +52,7 @@ public class Event
         SubcategoryId = subcategoryId;
         CreationDate = DateTime.Now;
         DepartmentId = departmentId;
+        IsRemoved = false;
     }
 
     public void Edit(string name, string imageCover, string imageCoverTitle, string imageCoverAlt, string? tags,
@@ -70,5 +72,15 @@ public class Event
 
         if (!string.IsNullOrWhiteSpace(imageCover))
             ImageCover = imageCover;
+    }
+
+    public void Remove()
+    {
+        IsRemoved = true;
+    }
+
+    public void Restore()
+    {
+        IsRemoved = false;
     }
 }

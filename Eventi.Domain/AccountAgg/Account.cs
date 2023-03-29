@@ -15,6 +15,7 @@ public class Account
     public string? ProfilePhoto { get; private set; }
     public DateTime? Birthday { get; private set; }
     public DateTime CreationDate { get; private set; }
+    public bool IsDeactived { get; private set; }
 
     public long RoleId { get; private set; }
     public Role Role { get; private set; }
@@ -46,6 +47,7 @@ public class Account
         }
 
         CreationDate = DateTime.Now;
+        IsDeactived = false;
     }
 
     public void Edit(string firstname, string? state, string? city, string mobile, string? email,
@@ -68,5 +70,15 @@ public class Account
     public void ChangePassword(string password)
     {
         Password = password;
+    }
+
+    public void Deactivate()
+    {
+        IsDeactived = true;
+    }
+
+    public void Activate()
+    {
+        IsDeactived = false;
     }
 }
