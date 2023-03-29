@@ -115,7 +115,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label asp-for="Command.Description" class="form-label">توضیحات</label>
-                                <textarea class="form-control" asp-for="Command.Description"></textarea>
+                                <textarea class="form-control" id="BodyContent" asp-for="Command.Description"></textarea>
                                 <span asp-validation-for="Command.Description" class="error"></span>
                             </div>
                         </div>
@@ -149,3 +149,14 @@
     </div>
 </div>
 
+
+{
+<script src="https://cdn.tiny.cloud/1/03bywyfc22f080o11wndvso5su892zkphj49li728tkw9f3f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#BodyContent',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        toolbar_mode: 'floating',
+    });
+</script>
+}

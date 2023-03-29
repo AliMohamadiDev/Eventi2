@@ -123,26 +123,14 @@
     </div>
 </div>
 
-@*
-@section Css
-{
-    <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/quill/typography.css" />
-    <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/quill/katex.css" />
-    <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/quill/editor.css" />
-}
-
 @section Script
 {
-    <script src="~/AdminTheme/assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="~/AdminTheme/assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="~/AdminTheme/assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="~/AdminTheme/assets/vendor/js/menu.js"></script>
-    <script src="~/AdminTheme/assets/vendor/libs/quill/katex.js"></script>
-    <script src="~/AdminTheme/assets/vendor/libs/quill/quill.js"></script>
-    <script src="~/AdminTheme/assets/vendor/js/menu.js"></script>
-    <script src="~/AdminTheme/assets/js/forms-editors.js"></script>
-
+    <script src="https://cdn.tiny.cloud/1/03bywyfc22f080o11wndvso5su892zkphj49li728tkw9f3f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#BodyContent',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+    </script>
 }
-*@
