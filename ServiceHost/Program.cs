@@ -29,14 +29,15 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
     {
         o.LoginPath = new PathString("/Login");
-        o.LogoutPath = new PathString("/Login");
+        o.LogoutPath = new PathString("/Logout");
         o.AccessDeniedPath = new PathString("/AccessDenied");
     });
 
 builder.Services.AddAuthorization(options =>
 {
-    //options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin}));
-    //options.AddPolicy("Account", b => b.RequireRole(new List<string> {Roles.Administration}));
+    options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin}));
+    options.AddPolicy("Account", b => b.RequireRole(new List<string> {Roles.Administration}));
+    options.AddPolicy("Event", b => b.RequireRole(new List<string> {Roles.Administration}));
 
 });
 
@@ -44,8 +45,9 @@ builder.Services.AddRazorPages()
     .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
     .AddRazorPagesOptions(options =>
     {
-        //options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
-        //options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+        options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+        options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+        options.Conventions.AuthorizeAreaFolder("Administration", "/Events", "Event");
     });
 
 var app = builder.Build();

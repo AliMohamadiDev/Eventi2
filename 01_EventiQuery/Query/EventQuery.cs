@@ -80,7 +80,7 @@ public class EventQuery : IEventQuery
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
             .Include(x => x.EventInfo)
-            //.Where(x=>x.Name.Contains(value) || x.Presenter.Name.Contains(value))
+            .Where(x=>x.Name.Contains(value))
             .Select(x => new EventQueryModel
             {
                 Id = x.Id,

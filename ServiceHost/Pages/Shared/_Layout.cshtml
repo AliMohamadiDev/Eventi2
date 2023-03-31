@@ -116,50 +116,86 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
-                            <img src="~/AdminTheme/assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
+                            @if (_authHelper.IsAuthenticated())
+                            {
+                                            <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle">
+                            }
+                            else
+                            {
+                                <img src="~/Pictures/profilePhotos/DefaultProfilePicture.svg" alt="Default profile picture" title="Default profile picture" class="w-px-40 h-auto rounded-circle">
+                            }
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar avatar-online">
-                                            <img src="~/AdminTheme/assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
+                            <a class="dropdown-item" asp-page="./Profile">
+                                @if (_authHelper.IsAuthenticated())
+                                {
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar avatar-online">
+                                                <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle">
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <span class="fw-semibold d-block">@currentAccount.Fullname</span>
+                                            <small class="text-muted">@currentAccount.Role</small>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">@currentAccount.Fullname</span>
-                                        <small class="text-muted">@currentAccount.Role</small>
+                                }
+                                else
+                                {
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar avatar-online">
+                                                <img src="~/Pictures/profilePhotos/DefaultProfilePicture.svg" alt="Default profile picture" title="Default profile picture" class="w-px-40 h-auto rounded-circle">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                }
                             </a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-profile-user.html">
-                                <i class="bx bx-user me-2"></i>
-                                <span class="align-middle">پروفایل من</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
-                                <i class="bx bx-cog me-2"></i>
-                                <span class="align-middle">تنظیمات</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
+                        @if (_authHelper.IsAuthenticated())
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-page="./Profile">
+                                    <i class="bx bx-user me-2"></i>
+                                    <span class="align-middle">پروفایل من</span>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item" asp-page="/Logout">
-                                <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">خروج</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a class="dropdown-item" asp-page="/Logout">
+                                    <i class="bx bx-power-off me-2"></i>
+                                    <span class="align-middle">خروج</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-page="./Login">
+                                    <i class="bx bx-user me-2"></i>
+                                    <span class="align-middle">ورود</span>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" asp-page="/Logout">
+                                    <i class="bx bx-power-off me-2"></i>
+                                    <span class="align-middle">خروج</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </li>
             </ul>
