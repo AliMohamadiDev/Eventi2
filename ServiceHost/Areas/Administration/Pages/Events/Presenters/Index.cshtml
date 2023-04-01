@@ -1,4 +1,7 @@
 ﻿@page
+@using System.Globalization
+@using _0_Framework.Application
+@using RestSharp.Extensions
 @model ServiceHost.Areas.Administration.Pages.Events.Presenters.IndexModel
 @{
     ViewData["title"] = "مدیریت ارائه دهندگان";
@@ -62,7 +65,7 @@
                     <td>@item.Name</td>
                     <td>@item.Number</td>
                     <td>@item.Website</td>
-                    <td>@item.CreationDate</td>
+                    <td>@item.CreationDate.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
                     <td>
                         <a class="" asp-page="Edit" asp-route-id="@item.Id">
                             <span>

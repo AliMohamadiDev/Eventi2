@@ -1,4 +1,7 @@
 ﻿@page
+@using System.Globalization
+@using _0_Framework.Application
+@using RestSharp.Extensions
 @model ServiceHost.Areas.Administration.Pages.Events.EventCategories.IndexModel
 @{
     ViewData["title"] = "مدیریت گروه رویدادها";
@@ -50,7 +53,7 @@
                 <tr>
                     <td>@item.CategoryId</td>
                     <td>@item.CategoryName</td>
-                    <td>@item.CreationDate</td>
+                    <td>@item.CreationDate.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
                     <td>
                         <a class="" asp-page="Edit" asp-route-id="@item.CategoryId">
                             <span>

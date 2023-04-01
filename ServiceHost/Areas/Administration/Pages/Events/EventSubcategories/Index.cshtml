@@ -1,4 +1,7 @@
 ﻿@page
+@using System.Globalization
+@using _0_Framework.Application
+@using RestSharp.Extensions
 @model ServiceHost.Areas.Administration.Pages.Events.EventSubcategories.IndexModel
 @{
     ViewData["title"] = "مدیریت زیرموضوعات";
@@ -57,7 +60,7 @@
                     <td>@item.SubcategoryId</td>
                     <td>@item.SubcategoryName</td>
                     <td>@item.Category</td>
-                    <td>@item.CreationDate</td>
+                    <td>@item.CreationDate.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
                     <td>
                         <a class="" asp-page="Edit" asp-route-id="@item.SubcategoryId">
                             <span>

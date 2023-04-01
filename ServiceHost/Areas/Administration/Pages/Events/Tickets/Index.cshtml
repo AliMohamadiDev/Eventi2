@@ -1,4 +1,7 @@
 ﻿@page
+@using System.Globalization
+@using _0_Framework.Application
+@using RestSharp.Extensions
 @model ServiceHost.Areas.Administration.Pages.Events.Tickets.IndexModel
 @{
     ViewData["title"] = "مدیریت بلیط ها";
@@ -77,8 +80,8 @@
                     <td>@item.Price</td>
                     <td>@item.DiscountRate</td>
                     <td>@item.TotalPrice</td>
-                    <td>@item.StartTime</td>
-                    <td>@item.EndTime</td>
+                        <td>@item.StartTime.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
+                    <td>@item.EndTime.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
                     <td>@item.Event</td>
                     <td class="text-center">
                         @if (item.Price == 0)
