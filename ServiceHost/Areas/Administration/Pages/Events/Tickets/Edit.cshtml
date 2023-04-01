@@ -38,10 +38,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.EventId" class="form-label">رویداد</label>
-                                <select class="form-select" asp-for="Command.EventId" asp-items="Model.Events">
-                                    <option value="0">رویداد...</option>
-                                </select>
+                                <label asp-for="Command.DiscountRate" class="form-label">تخفیف</label>
+                                <input type="text" class="form-control" asp-for="Command.DiscountRate">
+                                <span asp-validation-for="Command.DiscountRate" class="error"></span>
                             </div>
                         </div>
                     </div>
@@ -71,7 +70,19 @@
                         </div>
                     </div>
 
+                    <div class="row mb-4">
 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.EventId" class="form-label">رویداد</label>
+                                <select class="form-select" asp-for="Command.EventId" asp-items="Model.Events">
+                                    <option value="0">رویداد...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+@*
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -80,7 +91,7 @@
                                 <span asp-validation-for="Command.IsFree" class="error"></span>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
                     <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id"/>
                     <button type="submit" class="btn btn-success">ویرایش</button>

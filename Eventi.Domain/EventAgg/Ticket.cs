@@ -5,8 +5,9 @@ public class Ticket
     public long Id { get; private set; }
     public string Title { get; private set; }
     public int Number { get; private set; }
-    public bool IsFree { get; private set; }
     public double Price { get; set; }
+    public double TotalPrice { get; private set; }
+    public float DiscountRate { get; private set; }
     public string? Description { get; private set; }
     public DateTime StartTime { get; private set; }
     public DateTime EndTime { get; private set; }
@@ -20,30 +21,32 @@ public class Ticket
     {
     }
 
-    public Ticket(string title, string? description, int number, bool isFree, double price, DateTime startTime, DateTime endTime, long eventId)
+    public Ticket(string title, string? description, int number, double price, DateTime startTime, DateTime endTime, long eventId, double totalPrice, float discountRate)
     {
         Title = title;
         Description = description;
         Number = number;
-        IsFree = isFree;
         Price = price;
         StartTime = startTime;
         EndTime = endTime;
         EventId = eventId;
+        TotalPrice = totalPrice;
+        DiscountRate = discountRate;
         IsDeactived = false;
     }
 
 
-    public void Edit(string title, string? description, int number, bool isFree, double price, DateTime startTime, DateTime endTime, long eventId)
+    public void Edit(string title, string? description, int number, double price, DateTime startTime, DateTime endTime, long eventId, double totalPrice, float discountRate)
     {
         Title = title;
         Description = description;
         Number = number;
-        IsFree = isFree;
         Price = price;
         StartTime = startTime;
         EndTime = endTime;
         EventId = eventId;
+        TotalPrice = totalPrice;
+        DiscountRate = discountRate;
     }
 
     public void Deactivate()

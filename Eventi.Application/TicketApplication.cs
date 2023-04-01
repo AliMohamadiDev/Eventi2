@@ -28,18 +28,11 @@ public class TicketApplication : ITicketApplication
         var operation = new OperationResult();
         var ticket = _ticketRepository.GetTicket(command.Id);
 
-        double price;
-        if (command.IsFree)
-        {
-            price = 0;
-        }
-        else
-        {
-            price = command.Price;
-        }
+        var totalPrice = (command.Price - (command.Price * command.DiscountRate) / 100);
 
-        ticket.Edit(command.Title, command.Description, command.Number, command.IsFree, price,
-            command.StartTime.ToGeorgianDateTime(), command.EndTime.ToGeorgianDateTime(), command.EventId);
+        ticket.Edit(command.Title, command.Description, command.Number, command.Price,
+            command.StartTime.ToGeorgianDateTime(), command.EndTime.ToGeorgianDateTime(), command.EventId, totalPrice,
+            command.DiscountRate);
 
         await _ticketRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -49,18 +42,10 @@ public class TicketApplication : ITicketApplication
     {
         var operation = new OperationResult();
 
-        double price;
-        if (command.IsFree)
-        {
-            price = 0;
-        }
-        else
-        {
-            price = command.Price;
-        }
+        var totalPrice = (command.Price - (command.Price * command.DiscountRate) / 100);
 
-        var ticket = new Ticket(command.Title, command.Description, command.Number, command.IsFree, price,
-            command.StartTime.ToGeorgianDateTime(), command.EndTime.ToGeorgianDateTime(), command.EventId);
+        var ticket = new Ticket(command.Title, command.Description, command.Number, command.Price,
+            command.StartTime.ToGeorgianDateTime(), command.EndTime.ToGeorgianDateTime(), command.EventId,totalPrice,command.DiscountRate);
 
         await _ticketRepository.CreateAsync(ticket);
         await _ticketRepository.SaveChangesAsync();

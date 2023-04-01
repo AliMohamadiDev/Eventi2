@@ -17,8 +17,7 @@
     <h5 class="card-header">جستجو در بلیط ها</h5>
     <div class="card-body">
         <form role="form" method="get">
-
-            <div class="row gx-3 gy-2 align-items-center">
+            <div class="row gx-3 gy-2 align-items-center" asp-validation-summary="None">
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <input class="form-control" asp-for="SearchModel.Id" placeholder="شماره بلیط">
@@ -59,6 +58,8 @@
                 <th>عنوان</th>
                 <th>تعدادِ</th>
                 <th>قیمت</th>
+                <th>تخفیف</th>
+                <th>قیمت نهایی</th>
                 <th>تاریخ شروع</th>
                 <th>تاریخ پایان</th>
                 <th>رویداد</th>
@@ -74,11 +75,13 @@
                     <td>@item.Title</td>
                     <td>@item.Number</td>
                     <td>@item.Price</td>
+                    <td>@item.DiscountRate</td>
+                    <td>@item.TotalPrice</td>
                     <td>@item.StartTime</td>
                     <td>@item.EndTime</td>
                     <td>@item.Event</td>
                     <td class="text-center">
-                        @if (item.IsFree)
+                        @if (item.Price == 0)
                         {
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">

@@ -36,7 +36,7 @@
                                     <p class="card-text">
                                         @item.StartTime.ToFarsi() - @item.EndTime.ToFarsi()
                                     </p>
-                                    <p class="card-text">قیمت: @(item.IsFree ? "رایگان" : item.Price)</p>
+                                    <p class="card-text">قیمت: @(item.Price == 0 ? "رایگان" : item.Price)</p>
                                     <p class="card-text">@item.Description</p>
                                 </div>
                             </div>

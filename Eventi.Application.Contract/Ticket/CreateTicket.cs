@@ -11,7 +11,8 @@ public class CreateTicket
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public int Number { get; set; }
 
-    public bool IsFree { get; set; }
+    public double TotalPrice { get; set; }
+    public float DiscountRate { get; set; }
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public double Price { get; set; }

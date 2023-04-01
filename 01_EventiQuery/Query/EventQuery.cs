@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using _01_EventiQuery.Contracts.Event;
+﻿using _01_EventiQuery.Contracts.Event;
 using Eventi.Domain.EventAgg;
 using Eventi.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
@@ -143,8 +142,9 @@ public class EventQuery : IEventQuery
             Id = x.Id,
             EventId = x.EventId,
             Title = x.Title,
-            IsFree = x.IsFree,
             Price = x.Price,
+            DiscountRate = x.DiscountRate,
+            TotalPrice = x.TotalPrice,
             Description = x.Description,
             Number = x.Number,
             StartTime = x.StartTime,

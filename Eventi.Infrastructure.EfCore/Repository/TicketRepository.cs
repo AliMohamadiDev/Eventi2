@@ -27,7 +27,8 @@ public class TicketRepository : RepositoryBase<long, Ticket>, ITicketRepository
             Title = x.Title,
             Number = x.Number,
             Price = x.Price,
-            IsFree = x.IsFree,
+            DiscountRate = x.DiscountRate,
+            TotalPrice = x.TotalPrice,
             Description = x.Description,
             StartTime = x.StartTime.ToString(),
             EndTime = x.EndTime.ToString(),
@@ -43,7 +44,8 @@ public class TicketRepository : RepositoryBase<long, Ticket>, ITicketRepository
             Title = x.Title,
             Number = x.Number,
             Price = x.Price,
-            IsFree = x.IsFree,
+            DiscountRate = x.DiscountRate,
+            TotalPrice = x.TotalPrice,
             StartTime = x.StartTime.ToString(),
             EndTime = x.EndTime.ToString(),
             Event = x.Event.Name
@@ -58,7 +60,8 @@ public class TicketRepository : RepositoryBase<long, Ticket>, ITicketRepository
             Title = x.Title,
             Number = x.Number,
             Price = x.Price,
-            IsFree = x.IsFree,
+            DiscountRate = x.DiscountRate,
+            TotalPrice = x.TotalPrice,
             StartTime = x.StartTime.ToString(),
             EndTime = x.EndTime.ToString(),
             Event = x.Event.Name
@@ -76,7 +79,7 @@ public class TicketRepository : RepositoryBase<long, Ticket>, ITicketRepository
 
         if (searchModel.IsFree)
         {
-            query = query.Where(x => x.IsFree);
+            query = query.Where(x => x.Price == 0);
         }
 
         if (searchModel.EventId != 0)
