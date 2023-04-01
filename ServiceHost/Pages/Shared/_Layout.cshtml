@@ -1,4 +1,5 @@
-﻿@inject _0_Framework.Application.IAuthHelper _authHelper;
+﻿@using _0_Framework.Infrastructure
+@inject _0_Framework.Application.IAuthHelper _authHelper;
 @{
     var currentAccount = _authHelper.CurrentAccountInfo();
 }
@@ -115,10 +116,10 @@
 
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                        <div class="avatar avatar-online">
+                        <div class="avatar">
                             @if (_authHelper.IsAuthenticated())
                             {
-                                            <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle">
+                                <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle">
                             }
                             else
                             {
@@ -147,7 +148,7 @@
                                 {
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
-                                            <div class="avatar avatar-online">
+                                            <div class="avatar">
                                                 <img src="~/Pictures/profilePhotos/DefaultProfilePicture.svg" alt="Default profile picture" title="Default profile picture" class="w-px-40 h-auto rounded-circle">
                                             </div>
                                         </div>
@@ -166,6 +167,15 @@
                                     <span class="align-middle">پروفایل من</span>
                                 </a>
                             </li>
+                            @if (_authHelper.CurrentAccountRole() == Roles.Administration || _authHelper.CurrentAccountRole() == Roles.BlogAdmin)
+                            {
+                                <li>
+                                    <a class="dropdown-item" asp-area="Administration" asp-page="/Index">
+                                        <i class="bx bx-cog me-2"></i>
+                                        <span class="align-middle">مدیریت سایت</span>
+                                    </a>
+                                </li>
+                            }
                             <li>
                                 <div class="dropdown-divider"></div>
                             </li>

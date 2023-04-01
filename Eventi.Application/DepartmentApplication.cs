@@ -4,11 +4,11 @@ using Eventi.Domain.EventAgg;
 
 namespace Eventi.Application;
 
-public class AccountSideApplication: IAccountSideApplication
+public class DepartmentApplication: IDepartmentApplication
 {
     private readonly IDepartmentRepository _departmentRepository;
 
-    public AccountSideApplication(IDepartmentRepository departmentRepository)
+    public DepartmentApplication(IDepartmentRepository departmentRepository)
     {
         _departmentRepository = departmentRepository;
     }
@@ -18,7 +18,7 @@ public class AccountSideApplication: IAccountSideApplication
         return await _departmentRepository.GetDetailsAsync(id);
     }
 
-    public async Task<List<DepartmentViewModel>> GetAccountSidesAsync()
+    public async Task<List<DepartmentViewModel>> GetDepartmentsAsync()
     {
         return await _departmentRepository.GetAccountSidesAsync();
     }

@@ -30,7 +30,7 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             SubcategoryId = x.SubcategoryId,
             Slug = x.Slug,
             //PresenterId = x.PresenterId,
-            AccountSideId = x.DepartmentId,
+            DepartmentId = x.DepartmentId,
             //ImageCover = x.ImageCover,
             ImageCoverTitle = x.ImageCoverTitle,
             ImageCoverAlt = x.ImageCoverAlt,

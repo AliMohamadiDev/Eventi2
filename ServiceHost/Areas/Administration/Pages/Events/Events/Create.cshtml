@@ -231,27 +231,30 @@
                             <small>اطلاعات برگزار کننده و کاور رویداد</small>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-md-6">
+                            @*<div class="col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Command.PresenterId" class="form-label">شماره ارائه دهنده</label>
                                     <input type="text" class="form-control" asp-for="Command.PresenterId">
                                     <span asp-validation-for="Command.PresenterId" class="error"></span>
                                 </div>
-                            </div>
+                            </div>*@
+                            
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Command.AccountSideId" class="form-label">آی دی طرف حساب</label>
-                                    <input class="form-control" asp-for="Command.AccountSideId" />
-                                    <span asp-validation-for="Command.AccountSideId" class="error"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label asp-for="Command.ImageCover" class="form-label">عکس</label>
                                     <input type="file" accept="image/*" class="form-control" asp-for="Command.ImageCover" />
                                     <span asp-validation-for="Command.ImageCover" class="error"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.DepartmentId" class="form-label">دپارتمان</label>
+                                    @*<input class="form-control" asp-for="Command.DepartmentId" />
+                                    <span asp-validation-for="Command.DepartmentId" class="error"></span>*@
+                                    <select class="form-select" asp-for="Command.DepartmentId" asp-items="Model.Departments">
+                                        <option value="0">دپارتمان...</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

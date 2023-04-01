@@ -35,7 +35,7 @@ public class EventApplication : IEventApplication
 
         Event.Edit(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
             command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Link, command.Slug,
-            command.SubcategoryId, command.AccountSideId);
+            command.SubcategoryId, command.DepartmentId);
 
         await _eventRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -50,7 +50,7 @@ public class EventApplication : IEventApplication
 
         var Event = new Event(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
             command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Link, command.Slug,
-            command.SubcategoryId, command.AccountSideId);
+            command.SubcategoryId, command.DepartmentId);
 
         await _eventRepository.CreateAsync(Event);
         await _eventRepository.SaveChangesAsync();

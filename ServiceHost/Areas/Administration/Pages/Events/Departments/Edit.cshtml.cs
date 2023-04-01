@@ -8,21 +8,21 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Departments
     {
         public EditDepartment Command;
 
-        private readonly IAccountSideApplication _accountSideApplication;
+        private readonly IDepartmentApplication _departmentApplication;
 
-        public EditModel(IAccountSideApplication accountSideApplication)
+        public EditModel(IDepartmentApplication departmentApplication)
         {
-            _accountSideApplication = accountSideApplication;
+            _departmentApplication = departmentApplication;
         }
 
         public async Task OnGetAsync(long id)
         {
-            Command = await _accountSideApplication.GetDetailsAsync(id);
+            Command = await _departmentApplication.GetDetailsAsync(id);
         }
 
         public async Task<IActionResult> OnPostAsync(EditDepartment command)
         {
-            var result = await _accountSideApplication.EditAsync(command);
+            var result = await _departmentApplication.EditAsync(command);
             return RedirectToPage("./Index");
         }
     }

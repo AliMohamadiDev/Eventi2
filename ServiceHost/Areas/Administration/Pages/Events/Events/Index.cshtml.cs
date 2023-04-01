@@ -1,6 +1,5 @@
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventSubcategory;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -24,6 +23,7 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
         public async Task OnGet(EventSearchModel searchModel)
         {
             Events = await _eventApplication.SearchAsync(searchModel);
+
             var subcategories = await _eventSubcategoryApplication.GetEventSubcategoriesAsync();
             Subcategories = new SelectList(subcategories, "SubcategoryId", "SubcategoryName");
         }

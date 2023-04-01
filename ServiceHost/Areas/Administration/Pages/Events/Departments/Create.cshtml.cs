@@ -8,11 +8,11 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Departments
     {
         public CreateDepartment Command;
 
-        private readonly IAccountSideApplication _accountSideApplication;
+        private readonly IDepartmentApplication _departmentApplication;
 
-        public CreateModel(IAccountSideApplication accountSideApplication)
+        public CreateModel(IDepartmentApplication departmentApplication)
         {
-            _accountSideApplication = accountSideApplication;
+            _departmentApplication = departmentApplication;
         }
 
         public void OnGet()
@@ -21,7 +21,7 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Departments
 
         public IActionResult OnPost(CreateDepartment command)
         {
-            var result = _accountSideApplication.CreateAsync(command);
+            var result = _departmentApplication.CreateAsync(command);
             return RedirectToPage("./Index");
         }
     }

@@ -47,7 +47,7 @@ public class EventiBootstrapper
         services.AddTransient<IEventSubcategoryApplication, EventSubcategoryApplication>();
         services.AddTransient<IEventSubcategoryRepository, EventSubcategoryRepository>();
 
-        services.AddTransient<IAccountSideApplication, AccountSideApplication>();
+        services.AddTransient<IDepartmentApplication, DepartmentApplication>();
         services.AddTransient<IDepartmentRepository, DepartmentRepository>();
 
         services.AddTransient<IPresenterApplication, PresenterApplication>();

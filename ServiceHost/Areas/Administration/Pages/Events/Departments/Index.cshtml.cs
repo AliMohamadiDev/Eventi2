@@ -8,16 +8,16 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Departments
         public DepartmentSearchModel SearchModel;
         public List<DepartmentViewModel> AccountSides;
 
-        private readonly IAccountSideApplication _accountSideApplication;
+        private readonly IDepartmentApplication _departmentApplication;
 
-        public IndexModel(IAccountSideApplication accountSideApplication)
+        public IndexModel(IDepartmentApplication departmentApplication)
         {
-            _accountSideApplication = accountSideApplication;
+            _departmentApplication = departmentApplication;
         }
 
         public async Task OnGet(DepartmentSearchModel searchModel)
         {
-            AccountSides = await _accountSideApplication.SearchAsync(searchModel);
+            AccountSides = await _departmentApplication.SearchAsync(searchModel);
         }
     }
 }

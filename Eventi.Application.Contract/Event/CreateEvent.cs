@@ -11,7 +11,7 @@ public class CreateEvent
     public long SubcategoryId { get; set; }
     public string? Tags { get; set; }
     public long PresenterId { get; set; }
-    public long AccountSideId { get; set; }
+    public long DepartmentId { get; set; }
     public bool IsWebinar { get; set; }
     public bool IsPrivate { get; set; }
     public bool PayByCustomer { get; set; }
