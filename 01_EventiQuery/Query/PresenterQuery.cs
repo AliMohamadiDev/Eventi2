@@ -54,6 +54,30 @@ public class PresenterQuery : IPresenterQuery
             }).OrderByDescending(x => x.Id).ToListAsync();
     }
 
+    public async Task<List<PresenterQueryModel>> SearchAsync(string value)
+    {
+        var presenters = await _eventContext.Presenters
+            .Include(x => x.EventPresenters)
+            .ThenInclude(x => x.Event)
+            .Where(x => x.Name.Contains(value))
+            .Select(x => new PresenterQueryModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Logo = x.Logo,
+                LogoTitle = x.LogoTitle,
+                LogoAlt = x.LogoAlt,
+                Description = x.Description,
+                Number = x.Number,
+                Policy = x.Policy,
+                Website = x.Website,
+                Slug = x.Slug,
+                //Events = MapEvents(x.Events)
+            }).OrderByDescending(x => x.Id).ToListAsync();
+
+        return presenters;
+    }
+
     private static List<EventQueryModel> MapEvents(List<Event>? events)
     {
         return new List<EventQueryModel>();

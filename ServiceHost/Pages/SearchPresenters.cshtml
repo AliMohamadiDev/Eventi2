@@ -1,9 +1,8 @@
 ﻿@page
-@model ServiceHost.Pages.PresentersModel
+@model ServiceHost.Pages.SearchPresentersModel
 @{
-    ViewData["Title"] = "برگزارکنندگان";
+    ViewData["Title"] = "جستجو در برگزارکنندگان " + @Model.Value;
 }
-
 
 <form method="get" asp-page="/SearchPresenters">
     <div class="faq-header d-flex flex-column justify-content-center align-items-center mb-4">
@@ -43,6 +42,6 @@
 
 
 @section Css
-{
+    {
     <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-faq.css" />
 }
