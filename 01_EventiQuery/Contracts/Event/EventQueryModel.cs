@@ -22,7 +22,6 @@ public class EventQueryModel
     public bool IsWebinar { get; set; }
     public bool IsPrivate { get; set; }
     public bool PayByCustomer { get; set; }
-    public string Link { get; set; }
     public string Slug { get; set; }
     public List<string> Tags { get; set; } = new();
     public List<TicketQueryModel> Tickets { get; set; } = new();

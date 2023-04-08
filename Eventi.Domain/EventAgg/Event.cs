@@ -28,7 +28,6 @@ public class Event
     public bool IsWebinar { get; private set; }
     public bool IsPrivate { get; private set; }
     public bool PayByCustomer { get; private set; }
-    public string Link { get; private set; }
     public string Slug { get; private set; }
     public bool IsRemoved { get; private set; }
 
@@ -37,7 +36,7 @@ public class Event
     }
 
     public Event(string name, string imageCover, string imageCoverTitle, string imageCoverAlt, string? tags,
-        bool isWebinar, bool isPrivate, bool payByCustomer, string link, string slug, long subcategoryId, long departmentId)
+        bool isWebinar, bool isPrivate, bool payByCustomer, string slug, long subcategoryId, long departmentId)
     {
         Name = name;
         ImageCover = imageCover;
@@ -47,7 +46,6 @@ public class Event
         IsWebinar = isWebinar;
         IsPrivate = isPrivate;
         PayByCustomer = payByCustomer;
-        Link = link;
         Slug = slug;
         SubcategoryId = subcategoryId;
         CreationDate = DateTime.Now;
@@ -56,7 +54,7 @@ public class Event
     }
 
     public void Edit(string name, string imageCover, string imageCoverTitle, string imageCoverAlt, string? tags,
-        bool isWebinar, bool isPrivate, bool payByCustomer, string link, string slug, long subcategoryId, long accountSideId)
+        bool isWebinar, bool isPrivate, bool payByCustomer, string slug, long subcategoryId, long accountSideId)
     {
         Name = name;
         ImageCoverTitle = imageCoverTitle;
@@ -65,7 +63,6 @@ public class Event
         IsWebinar = isWebinar;
         IsPrivate = isPrivate;
         PayByCustomer = payByCustomer;
-        Link = link;
         Slug = slug;
         SubcategoryId = subcategoryId;
         DepartmentId = accountSideId;

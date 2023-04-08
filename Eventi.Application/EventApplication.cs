@@ -34,7 +34,7 @@ public class EventApplication : IEventApplication
         var image = _fileUploader.Upload(command.ImageCover, path);
 
         Event.Edit(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
-            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Link, command.Slug,
+            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Slug,
             command.SubcategoryId, command.DepartmentId);
 
         await _eventRepository.SaveChangesAsync();
@@ -49,7 +49,7 @@ public class EventApplication : IEventApplication
         var image = _fileUploader.Upload(command.ImageCover, path);
 
         var Event = new Event(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
-            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Link, command.Slug,
+            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Slug,
             command.SubcategoryId, command.DepartmentId);
 
         await _eventRepository.CreateAsync(Event);

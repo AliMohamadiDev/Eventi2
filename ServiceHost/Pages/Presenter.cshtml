@@ -13,7 +13,7 @@
             </div>
             <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                 <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-                    <img src="~/AdminTheme/assets/img/avatars/1.png" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+                    <img src="~/Pictures/@Model.Presenter.Logo" alt="@Model.Presenter.LogoAlt" title="@Model.Presenter.LogoTitle" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
                 </div>
                 <div class="flex-grow-1 mt-3 mt-sm-5">
                     <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
@@ -46,7 +46,7 @@
                 <small class="text-muted text-uppercase">درباره ارائه دهنده</small>
                 <p>@Html.Raw(Model.Presenter.Description)</p>
                 <small class="text-muted text-uppercase">سیاست ها بازگشت وجه</small>
-                <p>@Model.Presenter.Policy</p>
+                <p>@Html.Raw(Model.Presenter.Policy)</p>
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
     {
         <div class="col-md-4 col-lg-3">
             <div class="card h-100">
-                <img class="card-img-top" src="~/AdminTheme/assets/img/elements/2.jpg" alt="Card image cap"/>
+                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="Card image cap"/>
                 <div class="card-body">
                     <h5 class="card-title">
                         <a asp-page="./Event" asp-route-id="@item.Slug">

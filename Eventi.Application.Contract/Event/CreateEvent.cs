@@ -15,6 +15,5 @@ public class CreateEvent
     public bool IsWebinar { get; set; }
     public bool IsPrivate { get; set; }
     public bool PayByCustomer { get; set; }
-    public string Link { get; set; }
     public string Slug { get; set; }
 }

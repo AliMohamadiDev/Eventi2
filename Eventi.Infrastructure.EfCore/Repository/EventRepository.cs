@@ -34,7 +34,6 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             //ImageCover = x.ImageCover,
             ImageCoverTitle = x.ImageCoverTitle,
             ImageCoverAlt = x.ImageCoverAlt,
-            Link = x.Link,
             PayByCustomer = x.PayByCustomer,
             Tags = x.Tags
         }).FirstOrDefaultAsync(x => x.Id == id);
@@ -49,7 +48,6 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             IsWebinar = x.IsWebinar,
             IsPrivate = x.IsPrivate,
             ImageCover = x.ImageCover,
-            Link = x.Link,
             PayByCustomer = x.PayByCustomer,
             //PresenterId = x.PresenterId,
             //Presenter = x.Presenter.Name,
@@ -69,7 +67,6 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             IsWebinar = x.IsWebinar,
             IsPrivate = x.IsPrivate,
             ImageCover = x.ImageCover,
-            Link = x.Link,
             PayByCustomer = x.PayByCustomer,
             //PresenterId = x.PresenterId,
             //Presenter = x.Presenter.Name,
