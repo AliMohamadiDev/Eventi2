@@ -26,7 +26,7 @@ public class ArticleApplication : IArticleApplication
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
         }
 
-        var slug = command.Slug.Slugify();
+        var slug = command.Title.Slugify();
         var categorySlug = _articleCategoryRepository.GetSlugBy(command.CategoryId);
         var path = $"{categorySlug}/{slug}";
         var pictureName = _fileUploader.Upload(command.Picture!, path);
@@ -56,7 +56,7 @@ public class ArticleApplication : IArticleApplication
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
         }
 
-        var slug = command.Slug.Slugify();
+        var slug = command.Title.Slugify();
         var path = $"{article.Category.Slug}/{slug}";
         var pictureName = _fileUploader.Upload(command.Picture!, path);
         var publishDate = command.PublishDate.ToGeorgianDateTime();

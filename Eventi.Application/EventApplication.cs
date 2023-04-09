@@ -30,11 +30,13 @@ public class EventApplication : IEventApplication
         var operation = new OperationResult();
         var Event = _eventRepository.GetEvent(command.Id);
 
+        var slug = command.Name.Slugify();
+
         var path = $"Events/{command.Name}";
         var image = _fileUploader.Upload(command.ImageCover, path);
 
         Event.Edit(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
-            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Slug,
+            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, slug,
             command.SubcategoryId, command.DepartmentId);
 
         await _eventRepository.SaveChangesAsync();
@@ -45,11 +47,12 @@ public class EventApplication : IEventApplication
     {
         var operation = new OperationResult();
 
+        var slug = command.Name.Slugify();
         var path = $"Events/{command.Name}";
         var image = _fileUploader.Upload(command.ImageCover, path);
 
         var Event = new Event(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
-            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, command.Slug,
+            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, slug,
             command.SubcategoryId, command.DepartmentId);
 
         await _eventRepository.CreateAsync(Event);

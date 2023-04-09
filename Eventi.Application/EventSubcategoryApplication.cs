@@ -21,7 +21,7 @@ public class EventSubcategoryApplication : IEventSubcategoryApplication
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
         }
 
-        var slug = command.Slug.Slugify();
+        var slug = command.SubcategoryName.Slugify();
 
         var eventSubcategory = new EventSubcategory(command.SubcategoryName, command.CategoryId, slug);
 
@@ -45,7 +45,7 @@ public class EventSubcategoryApplication : IEventSubcategoryApplication
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
         }
 
-        var slug = command.Slug.Slugify();
+        var slug = command.SubcategoryName.Slugify();
 
         eventSubcategory.Edit(command.SubcategoryName, command.CategoryId, slug);
 

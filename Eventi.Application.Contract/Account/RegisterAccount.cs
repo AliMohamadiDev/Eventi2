@@ -24,4 +24,6 @@ public class RegisterAccount
     public long RoleId { get; set; }
 
     public List<RoleViewModel> Roles { get; set; }
+
+    public bool IsDeactived { get; set; }
 }

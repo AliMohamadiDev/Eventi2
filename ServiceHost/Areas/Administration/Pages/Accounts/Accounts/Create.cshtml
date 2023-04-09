@@ -47,13 +47,6 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.Password" class="form-label">پسورد</label>
-                                <input type="text" class="form-control" asp-for="Command.Password">
-                                <span asp-validation-for="Command.Password" class="error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label asp-for="Command.RoleId" class="form-label">نقش ها</label>
                                 <select class="form-select" asp-for="Command.RoleId" asp-items="Model.Roles">
                                     <option value="0">موضوع اصلی...</option>

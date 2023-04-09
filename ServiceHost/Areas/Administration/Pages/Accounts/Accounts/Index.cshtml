@@ -57,9 +57,8 @@
                 <th>نام</th>
                 <th>ایمیل</th>
                 <th>موبایل</th>
-                <th>Role</th>
-                <th>RoleId</th>
-                <th>تاریخ ایجاد</th>
+                <th>نقش</th>
+                <th>تاریخ ثبت</th>
                 <th>عملیات</th>
             </tr>
             </thead>
@@ -75,8 +74,8 @@
                     <td>@item.Email</td>
                     <td>@item.Mobile</td>
                     <td>@item.Role</td>
-                    <td>@item.RoleId</td>
-                    <td>@item.CreationDate.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
+@*                    <td>@item.CreationDate.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
+*@                    <td>@item.CreationDate</td>
                     <td>
                         <a class="" asp-page="Edit" asp-route-id="@item.Id">
                             <span>
