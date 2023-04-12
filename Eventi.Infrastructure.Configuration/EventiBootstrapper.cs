@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using _01_EventiQuery.Contracts.Account;
 using _01_EventiQuery.Contracts.Article;
 using _01_EventiQuery.Contracts.ArticleCategory;
 using _01_EventiQuery.Contracts.Event;
@@ -37,6 +38,7 @@ public class EventiBootstrapper
     {
         services.AddTransient<IAccountApplication, AccountApplication>();
         services.AddTransient<IAccountRepository, AccountRepository>();
+        services.AddTransient<IAccountQuery, AccountQuery>();
 
         services.AddTransient<IRoleApplication, RoleApplication>();
         services.AddTransient<IRoleRepository, RoleRepository>();
