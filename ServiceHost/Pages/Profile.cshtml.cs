@@ -12,6 +12,7 @@ public class ProfileModel : PageModel
 {
     public AccountQueryModel Account;
     public AuthViewModel CurrentAccount;
+    public EditAccount EditCommand;
 
     private readonly IAccountApplication _accountApplication;
     private readonly IAccountQuery _accountQuery;
@@ -32,7 +33,7 @@ public class ProfileModel : PageModel
 
     public async Task<IActionResult> OnPostChangePasswordAsync(Cp command)
     {
-        var id = _authHelper.CurrentAccountInfo().Id;
+        var id = _authHelper.CurrentAccountId();
 
         ChangePassword cp = new ChangePassword
         {
@@ -42,6 +43,20 @@ public class ProfileModel : PageModel
         };
 
         var result = await _accountApplication.ChangePasswordAsync(cp);
+        return RedirectToPage("./Profile");
+    }
+
+    public async Task<IActionResult> OnPostEditAsync(EditAccount editCommand)
+    {
+        var account = (await _accountApplication.GetDetailsAsync(_authHelper.CurrentAccountId()))!;
+        account.Fullname = editCommand.Fullname;
+        account.ProfilePhoto = editCommand.ProfilePhoto;
+        account.Birthday = editCommand.Birthday;
+        account.State = editCommand.State;
+        account.City = editCommand.City;
+
+        var result = await _accountApplication.EditAsync(account);
+
         return RedirectToPage("./Profile");
     }
 }

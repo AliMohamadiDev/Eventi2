@@ -59,8 +59,8 @@ public class AccountApplication : IAccountApplication
         var path = $"profilePhotos";
         var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
         //var picturePath = $"{path}\\DefaultProfilePicture.jpg";
-        account?.Edit(command.Fullname, null, null, command.Mobile, command.Email?.ToLower(), picturePath, null,
-            command.RoleId);
+        account?.Edit(command.Fullname, command.State, command.City, command.Mobile, command.Email?.ToLower(),
+            picturePath, command.Birthday.ToGeorgianDateTime(), command.RoleId);
         await _accountRepository.SaveChangesAsync();
         return operation.Succeeded();
     }
