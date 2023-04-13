@@ -1,0 +1,177 @@
+﻿@page "{id:long}"
+@using _0_Framework.Application
+@model ServiceHost.Pages.DepartmentModel
+@{
+    ViewData["Title"] = Model.Department.Name;
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="user-profile-header-banner">
+                <img src="~/theme/assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top">
+            </div>
+            <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
+                @*<div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+                    <img src="~/Pictures/@Model.Presenter.Logo" alt="@Model.Presenter.LogoAlt" title="@Model.Presenter.LogoTitle" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+                </div>*@
+                <div class="flex-grow-1 mt-3 mt-sm-5">
+                    <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+                        <div class="user-profile-info">
+                            <h4>@Model.Department.Name</h4>
+                            <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+
+                                <li class="list-inline-item fw-semibold">
+                                    <i class='bx bx-arrow-back'></i> @Model.Department.Address
+                                </li>
+                                <li class="list-inline-item fw-semibold">
+                                    <i class='bx bx-phone-call'></i> @Model.Department.PostalCode
+                                </li>
+                            </ul>
+                        </div>
+                        @*<a href="Tell:@Model.Presenter.Number" class="btn btn-primary text-nowrap">
+                            <i class='bx bx-user-check me-1'></i>تماس
+                        </a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <small class="text-muted text-uppercase">درباره ارائه دهنده</small>
+                <p>@Html.Raw(Model.Presenter.Description)</p>
+                <small class="text-muted text-uppercase">سیاست ها بازگشت وجه</small>
+                <p>@Html.Raw(Model.Presenter.Policy)</p>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<h6 class="pb-1 mb-4 text-muted">رویداد ها</h6>
+@if (Model.Department.Events.Count == 0)
+{
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger text-center">این دپارتمان هنوز رویدادی برگزار نکرده است!</div>
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        @foreach (var item in Model.Department.Events)
+        {
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100">
+                    <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="Card image cap"/>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a asp-page="./Event" asp-route-id="@item.Slug">
+                                @item.Name
+                            </a>
+                        </h5>
+                        @{
+                            if (item.EventInfo != null)
+                            {
+                                if (item.EventInfo.City != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        @item.EventInfo.City
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        مجازی
+                                    </p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    مجازی
+                                </p>
+                            }
+                        }
+                        @{
+                            if (item.Tickets != null)
+                            {
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        @item.Tickets.FirstOrDefault().Price
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        رایگان
+                                    </p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    رایگان
+                                </p>
+                            }
+                        }
+                        @{
+                            if (item.Tickets != null)
+                            {
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        اعلام نشده
+                                    </p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    اعلام نشده
+                                </p>
+                            }
+                        }
+
+                        @*<p class="card-text">@item.Presenter.Name</p>*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Css{
+    <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css"/>
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/ui-carousel.css"/>
+
+    <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-profile.css"/>
+
+}
+
+@section Script
+{
+    <script src="~/theme/assets/vendor/libs/swiper/swiper.js"></script>
+    <script src="~/theme/assets/js/ui-carousel.js"></script>
+
+    <script src="~/theme/assets/js/pages-profile.js"></script>
+}

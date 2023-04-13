@@ -1,4 +1,5 @@
 ﻿using _01_EventiQuery.Contracts.Event;
+using Eventi.Application.Contract.Department;
 using Eventi.Domain.RoleAgg;
 
 namespace _01_EventiQuery.Contracts.Account;
@@ -18,6 +19,8 @@ public class AccountQueryModel
 
     public long RoleId { get; set; }
     public Role Role { get; set; }
+
+    public List<DepartmentViewModel> Departments { get; set; }
 
     public List<TicketQueryModel> Tickets { get; set; }
     //public List<Event> MyEvents { get; set; } = new();

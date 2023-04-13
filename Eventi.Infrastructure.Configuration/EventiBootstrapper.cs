@@ -2,6 +2,7 @@
 using _01_EventiQuery.Contracts.Account;
 using _01_EventiQuery.Contracts.Article;
 using _01_EventiQuery.Contracts.ArticleCategory;
+using _01_EventiQuery.Contracts.Department;
 using _01_EventiQuery.Contracts.Event;
 using _01_EventiQuery.Contracts.EventCategory;
 using _01_EventiQuery.Contracts.Presenter;
@@ -51,6 +52,7 @@ public class EventiBootstrapper
 
         services.AddTransient<IDepartmentApplication, DepartmentApplication>();
         services.AddTransient<IDepartmentRepository, DepartmentRepository>();
+        services.AddTransient<IDepartmentQuery, DepartmentQuery>();
 
         services.AddTransient<IPresenterApplication, PresenterApplication>();
         services.AddTransient<IPresenterRepository, PresenterRepository>();

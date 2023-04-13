@@ -95,36 +95,40 @@
     <div class="card mb-4">
         <h5 class="card-header">دپارتمان ها</h5>
         <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start">
-                <span class="badge bg-label-primary">Standard</span>
-                <div class="d-flex justify-content-center">
-                    <sup class="h5 pricing-currency mt-3 mb-0 me-1 text-primary">$</sup>
-                    <h1 class="display-5 mb-0 text-primary">99</h1>
-                    <sub class="fs-6 pricing-duration mt-auto mb-3">/month</sub>
-                </div>
-            </div>
-            <ul class="ps-3 g-2 my-4">
-                <li class="mb-2">10 Users</li>
-                <li class="mb-2">Up to 10 GB storage</li>
-                <li>Basic Support</li>
-            </ul>
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <span>Days</span>
-                <span>65% Completed</span>
-            </div>
-            <div class="progress mb-1" style="height: 8px;">
-                <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <span>4 days remaining</span>
-            <div class="d-grid w-100 mt-4 pt-2">
-                <button class="btn btn-primary" data-bs-target="#upgradePlanModal" data-bs-toggle="modal">Upgrade Plan</button>
-            </div>
+            @if (Model.Account.Departments.Count == 0)
+            {
+                <p>شما جزو هیچ دپارتمانی نیستید!</p>
+            }
+            else
+            {
+                @foreach (var item in Model.Account.Departments)
+                {
+                    <div class="col-md">
+                        <div class="card card-action shadow-sm bg-transparent border border-primary mb-4">
+                            <div class="card-header">
+                                <div class="card-action-title">@item.Name</div>
+                                <div class="card-action-element">
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="card-collapsible"><i class="tf-icons bx bx-chevron-up"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="collapse">
+                                <div class="card-body pt-0">
+                                    <p class="card-text">آدرس: @item.Address</p>
+                                    <p class="card-text">کد پستی: @item.PostalCode</p>
+                                    <a asp-page="/Department" asp-route-id="@item.Id" class="btn btn-primary">اطلاعات بیشتر</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
-    <!-- /Plan Card -->
 </div>
-<!--/ User Sidebar -->
-
 
 <!-- User Content -->
 <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
@@ -286,7 +290,7 @@
                 <div class="text-center mb-4">
                     <h3>تغییر اطلاعات کاربری</h3>
                 </div>
-                <form id="formAuthentication" class="row g-3" asp-page-handler="Edit" method="post" enctype="multipart/form-data">
+                <form class="row g-3" asp-page-handler="Edit" method="post" enctype="multipart/form-data">
                     <div class="col-12">
                         <label class="form-label" asp-for="EditCommand.Fullname">نام</label>
                         <input type="text" asp-for="EditCommand.Fullname" class="form-control" value="@Model.Account.Fullname"/>
@@ -430,6 +434,8 @@
     <script src="~/Theme/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
     <script src="~/Theme/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
     <script src="~/Theme/assets/js/pages-auth.js"></script>
+
+    <script src="~/Theme/assets/js/cards-actions.js"></script>
 
     <script>
         function toggleVisibility() {
