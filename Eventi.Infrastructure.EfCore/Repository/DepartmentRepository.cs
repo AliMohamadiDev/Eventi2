@@ -26,7 +26,7 @@ public class DepartmentRepository : RepositoryBase<long, Department>, IDepartmen
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public Department GetAccountSide(long id)
+    public Department GetDepartment(long id)
     {
         return _context.Departments.FirstOrDefault(x => x.Id == id)!;
     }

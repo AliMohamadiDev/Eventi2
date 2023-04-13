@@ -5,7 +5,7 @@ namespace Eventi.Domain.EventAgg;
 
 public interface IDepartmentRepository : IRepository<long, Department>
 {
-    Department GetAccountSide(long id);
+    Department GetDepartment(long id);
     Task<EditDepartment?> GetDetailsAsync(long id);
     Task<List<DepartmentViewModel>> GetAccountSidesAsync();
     Task<List<DepartmentViewModel>> SearchAsync(DepartmentSearchModel searchModel);

@@ -26,7 +26,7 @@ public class DepartmentApplication: IDepartmentApplication
     public async Task<OperationResult> EditAsync(EditDepartment command)
     {
         var operation = new OperationResult();
-        var department = _departmentRepository.GetAccountSide(command.Id);
+        var department = _departmentRepository.GetDepartment(command.Id);
 
         if (_departmentRepository.Exists(x => x.NationalCode == command.NationalCode && x.Id != command.Id))
         {

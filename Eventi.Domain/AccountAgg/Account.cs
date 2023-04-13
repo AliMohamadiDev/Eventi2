@@ -22,9 +22,9 @@ public class Account
 
     //public List<Event> MyEvents { get; private set; } = new();
     public List<AccountTicket> AccountTickets { get; private set; } = new();
-    public List<DepartmentAccount> DepartmentAccounts { get; private set; } = new();
+    public List<DepartmentAccount> DepartmentAccounts { get; set; } = new();
 
-    protected Account()
+    public Account()
     {
     }
 

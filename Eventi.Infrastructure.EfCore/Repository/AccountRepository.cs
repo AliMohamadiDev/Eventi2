@@ -76,6 +76,24 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         return await query.OrderByDescending(x => x.Id).ToListAsync();
     }
 
+    public async Task<Account> GetByIdAsync(long id)
+    {
+        return await _context.Accounts.FindAsync(id);
+    }
+
+    public void ClearDepartmentsOfAccount(long id)
+    {
+        var deps = _context.Accounts.Include(x => x.DepartmentAccounts).Where(x => x.Id == id).ToList();
+        deps.Clear();
+        _context.SaveChanges();
+    }
+
+    public void UpdateAccount(Account account)
+    {
+        _context.Accounts.Update(account);
+        _context.SaveChanges();
+    }
+
     public void Deactivate(long id)
     {
         _context.Accounts.Find(id).Deactivate();
