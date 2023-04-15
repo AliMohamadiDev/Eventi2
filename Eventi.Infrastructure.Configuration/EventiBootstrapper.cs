@@ -17,6 +17,7 @@ using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventCategory;
 using Eventi.Application.Contract.EventInfo;
 using Eventi.Application.Contract.EventSubcategory;
+using Eventi.Application.Contract.Order;
 using Eventi.Application.Contract.Presenter;
 using Eventi.Application.Contract.Role;
 using Eventi.Application.Contract.Ticket;
@@ -25,6 +26,7 @@ using Eventi.Domain.ArticleAgg;
 using Eventi.Domain.ArticleCategoryAgg;
 using Eventi.Domain.EventAgg;
 using Eventi.Domain.EventCategoryAgg;
+using Eventi.Domain.OrderAgg;
 using Eventi.Domain.RoleAgg;
 using Eventi.Infrastructure.Configuration.Permissions;
 using Eventi.Infrastructure.EfCore;
@@ -82,6 +84,9 @@ public class EventiBootstrapper
 
         services.AddTransient<IArticleQuery, ArticleQuery>();
         services.AddTransient<IArticleCategoryQuery, ArticleCategoryQuery>();
+
+        services.AddTransient<IOrderApplication, OrderApplication>();
+        services.AddTransient<IOrderRepository, OrderRepository>();
 
         services.AddTransient<IPermissionExposer, EventiPermissionExposer>();
 

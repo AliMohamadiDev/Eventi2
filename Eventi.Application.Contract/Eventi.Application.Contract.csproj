@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="DiscountCode\" />
+    <Folder Include="Order\" />
   </ItemGroup>
 
 </Project>
