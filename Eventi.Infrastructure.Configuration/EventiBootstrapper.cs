@@ -12,6 +12,7 @@ using Eventi.Application.Contract.Account;
 using Eventi.Application.Contract.Article;
 using Eventi.Application.Contract.ArticleCategory;
 using Eventi.Application.Contract.Department;
+using Eventi.Application.Contract.DiscountCode;
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventCategory;
 using Eventi.Application.Contract.EventInfo;
@@ -59,6 +60,9 @@ public class EventiBootstrapper
 
         services.AddTransient<ITicketApplication, TicketApplication>();
         services.AddTransient<ITicketRepository, TicketRepository>();
+        
+        services.AddTransient<IDiscountCodeApplication, DiscountCodeApplication>();
+        services.AddTransient<IDiscountCodeRepository, DiscountCodeRepository>();
 
         services.AddTransient<IEventInfoApplication, EventInfoApplication>();
         services.AddTransient<IEventInfoRepository, EventInfoRepository>();

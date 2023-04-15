@@ -31,8 +31,7 @@ public class TicketApplication : ITicketApplication
         var totalPrice = (command.Price - (command.Price * command.DiscountRate) / 100);
 
         ticket.Edit(command.Title, command.Description, command.Number, command.Price,
-            command.StartTime.ToGeorgianDateTime(), command.EndTime.ToGeorgianDateTime(), command.EventId, totalPrice,
-            command.DiscountRate);
+            command.StartTime.ToGeorgianDateTime(), command.EndTime.ToGeorgianDateTime(), command.EventId, totalPrice, command.DiscountRate);
 
         await _ticketRepository.SaveChangesAsync();
         return operation.Succeeded();

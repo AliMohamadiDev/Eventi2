@@ -11,10 +11,23 @@ public class DiscountCode
     public long TicketId { get; private set; }
     public Ticket Ticket { get; private set; }
 
-    public DiscountCode(string code, float discountRate, int count)
+    protected DiscountCode()
+    {
+    }
+
+    public DiscountCode(string code, float discountRate, int count, long ticketId)
     {
         Code = code;
         DiscountRate = discountRate;
         Count = count;
+        TicketId = ticketId;
+    }
+
+    public void Edit(string code, float discountRate, int count, long ticketId)
+    {
+        Code = code;
+        DiscountRate = discountRate;
+        Count = count;
+        TicketId = ticketId;
     }
 }
