@@ -15,6 +15,7 @@ public class Ticket
     public Event Event { get; private set; }
     public List<AccountTicket> AccountTickets { get; private set; } = new();
     public bool IsDeactived { get; private set; }
+    public List<DiscountCode> DiscountCodes { get; private set; } = new();
 
 
     protected Ticket()

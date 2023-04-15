@@ -19,6 +19,7 @@ public class EventiContext : DbContext
     public DbSet<Department> Departments { get; set; }
     public DbSet<Presenter> Presenters { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<DiscountCode> DiscountCodes { get; set; }
     public DbSet<EventInfo> EventInfos { get; set; }
     public DbSet<EventPresenters> EventPresenters { get; set; }
     public DbSet<DepartmentAccount> DepartmentAccounts { get; set; }

@@ -17,5 +17,9 @@ public class TicketMapping : IEntityTypeConfiguration<Ticket>
         builder.HasOne(x => x.Event)
             .WithMany(x => x.Tickets)
             .HasForeignKey(x => x.EventId);
+
+        builder.HasMany(x => x.DiscountCodes)
+            .WithOne(x => x.Ticket)
+            .HasForeignKey(x => x.TicketId);
     }
 }
