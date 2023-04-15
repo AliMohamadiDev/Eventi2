@@ -21,6 +21,7 @@ public class DiscountCode
         DiscountRate = discountRate;
         Count = count;
         TicketId = ticketId;
+        CountUsed = 0;
     }
 
     public void Edit(string code, float discountRate, int count, long ticketId)
