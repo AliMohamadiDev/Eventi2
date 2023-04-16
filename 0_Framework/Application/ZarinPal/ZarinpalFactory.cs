@@ -31,7 +31,7 @@ namespace _0_Framework.Application.ZarinPal
             var body = new PaymentRequest
             {
                 Mobile = mobile,
-                CallbackURL = $"{siteUrl}/Checkout?handler=CallBack&oId={orderId}",
+                CallbackURL = $"{siteUrl}/Checkout?handler=Callback&oId={orderId}",
                 Description = description,
                 Email = email,
                 Amount = finalAmount,

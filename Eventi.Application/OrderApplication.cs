@@ -35,7 +35,7 @@ public class OrderApplication : IOrderApplication
         var currentAccountId = _authHelper.CurrentAccountId();
         var ticket = _ticketRepository.GetTicket(ticketId);
         var discountAmount = ticket.Price * ticket.DiscountRate;
-        var order = new Order(currentAccountId, ticketId, discountAmount, ticket.TotalPrice, ticket);
+        var order = new Order(currentAccountId, ticketId, discountAmount, ticket.TotalPrice);
 
         await _orderRepository.CreateAsync(order);
         await _orderRepository.SaveChangesAsync();

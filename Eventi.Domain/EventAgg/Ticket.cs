@@ -1,4 +1,6 @@
-﻿namespace Eventi.Domain.EventAgg;
+﻿using Eventi.Domain.OrderAgg;
+
+namespace Eventi.Domain.EventAgg;
 
 public class Ticket
 {
@@ -16,6 +18,7 @@ public class Ticket
     public List<AccountTicket> AccountTickets { get; private set; } = new();
     public bool IsDeactived { get; private set; }
     public List<DiscountCode> DiscountCodes { get; private set; } = new();
+    public List<Order> Orders { get; private set; } = new();
 
 
     protected Ticket()

@@ -11,5 +11,13 @@ public class OrderMapping : IEntityTypeConfiguration<Order>
         builder.ToTable("Orders");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.IssueTrackingNo).HasMaxLength(8);
+
+        builder.HasOne(x => x.Account)
+            .WithMany(x => x.Orders)
+            .HasForeignKey(x => x.AccountId);
+
+        builder.HasOne(x => x.Ticket)
+            .WithMany(x => x.Orders)
+            .HasForeignKey(x => x.TicketId);
     }
 }

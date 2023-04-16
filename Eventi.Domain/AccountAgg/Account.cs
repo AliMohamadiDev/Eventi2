@@ -1,4 +1,5 @@
 ﻿using Eventi.Domain.EventAgg;
+using Eventi.Domain.OrderAgg;
 using Eventi.Domain.RoleAgg;
 
 namespace Eventi.Domain.AccountAgg;
@@ -23,6 +24,7 @@ public class Account
     //public List<Event> MyEvents { get; private set; } = new();
     public List<AccountTicket> AccountTickets { get; private set; } = new();
     public List<DepartmentAccount> DepartmentAccounts { get; set; } = new();
+    public List<Order> Orders { get; private set; } = new();
 
     public Account()
     {
