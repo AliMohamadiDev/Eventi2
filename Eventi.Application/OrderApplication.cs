@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Application;
 using Eventi.Application.Contract.Order;
+using Eventi.Application.Contract.Ticket;
 using Eventi.Domain.EventAgg;
 using Eventi.Domain.OrderAgg;
 
@@ -7,15 +8,17 @@ namespace Eventi.Application;
 
 public class OrderApplication : IOrderApplication
 {
-    private readonly IOrderRepository _orderRepository;
     private readonly IAuthHelper _authHelper;
+    private readonly IOrderRepository _orderRepository;
     private readonly ITicketRepository _ticketRepository;
+    private readonly ITicketApplication _ticketApplication;
 
-    public OrderApplication(IOrderRepository orderRepository, IAuthHelper authHelper, ITicketRepository ticketRepository)
+    public OrderApplication(IOrderRepository orderRepository, IAuthHelper authHelper, ITicketRepository ticketRepository, ITicketApplication ticketApplication)
     {
-        _orderRepository = orderRepository;
         _authHelper = authHelper;
+        _orderRepository = orderRepository;
         _ticketRepository = ticketRepository;
+        _ticketApplication = ticketApplication;
     }
 
     public async Task Cancel(long id)
@@ -36,7 +39,7 @@ public class OrderApplication : IOrderApplication
         var ticket = _ticketRepository.GetTicket(ticketId);
         var discountAmount = ticket.Price * ticket.DiscountRate;
         var order = new Order(currentAccountId, ticketId, discountAmount, ticket.TotalPrice);
-
+        await _ticketApplication.IncreaseUsedNumber(ticketId);
         await _orderRepository.CreateAsync(order);
         await _orderRepository.SaveChangesAsync();
         return order.Id;

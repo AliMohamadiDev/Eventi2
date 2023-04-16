@@ -7,6 +7,7 @@ public class Ticket
     public long Id { get; private set; }
     public string Title { get; private set; }
     public int Number { get; private set; }
+    public int UsedNumber { get; private set; }
     public double Price { get; set; }
     public double TotalPrice { get; private set; }
     public float DiscountRate { get; private set; }
@@ -37,6 +38,7 @@ public class Ticket
         TotalPrice = totalPrice;
         DiscountRate = discountRate;
         IsDeactived = false;
+        UsedNumber = 0;
     }
 
 
@@ -61,5 +63,10 @@ public class Ticket
     public void Activate()
     {
         IsDeactived = false;
+    }
+
+    public void IncreaseUsed()
+    {
+        UsedNumber++;
     }
 }

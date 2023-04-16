@@ -56,6 +56,13 @@ public class TicketApplication : ITicketApplication
         return await _ticketRepository.SearchAsync(searchModel);
     }
 
+    public async Task IncreaseUsedNumber(long id)
+    {
+        var ticket = _ticketRepository.GetTicket(id);
+        ticket.IncreaseUsed();
+        await _ticketRepository.SaveChangesAsync();
+    }
+
     public void Deactivate(long id)
     {
         _ticketRepository.Deactivate(id);

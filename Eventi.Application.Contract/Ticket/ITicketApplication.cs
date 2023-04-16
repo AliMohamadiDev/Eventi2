@@ -9,6 +9,7 @@ public interface ITicketApplication
     Task<OperationResult> EditTicketAsync(EditTicket command);
     Task<OperationResult> CreateTicketAsync(CreateTicket command);
     Task<List<TicketViewModel>> SearchAsync(TicketSearchModel searchModel);
+    Task IncreaseUsedNumber(long id);
     void Deactivate(long id);
     void Activate(long id);
 }

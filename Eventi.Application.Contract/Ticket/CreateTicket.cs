@@ -23,4 +23,6 @@ public class CreateTicket
 
     [Range(1, 100_000, ErrorMessage = ValidationMessage.IsRequired)]
     public long EventId { get; set; }
+
+    public int UsedNumber { get; set; }
 }
