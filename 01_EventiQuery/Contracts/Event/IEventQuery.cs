@@ -6,4 +6,5 @@ public interface IEventQuery
     Task<List<EventQueryModel>> GetLatestEventsAsync();
     Task<List<EventQueryModel>> SearchAsync(string value);
     Task<List<EventQueryModel>> GetEventsByPresenterAsync(string presenterSlug);
+    bool UserOwned(long eventId, long accountId, long ticketId);
 }

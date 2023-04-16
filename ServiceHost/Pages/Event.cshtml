@@ -26,23 +26,55 @@
             <div class="card-header">بلیط ها</div>
             <div class="card-body">
                 <div class="">
-                    @foreach (var item in Model.Event.Tickets)
+                    @if (Model.IsOwned)
                     {
                         <div class="card shadow-none bg-transparent border border-primary mb-3">
                             <div class="row">
 
                                 <div class="card-body col">
-                                    <h5 class="card-title">@item.Title</h5>
+                                    <h5 class="card-title">@Model.Ticket.Title</h5>
                                     <p class="card-text">
-                                        @item.StartTime.ToFarsi() - @item.EndTime.ToFarsi()
+                                        @Model.Ticket.StartTime.ToFarsi() - @Model.Ticket.EndTime.ToFarsi()
                                     </p>
-                                    <p class="card-text">قیمت: @(item.Price == 0 ? "رایگان" : item.Price)</p>
-                                    <p class="card-text">@Html.Raw(item.Description)</p>
+                                    <p class="card-text">قیمت: @(Model.Ticket.Price == 0 ? "رایگان" : Model.Ticket.Price + " تومان")</p>
+                                    <a class="btn btn-success" href="#">شرکت در رویداد</a>
+                                    <button class="btn btn-primary me-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-@Model.Ticket.Id" aria-expanded="false" aria-controls="collapseExample">
+                                        بیشتر
+                                    </button>
+                                    <div id="collapseExample-@Model.Ticket.Id" class="collapse">
+                                        <p class="card-text">@Html.Raw(Model.Ticket.Description)</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     }
+                    else
+                    {
+                        @foreach (var item in Model.Event.Tickets)
+                        {
+                            <div class="card shadow-none bg-transparent border border-primary mb-3">
+                                <div class="row">
+
+                                    <div class="card-body col">
+                                        <h5 class="card-title">@item.Title</h5>
+                                        <p class="card-text">
+                                            @item.StartTime.ToFarsi() - @item.EndTime.ToFarsi()
+                                        </p>
+                                        <p class="card-text">قیمت: @(item.Price == 0 ? "رایگان" : item.Price + " تومان")</p>
+                                        <a class="btn btn-success" asp-page="/Checkout" asp-route-id="@item.Id">خرید بلیط</a>
+                                        <button class="btn btn-primary me-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-@item.Id" aria-expanded="false" aria-controls="collapseExample">
+                                            بیشتر
+                                        </button>
+                                        <div id="collapseExample-@item.Id" class="collapse">
+                                            <p class="card-text">@Html.Raw(item.Description)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                     
+
                 </div>
             </div>
         </div>

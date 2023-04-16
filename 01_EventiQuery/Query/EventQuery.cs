@@ -147,4 +147,24 @@ public class EventQuery : IEventQuery
             EndTime = x.EndTime
         }).ToList();
     }
+
+    public bool UserOwned(long eventId, long accountId, long ticketId)
+    {
+        /*var event1 = _eventContext.Events.Include(x => x.Tickets).ThenInclude(x => x.AccountTickets)
+            .FirstOrDefault(x => x.Id == eventId);
+
+        var account = event1.Tickets.FirstOrDefault(x=>x.AccountTickets.a)
+
+        if (event1.Tickets.Any(x => x.Id == ticketId && x.AccountTickets.Any(x => x.AccountId == accountId)))
+        {
+            return true;
+        }
+
+        return false;*/
+
+
+        var a = _eventContext.Orders.Include(x => x.Ticket).Any(x =>
+            x.AccountId == accountId && x.TicketId == ticketId && x.Ticket.EventId == eventId);
+        return a;
+    }
 }
