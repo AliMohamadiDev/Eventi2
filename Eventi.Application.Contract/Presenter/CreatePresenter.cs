@@ -9,7 +9,7 @@ public class CreatePresenter
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Name { get; set; }
 
-    [Required(ErrorMessage = ValidationMessage.IsRequired)]
+    //[Required(ErrorMessage = ValidationMessage.IsRequired)]
     public IFormFile? Logo { get; set; }
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
@@ -18,8 +18,12 @@ public class CreatePresenter
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string LogoAlt { get; set; }
 
+    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Website { get; set; }
+
+    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Number { get; set; }
+
     public string Policy { get; set; }
     public string Description { get; set; }
 

@@ -78,6 +78,7 @@
                                 <select class="form-select" asp-for="Command.EventId" asp-items="Model.Events">
                                     <option value="0">رویداد...</option>
                                 </select>
+                                <span asp-validation-for="Command.EventId" class="error"></span>
                             </div>
                         </div>
                     </div>

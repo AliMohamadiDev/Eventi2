@@ -33,6 +33,7 @@
                             <select class="form-select" asp-for="Command.CategoryId" asp-items="Model.EventCategories">
                                 <option value="0">موضوع اصلی...</option>
                             </select>
+                            <span asp-validation-for="Command.CategoryId" class="error"></span>
                         </div>
                     </div>
 

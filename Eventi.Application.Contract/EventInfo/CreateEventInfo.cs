@@ -1,4 +1,7 @@
-﻿namespace Eventi.Application.Contract.EventInfo;
+﻿using System.ComponentModel.DataAnnotations;
+using _0_Framework.Application;
+
+namespace Eventi.Application.Contract.EventInfo;
 
 public class CreateEventInfo
 {
@@ -13,8 +16,13 @@ public class CreateEventInfo
     public string? HostingService { get; set; }
     public string? LoginLink { get; set; }
     public string? Description { get; set; }
+    
+    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string StartTime { get; set; }
+
+    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string EndTime { get; set; }
 
+    [Range(1, double.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
     public long EventId { get; set; }
 }

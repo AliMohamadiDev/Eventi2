@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <label asp-for="Command.Length" class="form-label">مدت زمان رویداد</label>
                                 <input type="text" class="form-control" asp-for="Command.Length">
-                                <span asp-validation-for="Command.Length" class="error"></span>
+                                @*<span asp-validation-for="Command.Length" class="error"></span>*@
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -26,6 +26,7 @@
                                 <select class="form-select" asp-for="Command.EventId" asp-items="Model.Events">
                                     <option value="0">رویداد...</option>
                                 </select>
+                                <span asp-validation-for="Command.EventId" class="error"></span>
                             </div>
                         </div>
                     </div>
@@ -81,14 +82,14 @@
                             <div class="form-group">
                                 <label asp-for="Command.TotalHours" class="form-label">ساعت کل</label>
                                 <input type="text" class="form-control" asp-for="Command.TotalHours">
-                                <span asp-validation-for="Command.TotalHours" class="error"></span>
+                                @*<span asp-validation-for="Command.TotalHours" class="error"></span>*@
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Command.RoomCapacity" class="form-label">ظرفیت اتاق</label>
                                 <input type="text" class="form-control" asp-for="Command.RoomCapacity">
-                                <span asp-validation-for="Command.RoomCapacity" class="error"></span>
+                                @*<span asp-validation-for="Command.RoomCapacity" class="error"></span>*@
                             </div>
                         </div>
                     </div>

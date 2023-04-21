@@ -212,6 +212,7 @@
                                 <select class="form-select" asp-for="Command.SubcategoryId" asp-items="Model.Subcategories">
                                     <option value="0">زیرموضوع...</option>
                                 </select>
+                                <span asp-validation-for="Command.SubcategoryId" class="error"></span>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-between">
@@ -255,6 +256,7 @@
                                     <select class="form-select" asp-for="Command.DepartmentId" asp-items="Model.Departments">
                                         <option value="0">دپارتمان...</option>
                                     </select>
+                                    <span asp-validation-for="Command.DepartmentId" class="error"></span>
                                 </div>
                             </div>
                         </div>

@@ -42,6 +42,7 @@
                                 <select class="form-select" asp-for="Command.TicketId" asp-items="Model.Tickets">
                                     <option value="0">بلیط...</option>
                                 </select>
+                                <span asp-validation-for="Command.TicketId" class="error"></span>
                             </div>
                         </div>
                     </div>
