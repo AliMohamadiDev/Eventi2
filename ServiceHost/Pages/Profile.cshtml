@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-around flex-wrap my-4 py-3">
-                <div class="d-flex align-items-start me-4 mt-3 gap-3">
+                @*<div class="d-flex align-items-start me-4 mt-3 gap-3">
                     <span class="badge bg-label-primary p-2 rounded">
                         <i class="bx bx-check bx-sm"></i>
                     </span>
@@ -29,13 +29,13 @@
                         <h5 class="mb-0">1.23k</h5>
                         <span>Tasks Done</span>
                     </div>
-                </div>
+                </div>*@
                 <div class="d-flex align-items-start mt-3 gap-3">
                     <span class="badge bg-label-primary p-2 rounded">
                         <i class="bx bx-customize bx-sm"></i>
                     </span>
                     <div>
-                        <h5 class="mb-0">568?</h5>
+                        <h5 class="mb-0">@Model.Account.Tickets.Count()</h5>
                         <span>تعداد بلیط ها</span>
                     </div>
                 </div>
@@ -110,7 +110,9 @@
                                 <div class="card-action-element">
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0);" class="card-collapsible"><i class="tf-icons bx bx-chevron-up"></i></a>
+                                            <a href="javascript:void(0);" class="card-collapsible">
+                                                <i class="tf-icons bx bx-chevron-up"></i>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -132,7 +134,7 @@
 
 <!-- User Content -->
 <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-    <!-- User Pills -->
+    @*    <!-- User Pills -->
     <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
             <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>Account</a>
@@ -150,22 +152,47 @@
             <a class="nav-link" href="app-user-view-connections.html"><i class="bx bx-link-alt me-1"></i>Connections</a>
         </li>
     </ul>
-    <!--/ User Pills -->
+    <!--/ User Pills -->*@
 
     <!-- Project table -->
     <div class="card mb-4">
         <h5 class="card-header">بلیط های من</h5>
-        <div class="table-responsive mb-3">
-            <table class="table datatable-project border-top">
+        <div class="table-responsive text-nowrap">
+            <table class="table" id="Datatable">
                 <thead>
                 <tr>
-                    <th></th>
-                    <th>Project</th>
-                    <th class="text-nowrap">Total Task</th>
-                    <th>Progress</th>
-                    <th>Hours</th>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>قیمت</th>
+                    <th>تاریخ شروع</th>
+                    <th>تاریخ پایان</th>
+                    <th>رویداد</th>
+                    <th>رویداد</th>
                 </tr>
                 </thead>
+                <tbody>
+                @foreach (var item in Model.Account.Tickets)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+                        <td>@item.Price</td>
+                        <td>@item.StartTime.ToFarsi()</td>
+                        <td>@item.EndTime.ToFarsi()</td>
+                        <td>@item.EventId</td>
+                        <td>
+                            <a class="" asp-page="Event" asp-route-id="@item.EventSlug">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#666" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
             </table>
         </div>
     </div>
@@ -173,109 +200,52 @@
 
     <!-- Activity Timeline -->
     <div class="card mb-4">
-        <h5 class="card-header">آخرین رویداد های من</h5>
-        <div class="card-body">
-            <ul class="timeline">
-                <li class="timeline-item timeline-item-transparent">
-                    <span class="timeline-point timeline-point-primary"></span>
-                    <div class="timeline-event">
-                        <div class="timeline-header mb-1">
-                            <h6 class="mb-0">12 Invoices have been paid</h6>
-                            <small class="text-muted">12 min ago</small>
-                        </div>
-                        <p class="mb-2">Invoices have been paid to the company</p>
-                        <div class="d-flex">
-                            <a href="javascript:void(0)" class="me-3">
-                                <img src="~/theme/assets/img/icons/misc/pdf.png" alt="PDF image" width="15" class="me-2">
-                                <span class="fw-bold text-body">invoices.pdf</span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-item timeline-item-transparent">
-                    <span class="timeline-point timeline-point-warning"></span>
-                    <div class="timeline-event">
-                        <div class="timeline-header mb-1">
-                            <h6 class="mb-0">Client Meeting</h6>
-                            <small class="text-muted">45 min ago</small>
-                        </div>
-                        <p class="mb-2">Project meeting with john 10:15am</p>
-                        <div class="d-flex flex-wrap">
-                            <div class="avatar me-3">
-                                <img src="~/theme/assets/img/avatars/3.png" alt="Avatar" class="rounded-circle"/>
-                            </div>
-                            <div>
-                                <h6 class="mb-0">Lester McCarthy (Client)</h6>
-                                <span class="text-muted">CEO of ThemeSelection</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-item timeline-item-transparent">
-                    <span class="timeline-point timeline-point-info"></span>
-                    <div class="timeline-event">
-                        <div class="timeline-header mb-1">
-                            <h6 class="mb-0">Create a new project for client</h6>
-                            <small class="text-muted">2 Day Ago</small>
-                        </div>
-                        <p class="mb-2">5 team members in a project</p>
-                        <div class="d-flex align-items-center avatar-group">
-                            <div class="avatar pull-up" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Vinnie Mostowy">
-                                <img src="~/AdminTheme/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                            </div>
-                            <div class="avatar pull-up" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Marrie Patty">
-                                <img src="~/AdminTheme/assets/img/avatars/1.png" alt="Avatar" class="rounded-circle">
-                            </div>
-                            <div class="avatar pull-up" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Jimmy Jackson">
-                                <img src="~/AdminTheme/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                            </div>
-                            <div class="avatar pull-up" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Kristine Gill">
-                                <img src="~/AdminTheme/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle">
-                            </div>
-                            <div class="avatar pull-up" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Nelson Wilson">
-                                <img src="~/AdminTheme/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle">
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-item timeline-item-transparent">
-                    <span class="timeline-point timeline-point-success"></span>
-                    <div class="timeline-event">
-                        <div class="timeline-header mb-1">
-                            <h6 class="mb-0">Design Review</h6>
-                            <small class="text-muted">5 days Ago</small>
-                        </div>
-                        <p class="mb-0">Weekly review of freshly prepared design for our new app.</p>
-                    </div>
-                </li>
-                <li class="timeline-end-indicator">
-                    <i class="bx bx-check-circle"></i>
-                </li>
-            </ul>
+        <h5 class="card-header">پرداخت های من</h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table" id="Datatable1">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>قیمت نهایی</th>
+                    <th>درصد تخفیف</th>
+                    <th>تاریخ ثبت</th>
+                    <th>پرداخت شده؟</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.Account.Orders)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.PayAmount</td>
+                        <td>@item.DiscountAmount</td>
+                        <td>@item.CreationDate.ToFarsi()</td>
+                        <td>
+                            @if ( @*item.IsPaid*@true)
+                            {
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
+                                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                    </svg>
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                    </svg>
+                                </span>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- /Activity Timeline -->
 
-    <!-- Invoice table -->
-    <div class="card mb-4">
-        <div class="table-responsive mb-3">
-            <table class="table datatable-invoice border-top">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>ID</th>
-                    <th>
-                        <i class='bx bx-trending-up'></i>
-                    </th>
-                    <th>Total</th>
-                    <th>Issued Date</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-    <!-- /Invoice table -->
 </div>
 <!--/ User Content -->
 </div>
@@ -297,19 +267,19 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" asp-for="EditCommand.ProfilePhoto">عکس پروفایل</label>
-                        <input type="file" asp-for="EditCommand.ProfilePhoto" class="form-control" accept="image/*" />
+                        <input type="file" asp-for="EditCommand.ProfilePhoto" class="form-control" accept="image/*"/>
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" asp-for="EditCommand.Birthday">تاریخ تولد</label>
-                        <input asp-for="EditCommand.Birthday" class="form-control persianDateInput" value="@Model.Account.Birthday.ToFarsi()" />
+                        <input asp-for="EditCommand.Birthday" class="form-control persianDateInput" value="@Model.Account.Birthday.ToFarsi()"/>
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" asp-for="EditCommand.State">استان</label>
-                        <input type="text" asp-for="EditCommand.State" class="form-control"  value="@Model.Account.State" />
+                        <input type="text" asp-for="EditCommand.State" class="form-control" value="@Model.Account.State"/>
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" asp-for="EditCommand.City">شهر</label>
-                        <input type="text" asp-for="EditCommand.City" class="form-control"  value="@Model.Account.City" />
+                        <input type="text" asp-for="EditCommand.City" class="form-control" value="@Model.Account.City"/>
                     </div>
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">تایید</button>
@@ -422,6 +392,8 @@
 
     <link href="~/AdminTheme/assets/costum/css/persian-datepicker.min.css" rel="stylesheet" type="text/css"/>
 
+    <link rel="stylesheet" href="~/AdminTheme/assets/costum/css/dataTables.bootstrap5.min.css"/>
+
 }
 
 @section Script
@@ -468,4 +440,13 @@
             initialValueType: "persian"
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#Datatable').DataTable();
+        });
+    </script>
+
+    <script src="~/AdminTheme/assets/costum/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminTheme/assets/costum/js/dataTables.bootstrap5.min.js"></script>
 }

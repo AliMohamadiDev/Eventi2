@@ -1,4 +1,5 @@
 ﻿using _01_EventiQuery.Contracts.Account;
+using _01_EventiQuery.Contracts.Event;
 using Eventi.Application.Contract.Department;
 using Eventi.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,23 @@ public class AccountQuery : IAccountQuery
             Name = x.Department.Name,
             NationalCode = x.Department.NationalCode,
             PostalCode = x.Department.PostalCode
+        }).ToList();
+
+        var orders = _context.Orders.Include(x=>x.Ticket).Where(x => x.AccountId == id).ToList();
+        account.Orders = orders;
+
+        account.Tickets = orders.Select(x => new TicketQueryModel
+        {
+            Id = x.Ticket.Id,
+            Title = x.Ticket.Title,
+            Price = x.Ticket.Price,
+            DiscountRate = x.Ticket.DiscountRate,
+            EventId = x.Ticket.EventId,
+            Description = x.Ticket.Description,
+            Number = x.Ticket.Number,
+            StartTime = x.Ticket.StartTime,
+            EndTime = x.Ticket.EndTime,
+            EventSlug = _context.Events.Where(z=>z.Id == x.Ticket.EventId).Select(y=>y.Slug).FirstOrDefault()
         }).ToList();
 
         return account;

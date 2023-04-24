@@ -12,4 +12,5 @@ public class TicketQueryModel
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public long EventId { get; set; }
+    public string EventSlug { get; set; }
 }

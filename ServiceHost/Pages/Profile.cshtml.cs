@@ -1,5 +1,6 @@
 using _0_Framework.Application;
 using _01_EventiQuery.Contracts.Account;
+using _01_EventiQuery.Contracts.Event;
 using Eventi.Application.Contract.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
