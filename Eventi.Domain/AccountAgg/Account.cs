@@ -22,7 +22,7 @@ public class Account
     public Role Role { get; private set; }
 
     //public List<Event> MyEvents { get; private set; } = new();
-    public List<AccountTicket> AccountTickets { get; private set; } = new();
+    //public List<AccountTicket> AccountTickets { get; private set; } = new();
     public List<DepartmentAccount> DepartmentAccounts { get; set; } = new();
     public List<Order> Orders { get; private set; } = new();
 

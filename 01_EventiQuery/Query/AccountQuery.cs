@@ -17,7 +17,7 @@ public class AccountQuery : IAccountQuery
     public async Task<AccountQueryModel?> GetAccountDetailsAsync(long id)
     {
         var account = await _context.Accounts
-            .Include(x => x.AccountTickets)
+            //.Include(x => x.AccountTickets)
             .Include(x=>x.DepartmentAccounts)
             .Select(x => new AccountQueryModel
             {

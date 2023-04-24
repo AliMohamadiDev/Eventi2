@@ -16,7 +16,7 @@ public class Ticket
     public DateTime EndTime { get; private set; }
     public long EventId { get; private set; }
     public Event Event { get; private set; }
-    public List<AccountTicket> AccountTickets { get; private set; } = new();
+    //public List<AccountTicket> AccountTickets { get; private set; } = new();
     public bool IsDeactived { get; private set; }
     public List<DiscountCode> DiscountCodes { get; private set; } = new();
     public List<Order> Orders { get; private set; } = new();
