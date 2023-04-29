@@ -48,6 +48,8 @@ public class OrderRepository : RepositoryBase<long, Order>, IOrderRepository
 
         query = query.Where(x => x.IsCanceled == searchModel.IsCanceled);
 
+        query = query.Where(x => x.IsPaid == searchModel.IsPaid);
+
         if (searchModel.AccountId > 0)
         {
             query = query.Where(x => x.AccountId == searchModel.AccountId);
