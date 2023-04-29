@@ -28,7 +28,7 @@ public class ArticleQuery : IArticleQuery
                 PictureTitle = x.PictureTitle,
                 PublishDate = x.PublishDate.ToFarsi(),
                 ShortDescription = x.ShortDescription
-            }).ToListAsync();
+            }).Take(5).ToListAsync() ?? new List<ArticleQueryModel>();
     }
 
     public async Task<ArticleQueryModel> GetArticleDetailsAsync(string slug)

@@ -6,7 +6,6 @@
 }
 
 <div class="row">
-<!-- User Sidebar -->
 <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
     <!-- User Card -->
     <div class="card mb-4">
@@ -21,15 +20,6 @@
                 </div>
             </div>
             <div class="d-flex justify-content-around flex-wrap my-4 py-3">
-                @*<div class="d-flex align-items-start me-4 mt-3 gap-3">
-                    <span class="badge bg-label-primary p-2 rounded">
-                        <i class="bx bx-check bx-sm"></i>
-                    </span>
-                    <div>
-                        <h5 class="mb-0">1.23k</h5>
-                        <span>Tasks Done</span>
-                    </div>
-                </div>*@
                 <div class="d-flex align-items-start mt-3 gap-3">
                     <span class="badge bg-label-primary p-2 rounded">
                         <i class="bx bx-customize bx-sm"></i>
@@ -90,8 +80,6 @@
             </div>
         </div>
     </div>
-    <!-- /User Card -->
-    <!-- Plan Card -->
     <div class="card mb-4">
         <h5 class="card-header">دپارتمان ها</h5>
         <div class="card-body">
@@ -132,29 +120,7 @@
     </div>
 </div>
 
-<!-- User Content -->
 <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-    @*    <!-- User Pills -->
-    <ul class="nav nav-pills flex-column flex-md-row mb-3">
-        <li class="nav-item">
-            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>Account</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="app-user-view-security.html"><i class="bx bx-lock-alt me-1"></i>Security</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="app-user-view-billing.html"><i class="bx bx-detail me-1"></i>Billing & Plans</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="app-user-view-notifications.html"><i class="bx bx-bell me-1"></i>Notifications</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="app-user-view-connections.html"><i class="bx bx-link-alt me-1"></i>Connections</a>
-        </li>
-    </ul>
-    <!--/ User Pills -->*@
-
-    <!-- Project table -->
     <div class="card mb-4">
         <h5 class="card-header">بلیط های من</h5>
         <div class="table-responsive text-nowrap">
@@ -196,9 +162,7 @@
             </table>
         </div>
     </div>
-    <!-- /Project table -->
 
-    <!-- Activity Timeline -->
     <div class="card mb-4">
         <h5 class="card-header">پرداخت های من</h5>
         <div class="table-responsive text-nowrap">
@@ -244,14 +208,10 @@
             </table>
         </div>
     </div>
-    <!-- /Activity Timeline -->
 
 </div>
-<!--/ User Content -->
 </div>
 
-<!-- Modal -->
-<!-- Edit User Modal -->
 <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-simple modal-edit-user">
         <div class="modal-content p-3 p-md-5">
@@ -290,19 +250,14 @@
         </div>
     </div>
 </div>
-<!--/ Edit User Modal -->
-
-<!-- Add New Credit Card Modal -->
 <div class="modal fade" id="changePassword" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-simple">
         <div class="modal-content p-3 p-md-5">
             <div class="modal-body">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="authentication-inner py-4">
-
-                    <!-- Reset Password -->
+                    
                     <div class="card-body">
-                        <!-- Logo -->
                         <div class="app-brand justify-content-center mb-5">
                             <a asp-page="/Index" class="app-brand-link gap-2">
                                 <span class="app-brand-logo">
@@ -344,7 +299,6 @@
                                 <span class="app-brand-text demo text-body fw-bolder">Eventi</span>
                             </a>
                         </div>
-                        <!-- /Logo -->
                         <h4 class="mb-2">تغییر کلمه عبور 🔒</h4>
                         <p class="mb-4">برای <span class="fw-bold">@Model.Account.Email</span></p>
                         <form id="formAuthentication" class="mb-3" asp-page-handler="ChangePassword" method="post">
@@ -372,13 +326,11 @@
                             </button>
                         </form>
                     </div>
-                    <!-- /Reset Password -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--/ Add New Credit Card Modal -->
 
 
 @section Css

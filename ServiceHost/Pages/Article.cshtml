@@ -7,13 +7,12 @@
 }
 
 <h4 class="fw-bold py-3 mb-4">
-    <span class="text-muted fw-light">Help Center /</span> Article
+    <span class="text-muted fw-light">مقالات /</span> @Model.Article.Title
 </h4>
 
 <div class="row">
-    <!-- Categories -->
     <div class="col-xl-3 col-lg-4 col-md-4 mb-lg-0 mb-4">
-        <h5>eCommerce</h5>
+        <h5>موضوعات</h5>
         <div class="nav-align-left">
             <ul class="nav nav-pills w-100 gap-3">
 
@@ -38,8 +37,6 @@
             </ul>
         </div>
     </div>
-    <!-- /Categories -->
-    <!-- Article -->
     <div class="col-xl-9 col-lg-8 col-md-8">
         <div class="card overflow-hidden">
             <div class="card-body">
@@ -58,18 +55,9 @@
                 
                 <hr class="container-m-nx">
                 <div class="d-flex justify-content-between flex-wrap gap-3 mb-2">
-                    @*<div class="article-info">
-                        <h5 class="mb-1">این مقاله برای شما مفید بود؟</h5>
-                        <p class="card-text">55 People found this helpful</p>
-                    </div>*@
                     <h5>همچنان به کمک نیاز دارید؟ <a asp-page="./ContactUs">با ما تماس بگیرید</a></h5>
                 </div>
-                @*<div class="article-votes">
-                    <a href="javascript:void(0);" class="badge bg-label-primary me-2"><i class="bx bx-like"></i></a>
-                    <a href="javascript:void(0);" class="badge bg-label-primary"><i class="bx bx-dislike"></i></a>
-                </div>*@
             </div>
         </div>
     </div>
-    <!-- /Article -->
 </div>
