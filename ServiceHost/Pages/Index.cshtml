@@ -5,7 +5,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="col-12">
+@*<div class="col-12">
     <h6 class="text-muted mt-3">گالری</h6>
     <div id="swiper-gallery">
         <div class="swiper gallery-top">
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <h6 class="pb-1 mb-4 text-muted">رویداد ها</h6>
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
@@ -37,7 +37,7 @@
     {
         <div class="col-md-4 col-lg-3">
             <div class="card h-100">
-                <img class="card-img-top" src="~/AdminTheme/assets/img/elements/2.jpg" alt="Card image cap" />
+                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
                 <div class="card-body">
                     <h5 class="card-title">
                         <a asp-page="./Event" asp-route-id="@item.Slug">
@@ -130,7 +130,7 @@
     }
 </div>
 
-
+@*
 <div class="col-12 mb-4">
     <h6 class="text-muted mt-3">آخرین رویداد ها</h6>
     <div class="swiper" id="swiper-multiple-slides">
@@ -144,7 +144,7 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-
+*@
 
 @section Css{
     <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css" />

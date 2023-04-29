@@ -1,7 +1,3 @@
-/**
- * Dashboard Analytics
- */
-
 'use strict';
 
 (function () {
@@ -12,8 +8,6 @@
   axisColor = config.colors.axisColor;
   borderColor = config.colors.borderColor;
 
-  // Total Revenue Report Chart - Bar Chart
-  // --------------------------------------------------------------------
   const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
     totalRevenueChartOptions = {
       series: [
@@ -274,8 +268,6 @@
     totalRevenueChart.render();
   }
 
-  // Growth Chart - Radial Bar Chart
-  // --------------------------------------------------------------------
   const growthChartEl = document.querySelector('#growthChart'),
     growthChartOptions = {
       series: [78],
@@ -355,8 +347,6 @@
     growthChart.render();
   }
 
-  // Profit Report Line Chart
-  // --------------------------------------------------------------------
   const profileReportChartEl = document.querySelector('#profileReportChart'),
     profileReportChartConfig = {
       chart: {
@@ -418,8 +408,6 @@
     profileReportChart.render();
   }
 
-  // Order Statistics Chart
-  // --------------------------------------------------------------------
   const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
     orderChartConfig = {
       chart: {
@@ -488,8 +476,6 @@
     statisticsChart.render();
   }
 
-  // Income Chart - Area chart
-  // --------------------------------------------------------------------
   const incomeChartEl = document.querySelector('#incomeChart'),
     incomeChartConfig = {
       series: [
@@ -587,8 +573,6 @@
     incomeChart.render();
   }
 
-  // Expenses Mini Chart - Radial Chart
-  // --------------------------------------------------------------------
   const weeklyExpensesEl = document.querySelector('#expensesOfWeek'),
     weeklyExpensesConfig = {
       series: [65],

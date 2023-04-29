@@ -138,10 +138,6 @@
 				return this;
 			});
 
-			/*
-			 * Modified fix for sync-ing "val". 
-			 * Original fix https://github.com/michaellwest/quicksearch/commit/4ace4008d079298a01f97f885ba8fa956a9703d1
-			 * */
 			val = val || this.val() || "";
 			
 			return this.go();
@@ -166,9 +162,6 @@
 		
 		return this.each(function () {
 			
-			/*
-			 * Changed from .bind to .on.
-			 * */
 			$(this).on(options.bind, function () {
 				
 				val = $(this).val();
