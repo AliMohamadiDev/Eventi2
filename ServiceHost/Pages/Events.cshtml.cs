@@ -16,6 +16,6 @@ public class EventsModel : PageModel
 
     public async Task OnGetAsync()
     {
-        Events = await _eventQuery.GetLatestEventsAsync();
+        Events = await _eventQuery.GetLatestEventsAsync(100);
     }
 }

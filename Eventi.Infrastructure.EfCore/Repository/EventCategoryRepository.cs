@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Infrastructure;
 using Eventi.Application.Contract.EventCategory;
+using Eventi.Application.Contract.EventSubcategory;
 using Eventi.Domain.EventCategoryAgg;
 using Microsoft.EntityFrameworkCore;
 
@@ -60,5 +61,19 @@ public class EventCategoryRepository : RepositoryBase<long, EventCategory>, IEve
         }
 
         return await query.OrderByDescending(x => x.CategoryId).ToListAsync();
+    }
+
+    public async Task<List<EventSubcategoryViewModel>> GetSubcategoriesAsync(long categoryId)
+    {
+        return await _context.EventSubcategories
+            .Where(x => x.CategoryId == categoryId)
+            .Select(x => new EventSubcategoryViewModel
+            {
+                SubcategoryId = x.SubcategoryId,
+                SubcategoryName = x.SubcategoryName,
+                CreationDate = x.CreationDate.ToString(),
+                CategoryId = x.CategoryId,
+                Category = x.Category.CategoryName
+            }).ToListAsync();
     }
 }

@@ -5,33 +5,8 @@
     ViewData["Title"] = "Home page";
 }
 
-@*<div class="col-12">
-    <h6 class="text-muted mt-3">گالری</h6>
-    <div id="swiper-gallery">
-        <div class="swiper gallery-top">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/19.jpg)">Slide 1</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 2</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 3</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 4</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 5</div>
-            </div>
-            <div class="swiper-button-next swiper-button-white"></div>
-            <div class="swiper-button-prev swiper-button-white"></div>
-        </div>
-        <div class="swiper gallery-thumbs">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/19.jpg)">Slide 1</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 2</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 3</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 4</div>
-                <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/backgrounds/18.jpg)">Slide 5</div>
-            </div>
-        </div>
-    </div>
-</div>*@
 
-<h6 class="pb-1 mb-4 text-muted">رویداد ها</h6>
+<h6 class="pb-1 mb-4 text-muted">آخرین رویداد ها</h6>
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
     @foreach (var item in Model.Events)
     {
@@ -130,23 +105,37 @@
     }
 </div>
 
-@*
-<div class="col-12 mb-4">
-    <h6 class="text-muted mt-3">آخرین رویداد ها</h6>
-    <div class="swiper" id="swiper-multiple-slides">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/13.jpg)">Slide 1</div>
-            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/19.jpg)">Slide 2</div>
-            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/18.jpg)">Slide 3</div>
-            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/7.jpg)">Slide 4</div>
-            <div class="swiper-slide" style="background-image:url(/AdminTheme/assets/img/elements/20.jpg)">Slide 5</div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
+<div class="divider mb-5">
+    <div class="divider-text">Eventi</div>
 </div>
-*@
 
-@section Css{
+<h6 class="pb-1 mb-4 text-muted">آخرین دپارتمان ها</h6>
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    @foreach (var item in Model.Departments)
+    {
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">
+                                آدرس: @item.Address
+                            </p>
+                            <p class="card-text">
+                                کدپستی: @item.PostalCode
+                            </p>
+                            <a asp-page="./Department" asp-route-id="@item.Id" class="btn btn-primary">اطلاعات بیشتر</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@*@section Css{
     <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css" />
     <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/ui-carousel.css" />
     
@@ -160,4 +149,4 @@
     <script src="~/theme/assets/js/ui-carousel.js"></script>
     
     <script src="~/theme/assets/js/pages-profile.js"></script>
-}
+}*@

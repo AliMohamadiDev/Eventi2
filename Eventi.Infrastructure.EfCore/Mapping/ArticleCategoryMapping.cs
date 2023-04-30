@@ -12,7 +12,7 @@ public class ArticleCategoryMapping : IEntityTypeConfiguration<ArticleCategory>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Name).HasMaxLength(500);
-        builder.Property(x => x.Description).HasMaxLength(2000);
+        builder.Property(x => x.Description).HasMaxLength(20000);
         builder.Property(x => x.Picture).HasMaxLength(500);
         builder.Property(x => x.PictureAlt).HasMaxLength(500);
         builder.Property(x => x.PictureTitle).HasMaxLength(500);

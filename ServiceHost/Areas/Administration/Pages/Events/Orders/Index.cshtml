@@ -4,20 +4,17 @@
 @using RestSharp.Extensions
 @model ServiceHost.Areas.Administration.Pages.Events.Orders.IndexModel
 @{
-    ViewData["title"] = "مدیریت بلیط ها";
+    ViewData["title"] = "مدیریت پرداخت ها";
 }
 
 <div class="navbar-nav-right d-flex align-items-center mb-4" id="navbar-collapse">
     <div class="navbar-nav align-items-center">
         <h4 class="card-header">@ViewData["title"]</h4>
     </div>
-    <div class="navbar-nav flex-row align-items-center ms-auto">
-        <a class="btn btn-primary btn-lg" asp-page="Create">ایجاد بلیط جدید</a>
-    </div>
 </div>
 
 <div class="card mb-4">
-    <h5 class="card-header">جستجو در بلیط ها</h5>
+    <h5 class="card-header">جستجو در پرداخت ها</h5>
     <div class="card-body">
         <form role="form" method="get">
             <div class="row gx-3 gy-2 align-items-center" asp-validation-summary="None">
@@ -47,7 +44,7 @@
 
 
 <div class="card">
-    <h5 class="card-header">بلیط ها</h5>
+    <h5 class="card-header">پرداخت ها</h5>
     <div class="table-responsive text-nowrap">
         <table class="table" id="Datatable">
             <thead>

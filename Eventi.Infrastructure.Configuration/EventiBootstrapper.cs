@@ -3,6 +3,7 @@ using _0_Framework.Infrastructure;
 using _01_EventiQuery.Contracts.Account;
 using _01_EventiQuery.Contracts.Article;
 using _01_EventiQuery.Contracts.ArticleCategory;
+using _01_EventiQuery.Contracts.Common;
 using _01_EventiQuery.Contracts.Department;
 using _01_EventiQuery.Contracts.Event;
 using _01_EventiQuery.Contracts.EventCategory;
@@ -90,6 +91,8 @@ public class EventiBootstrapper
         services.AddTransient<IOrderRepository, OrderRepository>();
 
         services.AddTransient<IZarinPalFactory, ZarinPalFactory>();
+
+        services.AddTransient<IIndexQuery, IndexQuery>();
 
         services.AddTransient<IPermissionExposer, EventiPermissionExposer>();
 

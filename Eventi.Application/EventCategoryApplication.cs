@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Application;
 using Eventi.Application.Contract.EventCategory;
+using Eventi.Application.Contract.EventSubcategory;
 using Eventi.Domain.EventCategoryAgg;
 
 namespace Eventi.Application;
@@ -65,5 +66,10 @@ public class EventCategoryApplication : IEventCategoryApplication
     public async Task<List<EventCategoryViewModel>> SearchAsync(EventCategorySearchModel searchModel)
     {
         return await _eventCategoryRepository.SearchAsync(searchModel);
+    }
+
+    public async Task<List<EventSubcategoryViewModel>> GetSubcategoriesAsync(long categoryId)
+    {
+        return await _eventCategoryRepository.GetSubcategoriesAsync(categoryId);
     }
 }

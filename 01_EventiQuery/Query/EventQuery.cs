@@ -44,7 +44,7 @@ public class EventQuery : IEventQuery
 
     
 
-    public async Task<List<EventQueryModel>> GetLatestEventsAsync()
+    public async Task<List<EventQueryModel>> GetLatestEventsAsync(int number)
     {
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
@@ -67,7 +67,9 @@ public class EventQuery : IEventQuery
                 EventInfo = x.EventInfo,
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
-            }).OrderByDescending(x => x.Id).ToListAsync();
+            }).OrderByDescending(x => x.Id)
+            .Take(number)
+            .ToListAsync();
 
         return events;
     }

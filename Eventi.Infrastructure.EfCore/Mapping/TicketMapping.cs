@@ -12,7 +12,7 @@ public class TicketMapping : IEntityTypeConfiguration<Ticket>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Title).HasMaxLength(256).IsRequired();
-        builder.Property(x => x.Description).HasMaxLength(2048);
+        builder.Property(x => x.Description).HasMaxLength(20000);
 
         builder.HasOne(x => x.Event)
             .WithMany(x => x.Tickets)

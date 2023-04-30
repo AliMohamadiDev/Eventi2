@@ -48,7 +48,7 @@ public class DepartmentQuery : IDepartmentQuery
         return department;
     }
 
-    public async Task<List<DepartmentQueryModel>> GetDepartmentsAsync()
+    public async Task<List<DepartmentQueryModel>> GetDepartmentsAsync(int number = 1000)
     {
         return await _eventiContext.Departments
             .Include(x => x.DepartmentAccounts)
@@ -59,7 +59,10 @@ public class DepartmentQuery : IDepartmentQuery
                 Address = x.Address,
                 NationalCode = x.NationalCode,
                 PostalCode = x.PostalCode
-            }).OrderByDescending(x => x.Id).ToListAsync();
+            })
+            .OrderByDescending(x => x.Id)
+            .Take(number)
+            .ToListAsync();
     }
 
     public async Task<List<DepartmentQueryModel>> SearchAsync(string value)

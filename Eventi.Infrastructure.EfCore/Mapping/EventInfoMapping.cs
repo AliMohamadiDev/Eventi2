@@ -13,9 +13,9 @@ public class EventInfoMapping : IEntityTypeConfiguration<EventInfo>
 
         builder.Property(x => x.State).HasMaxLength(256);
         builder.Property(x => x.City).HasMaxLength(256);
-        builder.Property(x => x.Address).HasMaxLength(2048);
+        builder.Property(x => x.Address).HasMaxLength(4096);
         builder.Property(x => x.HostingService).HasMaxLength(256);
         builder.Property(x => x.LoginLink).HasMaxLength(256);
-        builder.Property(x => x.Description).HasMaxLength(2048);
+        builder.Property(x => x.Description).HasMaxLength(20000);
     }
 }

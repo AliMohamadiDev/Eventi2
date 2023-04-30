@@ -12,6 +12,7 @@
     <Folder Include="Contracts\ArticleCategory\" />
     <Folder Include="Contracts\EventCategory\" />
     <Folder Include="Contracts\Account\" />
+    <Folder Include="Contracts\Common\" />
     <Folder Include="Contracts\Presenter\" />
     <Folder Include="Query\" />
   </ItemGroup>

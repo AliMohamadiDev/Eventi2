@@ -17,8 +17,8 @@ public class PresenterMapping : IEntityTypeConfiguration<Presenter>
         builder.Property(x => x.LogoTitle).HasMaxLength(512).IsRequired();
         builder.Property(x => x.Website).HasMaxLength(256);
         builder.Property(x => x.Number).HasMaxLength(32);
-        builder.Property(x => x.Policy).HasMaxLength(2048);
-        builder.Property(x => x.Description).HasMaxLength(2048);
+        builder.Property(x => x.Policy).HasMaxLength(20000);
+        builder.Property(x => x.Description).HasMaxLength(20000);
         builder.Property(x => x.Slug).HasMaxLength(360).IsRequired();
 
         /*builder.HasMany(x=>x.Events)
