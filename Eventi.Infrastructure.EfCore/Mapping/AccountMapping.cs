@@ -26,5 +26,18 @@ public class AccountMapping : IEntityTypeConfiguration<Account>
         builder.HasMany(x => x.Orders)
             .WithOne(x => x.Account)
             .HasForeignKey(x => x.AccountId);
+
+
+        builder.HasData(new Account
+        {
+            Id = 1,
+            CreationDate = DateTime.Now,
+            Fullname = "ادمین",
+            Mobile = "09123456789",
+            Email = "test@gmail.com",
+            Password = "10000.kAB/g7f2CTqNArwvmuP79A==.A/7rODRWAtQhTiimt+8P9Hi9i/w+QpZLUOcjvguC7a8=",
+            ProfilePhoto = @"profilePhotos\DefaultProfilePicture.svg"
+        });
     }
+
 }

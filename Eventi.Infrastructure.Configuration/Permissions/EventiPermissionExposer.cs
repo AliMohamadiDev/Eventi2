@@ -11,49 +11,49 @@ public class EventiPermissionExposer : IPermissionExposer
             {
                 "Event", new List<PermissionDto>
                 {
-                    new(EventiPermissions.GetEvent, "GetEvent"),
-                    new(EventiPermissions.CreateEvent, "CreateEvent"),
-                    new(EventiPermissions.UpdateEvent, "UpdateEvent")
+                    new(EventiPermissions.GetEvent, "نمایش رویداد ها"),
+                    new(EventiPermissions.CreateEvent, "ایجاد رویداد"),
+                    new(EventiPermissions.UpdateEvent, "ویرایش رویداد")
                 }
             },
             {
                 "EventCategory", new List<PermissionDto>
                 {
-                    new(EventiPermissions.GetEventCategory, "GetEventCategory"),
-                    new(EventiPermissions.CreateEventCategory, "CreateEventCategory"),
-                    new(EventiPermissions.UpdateEventCategory, "UpdateEventCategory")
+                    new(EventiPermissions.GetEventCategory, "نمایش موضوعات رویداد"),
+                    new(EventiPermissions.CreateEventCategory, "ایجاد موضوع رویداد"),
+                    new(EventiPermissions.UpdateEventCategory, "ویرایش موضوع رویداد")
                 }
             },
             {
                 "Article", new List<PermissionDto>
                 {
-                    new(EventiPermissions.GetArticle, "GetArticle"),
-                    new(EventiPermissions.CreateArticle, "CreateArticle"),
-                    new(EventiPermissions.UpdateArticle, "UpdateArticle")
+                    new(EventiPermissions.GetArticle, "نمایش مقالات"),
+                    new(EventiPermissions.CreateArticle, "ایجاد مقاله"),
+                    new(EventiPermissions.UpdateArticle, "ویرایش مقاله")
                 }
             },
             {
                 "ArticleCategory", new List<PermissionDto>
                 {
-                    new(EventiPermissions.GetArticleCategory, "GetArticleCategory"),
-                    new(EventiPermissions.CreateArticleCategory, "CreateArticleCategory"),
-                    new(EventiPermissions.UpdateArticleCategory, "UpdateArticleCategory")
+                    new(EventiPermissions.GetArticleCategory, "نمایش موضوعات مقالات"),
+                    new(EventiPermissions.CreateArticleCategory, "ایجاد موضوع مقاله"),
+                    new(EventiPermissions.UpdateArticleCategory, "ویرایش موضوع مقاله")
                 }
             },
             {
                 "AccountAccount", new List<PermissionDto>
                 {
-                    new(EventiPermissions.GetAccount, "GetAccount"),
-                    new(EventiPermissions.CreateAccount, "CreateAccount"),
-                    new(EventiPermissions.UpdateAccount, "UpdateAccount")
+                    new(EventiPermissions.GetAccount, "نمایش حساب ها"),
+                    new(EventiPermissions.CreateAccount, "ساخت حساب"),
+                    new(EventiPermissions.UpdateAccount, "ویرایش حساب")
                 }
             },
             {
                 "Role", new List<PermissionDto>
                 {
-                    new(EventiPermissions.GetRole, "GetRole"),
-                    new(EventiPermissions.CreateRole, "CreateRole"),
-                    new(EventiPermissions.UpdateRole, "UpdateRole")
+                    new(EventiPermissions.GetRole, "نمایش نقش"),
+                    new(EventiPermissions.CreateRole, "ایجاد نقش"),
+                    new(EventiPermissions.UpdateRole, "ویرایش نقش")
                 }
             }
         };
