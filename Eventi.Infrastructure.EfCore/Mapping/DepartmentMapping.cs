@@ -13,6 +13,10 @@ public class DepartmentMapping : IEntityTypeConfiguration<Department>
 
         builder.Property(x => x.Name).HasMaxLength(256).IsRequired();
         builder.Property(x => x.Address).HasMaxLength(2048).IsRequired();
+        builder.Property(x => x.Logo).HasMaxLength(2048).IsRequired();
+        builder.Property(x => x.LogoAlt).HasMaxLength(512).IsRequired();
+        builder.Property(x => x.LogoTitle).HasMaxLength(512).IsRequired();
+        builder.Property(x => x.Slug).HasMaxLength(360).IsRequired();
 
         builder.HasMany(x => x.Events)
             .WithOne(x => x.Department)

@@ -7,4 +7,5 @@ public class DepartmentViewModel
     public long NationalCode { get; set; }
     public long PostalCode { get; set; }
     public string Address { get; set; }
+    public string Logo { get; set; }
 }

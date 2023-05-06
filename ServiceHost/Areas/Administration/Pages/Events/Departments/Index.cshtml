@@ -50,6 +50,7 @@
             <thead>
             <tr>
                 <th>#</th>
+                <th>لوگو</th>
                 <th>نام</th>
                 <th>کد ملی</th>
                 <th>کد پستی</th>
@@ -63,6 +64,9 @@
             {
                 <tr>
                     <td>@item.Id</td>
+                    <td>
+                        <img src="~/Pictures/@item.Logo" style="width: 70px; height: 70px" />
+                    </td>
                     <td>@item.Name</td>
                     <td>@item.NationalCode</td>
                     <td>@item.PostalCode</td>

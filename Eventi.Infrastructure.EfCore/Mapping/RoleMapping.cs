@@ -22,7 +22,7 @@ public class RoleMapping : IEntityTypeConfiguration<Role>
             navigationBuilder.WithOwner(x => x.Role);
         });
 
-
+/*
         builder.HasData(new List<Role>()
         {
             new Role()
@@ -47,5 +47,6 @@ public class RoleMapping : IEntityTypeConfiguration<Role>
                 
             }
         });
+*/
     }
 }

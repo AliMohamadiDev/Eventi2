@@ -26,6 +26,10 @@ public class DepartmentQuery : IDepartmentQuery
                 Address = x.Address,
                 NationalCode = x.NationalCode,
                 PostalCode = x.PostalCode,
+                Logo = x.Logo,
+                LogoTitle = x.LogoTitle,
+                LogoAlt = x.LogoAlt,
+                Slug = x.Slug,
             }).FirstOrDefaultAsync();
 
         department.Events = await _eventiContext.Events.Include(x=>x.Department).Where(x => x.DepartmentId == id).Select(x => new EventQueryModel
@@ -58,7 +62,11 @@ public class DepartmentQuery : IDepartmentQuery
                 Name = x.Name,
                 Address = x.Address,
                 NationalCode = x.NationalCode,
-                PostalCode = x.PostalCode
+                PostalCode = x.PostalCode,
+                Logo = x.Logo,
+                LogoTitle = x.LogoTitle,
+                LogoAlt = x.LogoAlt,
+                Slug = x.Slug,
             })
             .OrderByDescending(x => x.Id)
             .Take(number)
@@ -76,7 +84,11 @@ public class DepartmentQuery : IDepartmentQuery
                 Name = x.Name,
                 Address = x.Address,
                 NationalCode = x.NationalCode,
-                PostalCode = x.PostalCode
+                PostalCode = x.PostalCode,
+                Logo = x.Logo,
+                LogoTitle = x.LogoTitle,
+                LogoAlt = x.LogoAlt,
+                Slug = x.Slug,
             }).OrderByDescending(x => x.Id).ToListAsync();
     }
 }

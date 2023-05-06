@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eventi.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(EventiContext))]
-    [Migration("20230430160606_SeedInitData")]
-    partial class SeedInitData
+    [Migration("20230506073340_AddImgAndSlugToDepartment")]
+    partial class AddImgAndSlugToDepartment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,20 +81,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Accounts", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CreationDate = new DateTime(2023, 4, 30, 19, 36, 6, 650, DateTimeKind.Local).AddTicks(1182),
-                            Email = "test@gmail.com",
-                            Fullname = "ادمین",
-                            IsDeactived = false,
-                            Mobile = "09123456789",
-                            Password = "10000.kAB/g7f2CTqNArwvmuP79A==.A/7rODRWAtQhTiimt+8P9Hi9i/w+QpZLUOcjvguC7a8=",
-                            ProfilePhoto = "profilePhotos\\DefaultProfilePicture.svg",
-                            RoleId = 0L
-                        });
                 });
 
             modelBuilder.Entity("Eventi.Domain.ArticleAgg.Article", b =>
@@ -248,6 +234,21 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<string>("LogoAlt")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<string>("LogoTitle")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -258,6 +259,11 @@ namespace Eventi.Infrastructure.EfCore.Migrations
 
                     b.Property<long>("PostalCode")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(360)
+                        .HasColumnType("nvarchar(360)");
 
                     b.HasKey("Id");
 
@@ -686,26 +692,6 @@ namespace Eventi.Infrastructure.EfCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CreationDate = new DateTime(2023, 4, 30, 19, 36, 6, 653, DateTimeKind.Local).AddTicks(1787),
-                            Name = "ادمین سایت"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            CreationDate = new DateTime(2023, 4, 30, 19, 36, 6, 653, DateTimeKind.Local).AddTicks(1792),
-                            Name = "کاربر سایت"
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            CreationDate = new DateTime(2023, 4, 30, 19, 36, 6, 653, DateTimeKind.Local).AddTicks(1793),
-                            Name = "مدیر وبلاگ"
-                        });
                 });
 
             modelBuilder.Entity("Eventi.Domain.AccountAgg.Account", b =>

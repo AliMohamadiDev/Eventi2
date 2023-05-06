@@ -39,7 +39,7 @@ public class PresenterApplication : IPresenterApplication
         var logoAlt = $"لوگوی {command.Name}";
         var slug = $"{command.Name} {command.Number}".Slugify();
 
-        var path = $"Presenters/{command.Name}";
+        var path = $"Presenters/{slug}";
         var logo = _fileUploader.Upload(command.Logo, path);
 
         presenter.Edit(command.Name, logo, logoTitle, logoAlt, command.Website,
@@ -62,7 +62,7 @@ public class PresenterApplication : IPresenterApplication
         var logoAlt = $"لوگوی {command.Name}";
         var slug = $"{command.Name} {command.Number}".Slugify();
 
-        var path = $"Presenters/{command.Name}";
+        var path = $"Presenters/{slug}";
         var logo = _fileUploader.Upload(command.Logo, path);
 
         var presenter = new Presenter(command.Name, logo, logoTitle, logoAlt, command.Website,

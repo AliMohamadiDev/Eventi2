@@ -23,6 +23,9 @@ public class DepartmentRepository : RepositoryBase<long, Department>, IDepartmen
             NationalCode = x.NationalCode,
             PostalCode = x.PostalCode,
             Address = x.Address,
+            LogoAlt = x.LogoAlt,
+            LogoTitle = x.LogoTitle,
+            Slug = x.Slug,
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
 
@@ -40,6 +43,7 @@ public class DepartmentRepository : RepositoryBase<long, Department>, IDepartmen
             NationalCode = x.NationalCode,
             PostalCode = x.PostalCode,
             Address = x.Address,
+            Logo = x.Logo,
         });
 
         if (searchModel.Id != 0)
@@ -69,6 +73,7 @@ public class DepartmentRepository : RepositoryBase<long, Department>, IDepartmen
             NationalCode = x.NationalCode,
             PostalCode = x.PostalCode,
             Address = x.Address,
+            Logo = x.Logo,
         }).ToListAsync();
     }
 }

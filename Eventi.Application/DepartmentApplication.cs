@@ -7,10 +7,12 @@ namespace Eventi.Application;
 public class DepartmentApplication: IDepartmentApplication
 {
     private readonly IDepartmentRepository _departmentRepository;
+    private readonly IFileUploader _fileUploader;
 
-    public DepartmentApplication(IDepartmentRepository departmentRepository)
+    public DepartmentApplication(IDepartmentRepository departmentRepository, IFileUploader fileUploader)
     {
         _departmentRepository = departmentRepository;
+        _fileUploader = fileUploader;
     }
 
     public async Task<EditDepartment?> GetDetailsAsync(long id)
@@ -33,7 +35,15 @@ public class DepartmentApplication: IDepartmentApplication
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
         }
 
-        department.Edit(command.Name, command.NationalCode, command.PostalCode, command.Address);
+        var logoTitle = $"لوگوی {command.Name}";
+        var logoAlt = $"لوگوی {command.Name}";
+        var slug = $"{command.Name}".Slugify();
+
+        var path = $"Departments/{slug}";
+        var logo = _fileUploader.Upload(command.Logo, path);
+
+        department.Edit(command.Name, command.NationalCode, command.PostalCode, command.Address, logo, logoAlt,
+            logoTitle, slug);
 
         await _departmentRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -47,7 +57,15 @@ public class DepartmentApplication: IDepartmentApplication
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
         }
 
-        var department = new Department(command.Name, command.NationalCode, command.PostalCode, command.Address);
+        var logoTitle = $"لوگوی {command.Name}";
+        var logoAlt = $"لوگوی {command.Name}";
+        var slug = $"{command.Name}".Slugify();
+
+        var path = $"Departments/{slug}";
+        var logo = _fileUploader.Upload(command.Logo, path);
+
+        var department = new Department(command.Name, command.NationalCode, command.PostalCode, command.Address, logo,
+            logoAlt, logoTitle, slug);
 
         await _departmentRepository.CreateAsync(department);
         await _departmentRepository.SaveChangesAsync();
