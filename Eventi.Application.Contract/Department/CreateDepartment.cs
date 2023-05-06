@@ -29,4 +29,6 @@ public class CreateDepartment
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Slug { get; set; }
+ 
+    public string Description { get; set; }
 }

@@ -14,11 +14,10 @@ public class DepartmentQuery : IDepartmentQuery
         _eventiContext = eventiContext;
     }
 
-    public async Task<DepartmentQueryModel> GetDepartmentAsync(long id)
+    public async Task<DepartmentQueryModel> GetDepartmentAsync(string slug)
     {
         var department = await _eventiContext.Departments
             .Include(x => x.Events)
-            .Where(x=>x.Id == id)
             .Select(x => new DepartmentQueryModel
             {
                 Id = x.Id,
@@ -26,13 +25,14 @@ public class DepartmentQuery : IDepartmentQuery
                 Address = x.Address,
                 NationalCode = x.NationalCode,
                 PostalCode = x.PostalCode,
+                Description = x.Description,
                 Logo = x.Logo,
                 LogoTitle = x.LogoTitle,
                 LogoAlt = x.LogoAlt,
                 Slug = x.Slug,
-            }).FirstOrDefaultAsync();
+            }).FirstOrDefaultAsync(x => x.Slug == slug) ?? new DepartmentQueryModel();
 
-        department.Events = await _eventiContext.Events.Include(x=>x.Department).Where(x => x.DepartmentId == id).Select(x => new EventQueryModel
+        department.Events = await _eventiContext.Events.Include(x=>x.Department).Where(x => x.DepartmentId == department.Id).Select(x => new EventQueryModel
         {
             Id = x.Id,
             Name = x.Name,
@@ -63,6 +63,7 @@ public class DepartmentQuery : IDepartmentQuery
                 Address = x.Address,
                 NationalCode = x.NationalCode,
                 PostalCode = x.PostalCode,
+                Description = x.Description,
                 Logo = x.Logo,
                 LogoTitle = x.LogoTitle,
                 LogoAlt = x.LogoAlt,
@@ -85,6 +86,7 @@ public class DepartmentQuery : IDepartmentQuery
                 Address = x.Address,
                 NationalCode = x.NationalCode,
                 PostalCode = x.PostalCode,
+                Description = x.Description,
                 Logo = x.Logo,
                 LogoTitle = x.LogoTitle,
                 LogoAlt = x.LogoAlt,

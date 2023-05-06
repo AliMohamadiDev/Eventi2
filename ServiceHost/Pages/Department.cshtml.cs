@@ -15,7 +15,7 @@ public class DepartmentModel : PageModel
         _departmentQuery = departmentQuery;
     }
 
-    public async Task OnGet(long id)
+    public async Task OnGet(string id)
     {
         Department = await _departmentQuery.GetDepartmentAsync(id);
     }

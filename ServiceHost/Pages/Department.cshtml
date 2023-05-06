@@ -1,4 +1,4 @@
-﻿@page "{id:long}"
+﻿@page "{id}"
 @using _0_Framework.Application
 @model ServiceHost.Pages.DepartmentModel
 @{
@@ -12,9 +12,9 @@
                 <img src="~/theme/assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top">
             </div>
             <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
-                @*<div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-                    <img src="~/Pictures/@Model.Presenter.Logo" alt="@Model.Presenter.LogoAlt" title="@Model.Presenter.LogoTitle" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
-                </div>*@
+                <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+                    <img src="~/Pictures/@Model.Department.Logo" alt="@Model.Department.LogoAlt" title="@Model.Department.LogoTitle" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+                </div>
                 <div class="flex-grow-1 mt-3 mt-sm-5">
                     <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                         <div class="user-profile-info">
@@ -29,9 +29,6 @@
                                 </li>
                             </ul>
                         </div>
-                        @*<a href="Tell:@Model.Presenter.Number" class="btn btn-primary text-nowrap">
-                            <i class='bx bx-user-check me-1'></i>تماس
-                        </a>*@
                     </div>
                 </div>
             </div>
@@ -39,18 +36,16 @@
     </div>
 </div>
 
-@*<div class="row">
+<div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card mb-4">
             <div class="card-body">
-                <small class="text-muted text-uppercase">درباره ارائه دهنده</small>
-                <p>@Html.Raw(Model.Presenter.Description)</p>
-                <small class="text-muted text-uppercase">سیاست ها بازگشت وجه</small>
-                <p>@Html.Raw(Model.Presenter.Policy)</p>
+                <small class="text-muted text-uppercase">درباره دپارتمان</small>
+                <p>@Html.Raw(Model.Department.Description)</p>
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 <h6 class="pb-1 mb-4 text-muted">رویداد ها</h6>
 @if (Model.Department.Events.Count == 0)

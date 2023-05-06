@@ -56,22 +56,17 @@
                         </div>
                     </div>
 
-                    <hr class="m-0"/>
-
-                    <div class="card-body">
-                        <div class="row gy-3">
-                            @*<div class="col-md">
-                                <div class="form-check form-check-inline mt-3">
-                                    @Html.RadioButtonFor(x => x.Command.IsReal, true)
-                                    <label class="form-check-label" asp-for="Command.IsReal">حقیقی</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    @Html.RadioButtonFor(x => x.Command.IsReal, false)
-                                    <label class="form-check-label" asp-for="Command.IsReal">حقوقی</label>
-                                </div>
-                            </div>*@
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.Description" class="form-label">توضیحات</label>
+                                <textarea class="form-control" id="BodyContent" asp-for="Command.Description" rows="4"></textarea>
+                                @*<span asp-validation-for="Command.Description" class="error"></span>*@
+                            </div>
                         </div>
                     </div>
+
+                    
                     <button type="submit" class="btn btn-success">ایجاد</button>
                     <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
                 </form>
@@ -79,3 +74,15 @@
         </div>
     </div>
 </div>
+
+@section Script
+    {
+    <script src="https://cdn.tiny.cloud/1/03bywyfc22f080o11wndvso5su892zkphj49li728tkw9f3f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#BodyContent',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+    </script>
+}

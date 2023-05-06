@@ -26,6 +26,7 @@ public class DepartmentRepository : RepositoryBase<long, Department>, IDepartmen
             LogoAlt = x.LogoAlt,
             LogoTitle = x.LogoTitle,
             Slug = x.Slug,
+            Description = x.Description
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
 

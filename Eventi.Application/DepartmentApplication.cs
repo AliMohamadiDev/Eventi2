@@ -43,7 +43,7 @@ public class DepartmentApplication: IDepartmentApplication
         var logo = _fileUploader.Upload(command.Logo, path);
 
         department.Edit(command.Name, command.NationalCode, command.PostalCode, command.Address, logo, logoAlt,
-            logoTitle, slug);
+            logoTitle, slug, command.Description);
 
         await _departmentRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -65,7 +65,7 @@ public class DepartmentApplication: IDepartmentApplication
         var logo = _fileUploader.Upload(command.Logo, path);
 
         var department = new Department(command.Name, command.NationalCode, command.PostalCode, command.Address, logo,
-            logoAlt, logoTitle, slug);
+            logoAlt, logoTitle, slug, command.Description);
 
         await _departmentRepository.CreateAsync(department);
         await _departmentRepository.SaveChangesAsync();
