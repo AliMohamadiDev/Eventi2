@@ -42,7 +42,9 @@ public class Account
     }
 
     public Account(string fullname, string? state, string? city, string mobile, string? email,
-        string password, string? profilePhoto, DateTime? birthday, long roleId, string nationalCode)
+        string password, string? profilePhoto, DateTime? birthday, long roleId, string nationalCode, string fatherName,
+        bool gender, string educationalCenter, string scientificField, string universityDegree, string seminaryDegree,
+        string address, string postalCode)
     {
         Fullname = fullname;
         State = state;
@@ -52,7 +54,16 @@ public class Account
         Password = password;
         ProfilePhoto = profilePhoto;
         Birthday = birthday;
+
         NationalCode = nationalCode;
+        FatherName = fatherName;
+        Gender = gender;
+        EducationalCenter = educationalCenter;
+        ScientificField = scientificField;
+        UniversityDegree = universityDegree;
+        SeminaryDegree = seminaryDegree;
+        Address = address;
+        PostalCode = postalCode;
 
         RoleId = roleId;
         if (roleId == 0)
@@ -65,7 +76,9 @@ public class Account
     }
 
     public void Edit(string firstname, string? state, string? city, string mobile, string? email,
-        string? profilePhoto, DateTime? birthday, long roleId, string nationalCode)
+        string? profilePhoto, DateTime? birthday, long roleId, string fatherName, bool gender,
+        string educationalCenter, string scientificField, string universityDegree, string seminaryDegree,
+        string address, string? postalCode)
     {
         Fullname = firstname;
         State = state;
@@ -73,7 +86,15 @@ public class Account
         Mobile = mobile;
         Email = email;
         Birthday = birthday;
-        NationalCode = nationalCode;
+
+        FatherName = fatherName;
+        Gender = gender;
+        EducationalCenter = educationalCenter;
+        ScientificField = scientificField;
+        UniversityDegree = universityDegree;
+        SeminaryDegree = seminaryDegree;
+        Address = address;
+        PostalCode = postalCode;
 
         if (!string.IsNullOrWhiteSpace(profilePhoto))
         {

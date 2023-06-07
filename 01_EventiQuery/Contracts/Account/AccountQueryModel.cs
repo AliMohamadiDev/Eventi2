@@ -18,6 +18,16 @@ public class AccountQueryModel
     public DateTime CreationDate { get; set; }
     public bool IsDeactived { get; set; }
 
+    public string NationalCode { get; set; }
+    public string? FatherName { get; set; } 
+    public bool Gender { get; set; } // 1: male, 0: female
+    public string? EducationalCenter { get; set; } 
+    public string? ScientificField { get; set; } 
+    public string? UniversityDegree { get; set; } 
+    public string? SeminaryDegree { get; set; } 
+    public string? Address { get; set; } 
+    public string? PostalCode { get; set; } 
+
     public long RoleId { get; set; }
     public Role Role { get; set; }
 

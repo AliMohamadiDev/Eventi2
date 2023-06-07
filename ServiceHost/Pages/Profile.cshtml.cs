@@ -55,6 +55,15 @@ public class ProfileModel : PageModel
         account.Birthday = editCommand.Birthday;
         account.State = editCommand.State;
         account.City = editCommand.City;
+        account.NationalCode = editCommand.NationalCode;
+        account.FatherName = editCommand.FatherName;
+        account.Gender = editCommand.Gender;
+        account.EducationalCenter = editCommand.EducationalCenter;
+        account.ScientificField = editCommand.ScientificField;
+        account.UniversityDegree = editCommand.UniversityDegree;
+        account.SeminaryDegree = editCommand.SeminaryDegree;
+        account.PostalCode = editCommand.PostalCode;
+        account.Address = editCommand.Address;
 
         var result = await _accountApplication.EditAsync(account);
 

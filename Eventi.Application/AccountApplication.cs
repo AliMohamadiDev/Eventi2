@@ -38,7 +38,9 @@ public class AccountApplication : IAccountApplication
         long roleId = command.RoleId == 0 ? 2 : command.RoleId;
 
         var account = new Account(command.Fullname, null, null, command.Mobile, command.Email?.ToLower(),
-            password, picturePath, null, roleId, command.NationalCode);
+            password, picturePath, null, roleId, command.NationalCode,
+            command.FatherName, command.Gender, command.EducationalCenter, command.ScientificField,
+            command.UniversityDegree, command.SeminaryDegree, command.Address, command.PostalCode);
         await _accountRepository.CreateAsync(account);
         await _accountRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -60,7 +62,9 @@ public class AccountApplication : IAccountApplication
         var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
         //var picturePath = $"{path}\\DefaultProfilePicture.jpg";
         account?.Edit(command.Fullname, command.State, command.City, command.Mobile, command.Email?.ToLower(),
-            picturePath, command.Birthday.ToGeorgianDateTime(), command.RoleId, command.NationalCode);
+            picturePath, command.Birthday.ToGeorgianDateTime(), command.RoleId, command.FatherName, command.Gender,
+            command.EducationalCenter, command.ScientificField, command.UniversityDegree, command.SeminaryDegree,
+            command.Address, command.PostalCode);
         await _accountRepository.SaveChangesAsync();
         return operation.Succeeded();
     }

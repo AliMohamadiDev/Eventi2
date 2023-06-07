@@ -19,7 +19,7 @@ public class AccountQuery : IAccountQuery
     {
         var account = await _context.Accounts
             //.Include(x => x.AccountTickets)
-            .Include(x=>x.DepartmentAccounts)
+            .Include(x => x.DepartmentAccounts)
             .Select(x => new AccountQueryModel
             {
                 Id = x.Id,
@@ -34,6 +34,15 @@ public class AccountQuery : IAccountQuery
                 RoleId = x.RoleId,
                 CreationDate = x.CreationDate,
                 IsDeactived = x.IsDeactived,
+                FatherName = x.FatherName,
+                EducationalCenter = x.EducationalCenter,
+                NationalCode = x.NationalCode,
+                PostalCode = x.PostalCode,
+                Address = x.Address,
+                Gender = x.Gender,
+                ScientificField = x.ScientificField,
+                SeminaryDegree = x.SeminaryDegree,
+                UniversityDegree = x.UniversityDegree,
             }).FirstOrDefaultAsync(x => x.Id == id);
 
         account.Departments = _context.DepartmentAccounts.Include(x => x.Department).Where(x=>x.AccountId == id).Select(x=>new DepartmentViewModel

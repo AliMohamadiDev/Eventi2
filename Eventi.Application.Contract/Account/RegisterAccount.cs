@@ -24,6 +24,14 @@ public class RegisterAccount
     public string? Birthday { get; set; }
 
     public string NationalCode { get; set; }
+    public string? FatherName { get; set; } = null;
+    public bool Gender { get; set; } // 1: male, 0: female
+    public string? EducationalCenter { get; set; } = null;
+    public string? ScientificField { get; set; } = null;
+    public string? UniversityDegree { get; set; } = null;
+    public string? SeminaryDegree { get; set; } = null;
+    public string? Address { get; set; } = null;
+    public string? PostalCode { get; set; } = null;
 
     public IFormFile? ProfilePhoto { get; set; }
 
