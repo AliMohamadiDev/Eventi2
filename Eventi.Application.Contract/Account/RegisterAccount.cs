@@ -23,6 +23,8 @@ public class RegisterAccount
     public string? City { get; set; }
     public string? Birthday { get; set; }
 
+    public string NationalCode { get; set; }
+
     public IFormFile? ProfilePhoto { get; set; }
 
     public long RoleId { get; set; }

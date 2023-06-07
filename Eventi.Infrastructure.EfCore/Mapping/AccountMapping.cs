@@ -19,6 +19,16 @@ public class AccountMapping : IEntityTypeConfiguration<Account>
         builder.Property(x => x.ProfilePhoto).HasMaxLength(1000).IsRequired();
         builder.Property(x => x.Mobile).HasMaxLength(20).IsRequired();
 
+        builder.Property(x => x.NationalCode).HasMaxLength(24).IsRequired();
+        builder.Property(x => x.FatherName).HasMaxLength(100);
+        builder.Property(x => x.EducationalCenter).HasMaxLength(100);
+        builder.Property(x => x.ScientificField).HasMaxLength(100);
+        builder.Property(x => x.UniversityDegree).HasMaxLength(100);
+        builder.Property(x => x.SeminaryDegree).HasMaxLength(100);
+        builder.Property(x => x.Address).HasMaxLength(1000);
+        builder.Property(x => x.PostalCode).HasMaxLength(16);
+
+
         builder.HasOne(x => x.Role)
             .WithMany(x => x.Accounts)
             .HasForeignKey(x => x.RoleId);

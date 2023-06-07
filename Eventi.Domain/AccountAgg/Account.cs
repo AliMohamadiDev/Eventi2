@@ -6,20 +6,31 @@ namespace Eventi.Domain.AccountAgg;
 
 public class Account
 {
-    public long Id { get; set; }
-    public string Fullname { get; set; }
-    public string? State { get; set; }
-    public string? City { get; set; }
-    public string Mobile { get; set; }
-    public string? Email { get; set; }
-    public string Password { get; set; }
-    public string? ProfilePhoto { get; set; }
-    public DateTime? Birthday { get; set; }
-    public DateTime CreationDate { get; set; }
-    public bool IsDeactived { get; set; }
+    public long Id { get; private set; }
+    public string Fullname { get; private set; }
+    public string? State { get; private set; }
+    public string? City { get; private set; }
+    public string Mobile { get; private set; }
+    public string? Email { get; private set; }
+    public string Password { get; private set; }
+    public string? ProfilePhoto { get; private set; }
+    public DateTime? Birthday { get; private set; }
+    public DateTime CreationDate { get; private set; }
+    public bool IsDeactived { get; private set; }
 
-    public long RoleId { get; set; }
-    public Role Role { get; set; }
+    public string NationalCode { get; private set; }
+    public string? FatherName { get; private set; } = null;
+    public bool Gender { get; private set; } // 1: male, 0: female
+    public string? EducationalCenter { get; private set; } = null;
+    public string? ScientificField { get; private set; } = null;
+    public string? UniversityDegree { get; private set; } = null;
+    public string? SeminaryDegree { get; private set; } = null;
+    public string? Address { get; private set; } = null;
+    public string? PostalCode { get; private set; } = null;
+
+
+    public long RoleId { get; private set; }
+    public Role Role { get; private set; }
 
     //public List<Event> MyEvents { get; set; } = new();
     //public List<AccountTicket> AccountTickets { get; set; } = new();
@@ -31,7 +42,7 @@ public class Account
     }
 
     public Account(string fullname, string? state, string? city, string mobile, string? email,
-        string password, string? profilePhoto, DateTime? birthday, long roleId)
+        string password, string? profilePhoto, DateTime? birthday, long roleId, string nationalCode)
     {
         Fullname = fullname;
         State = state;
@@ -41,6 +52,7 @@ public class Account
         Password = password;
         ProfilePhoto = profilePhoto;
         Birthday = birthday;
+        NationalCode = nationalCode;
 
         RoleId = roleId;
         if (roleId == 0)
@@ -53,7 +65,7 @@ public class Account
     }
 
     public void Edit(string firstname, string? state, string? city, string mobile, string? email,
-        string? profilePhoto, DateTime? birthday, long roleId)
+        string? profilePhoto, DateTime? birthday, long roleId, string nationalCode)
     {
         Fullname = firstname;
         State = state;
@@ -61,6 +73,8 @@ public class Account
         Mobile = mobile;
         Email = email;
         Birthday = birthday;
+        NationalCode = nationalCode;
+
         if (!string.IsNullOrWhiteSpace(profilePhoto))
         {
             ProfilePhoto = profilePhoto;
