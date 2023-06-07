@@ -114,6 +114,17 @@
                                 <label asp-for="Command.Email" class="form-label">ایمیل</label>
                                 <input type="text" class="form-control" asp-for="Command.Email" placeholder="ایمیل"/>
                             </div>
+                            <div class="mb-3">
+                                <label asp-for="Command.NationalCode" class="form-label">کد ملی</label>
+                                <input type="text" class="form-control" asp-for="Command.NationalCode" placeholder="کد ملی"/>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Command.Gender" class="form-label">جنسیت</label>
+                                <select asp-for="Command.Gender" class="form-select">
+                                    <option value="true">مرد</option>
+                                    <option value="false">زن</option>
+                                </select>
+                            </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">رمز عبور</label>
                                 <div class="input-group input-group-merge">
@@ -151,7 +162,7 @@
                         </form>
 
                         <p class="text-center">
-                            <span>اکانت دارید؟</span>
+                            <span>حساب دارید؟</span>
                             <a asp-page="./Login">
                                 <span>وارد شوید</span>
                             </a>
@@ -168,6 +179,5 @@
     <script src="~/theme/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="~/theme/assets/vendor/js/menu.js"></script>
     <script src="~/theme/assets/js/main.js"></script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>

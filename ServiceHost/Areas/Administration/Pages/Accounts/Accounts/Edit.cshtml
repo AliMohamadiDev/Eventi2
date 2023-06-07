@@ -31,6 +31,15 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label asp-for="Command.NationalCode" class="form-label">کد ملی</label>
+                                <input type="text" class="form-control" asp-for="Command.NationalCode">
+                                <span asp-validation-for="Command.NationalCode" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label asp-for="Command.Email" class="form-label">ایمیل</label>
                                 <input type="text" class="form-control" asp-for="Command.Email">
                                 <span asp-validation-for="Command.Email" class="error"></span>
@@ -52,6 +61,13 @@
                                     <option value="0">موضوع اصلی...</option>
                                 </select>
                                 <span asp-validation-for="Command.RoleId" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Password" class="form-label">رمز عبور</label>
+                                <input type="password" class="form-control" asp-for="Command.Password">
+                                <span asp-validation-for="Command.Password" class="error"></span>
                             </div>
                         </div>
                     </div>

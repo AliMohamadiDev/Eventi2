@@ -287,7 +287,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" asp-for="EditCommand.Gender">جنسیت</label>
-                        <select asp-for="EditCommand.Gender" class="form-control">
+                        <select asp-for="EditCommand.Gender" class="form-select">
                             <option value="@Model.Account.Gender">@(Model.Account.Gender ? "مرد" : "زن")</option>
                             <option value="true">مرد</option>
                             <option value="false">زن</option>
