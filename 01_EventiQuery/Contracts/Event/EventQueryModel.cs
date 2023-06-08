@@ -25,5 +25,4 @@ public class EventQueryModel
     public string Slug { get; set; }
     public List<string> Tags { get; set; } = new();
     public List<TicketQueryModel> Tickets { get; set; } = new();
-    public EventInfo EventInfo { get; set; }
 }

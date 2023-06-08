@@ -46,7 +46,6 @@ public class DepartmentQuery : IDepartmentQuery
             SubcategoryId = x.SubcategoryId,
             SubcategorySlug = x.Subcategory.Slug,
             Subcategory = x.Subcategory.SubcategoryName,
-            EventInfo = x.EventInfo
         }).ToListAsync();
 
         return department;

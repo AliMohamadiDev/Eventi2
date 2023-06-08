@@ -16,8 +16,6 @@ public class Event
     public string? Tags { get; private set; }
     public DateTime CreationDate { get; private set; }
 
-    public EventInfo EventInfo { get; private set; }
-
     public List<Ticket> Tickets { get; private set; } = new();
 
     public List<EventPresenters> EventPresenters { get; private set; } = new();

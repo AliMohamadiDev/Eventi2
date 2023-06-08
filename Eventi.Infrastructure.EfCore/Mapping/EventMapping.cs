@@ -30,10 +30,6 @@ public class EventMapping : IEntityTypeConfiguration<Event>
             .WithOne(x => x.Event)
             .HasForeignKey(x => x.EventId);
 
-        builder.HasOne(x => x.EventInfo)
-            .WithOne(x => x.Event)
-            .HasForeignKey<EventInfo>(x => x.EventId);
-
         /*builder.HasOne(x => x.Department)
             .WithMany(x => x.Events)
             .HasForeignKey(x => x.DepartmentId);*/

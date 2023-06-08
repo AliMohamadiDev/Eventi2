@@ -18,7 +18,6 @@ public class EventQuery : IEventQuery
     {
         var event1 = await _eventContext.Events
             .Include(x => x.Subcategory)
-            .Include(x=>x.EventInfo)
             .Select(x => new EventQueryModel
             {
                 Id = x.Id,
@@ -34,7 +33,6 @@ public class EventQuery : IEventQuery
                 SubcategorySlug = x.Subcategory.Slug,
                 Subcategory = x.Subcategory.SubcategoryName,
                 Tickets = MapTickets(x.Tickets),
-                EventInfo = x.EventInfo,
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).FirstOrDefaultAsync(x => x.Slug == slug);
@@ -48,7 +46,6 @@ public class EventQuery : IEventQuery
     {
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
-            .Include(x => x.EventInfo)
             .Select(x => new EventQueryModel
             {
                 Id = x.Id,
@@ -64,7 +61,6 @@ public class EventQuery : IEventQuery
                 SubcategorySlug = x.Subcategory.Slug,
                 Subcategory = x.Subcategory.SubcategoryName,
                 Tickets = MapTickets(x.Tickets),
-                EventInfo = x.EventInfo,
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id)
@@ -78,7 +74,6 @@ public class EventQuery : IEventQuery
     {
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
-            .Include(x => x.EventInfo)
             .Where(x=>x.Name.Contains(value))
             .Select(x => new EventQueryModel
             {
@@ -95,7 +90,6 @@ public class EventQuery : IEventQuery
                 SubcategorySlug = x.Subcategory.Slug,
                 Subcategory = x.Subcategory.SubcategoryName,
                 Tickets = MapTickets(x.Tickets),
-                EventInfo = x.EventInfo,
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id).ToListAsync();
@@ -107,8 +101,7 @@ public class EventQuery : IEventQuery
     {
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
-            .Include(x => x.EventInfo)
-            .ThenInclude(x=>x.Event.EventPresenters)
+            //.ThenInclude(x=>x.Event.EventPresenters)
             //.Where(x=>x.Presenter.Slug == presenterSlug)
             .Select(x => new EventQueryModel
             {
@@ -125,7 +118,6 @@ public class EventQuery : IEventQuery
                 SubcategorySlug = x.Subcategory.Slug,
                 Subcategory = x.Subcategory.SubcategoryName,
                 Tickets = MapTickets(x.Tickets),
-                EventInfo = x.EventInfo,
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id).ToListAsync();

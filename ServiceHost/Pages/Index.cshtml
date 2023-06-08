@@ -19,32 +19,7 @@
                             @item.Name
                         </a>
                     </h5>
-                    @{
-                        if (item.EventInfo != null)
-                        {
-                            if (item.EventInfo.City != null)
-                            {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    @item.EventInfo.City
-                                </p>
-                            }
-                            else
-                            {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    مجازی
-                                </p>
-                            }
-                        }
-                        else
-                        {
-                            <p class="card-text">
-                                <i class="fa fa-ticket"></i>
-                                مجازی
-                            </p>
-                        }
-                    }
+                    
                     @{
                         if (item.Tickets != null)
                         {
