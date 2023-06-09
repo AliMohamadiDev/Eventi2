@@ -34,10 +34,6 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label asp-for="SearchModel.IsPrivate">خصوصی؟</label>
-                    <input type="checkbox" asp-for="SearchModel.IsPrivate">
-                </div>
-                <div class="col-md-3">
                     <label asp-for="SearchModel.IsWebinar">مجازی؟</label>
                     <input type="checkbox" asp-for="SearchModel.IsWebinar">
                 </div>
@@ -61,9 +57,7 @@
                 <th>نام</th>
                 <th>زیرموضوع</th>
                 <th>ارائه دهنده</th>
-                <th>پرداخت با مشتری؟</th>
-                <th>خصوصی؟</th>
-                <th>غیرحضوری؟</th>
+                <th>وضعیت تایید</th>
                 <th>عملیات</th>
             </tr>
             </thead>
@@ -78,8 +72,8 @@
                     <td>@item.Name</td>
                     <td>@item.Subcategory</td>
                     <td>@item.Presenter</td>
-                    <td class="text-center">
-                        @if (item.PayByCustomer)
+                    <td>
+                        @if (item.IsConfirmed)
                         {
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
@@ -96,51 +90,20 @@
                             </span>
                         }
                     </td>
+                    
                     <td>
-                        @if (item.IsPrivate)
-                        {
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                </svg>
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                </svg>
-                            </span>
-                        }
-                    </td>
-                    <td>
-                        @if (item.IsWebinar)
-                        {
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                </svg>
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                </svg>
-                            </span>
-                        }
-                    </td>
-                    <td>
-                        <a class="" asp-page="Edit" asp-route-id="@item.Id">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#666" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                </svg>
-                            </span>
+                        <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-label-primary">
+                            ویرایش
                         </a>
+
+                        @if (item.IsConfirmed)
+                        {
+                            <a asp-page="./Index" asp-page-handler="Cancel" asp-route-id="@item.Id" class="btn btn-label-danger">کنسل</a>
+                        }
+                        else
+                        {
+                            <a asp-page="./Index" asp-page-handler="Confirm" asp-route-id="@item.Id" class="btn btn-label-success">تایید</a>
+                        }
                     </td>
                 </tr>
             }

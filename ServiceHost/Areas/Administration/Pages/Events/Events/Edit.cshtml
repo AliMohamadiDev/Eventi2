@@ -166,7 +166,7 @@
                             <h6 class="mb-0">تنظیمات رویداد</h6>
                             <small>تنظیمات رویداد را وارد کنید</small>
                         </div>
-                        <div class="row mb-4">
+                        @*<div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Command.IsPrivate" class="form-label">خصوصی؟</label>
@@ -181,13 +181,47 @@
                                     <span asp-validation-for="Command.IsWebinar" class="error"></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mb-4">
+                        </div>*@
+                        @*<div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Command.PayByCustomer" class="form-label">پرداخت توسط مشتری؟</label>
                                     <input type="checkbox" asp-for="Command.PayByCustomer">
                                     <span asp-validation-for="Command.PayByCustomer" class="error"></span>
+                                </div>
+                            </div>
+                        </div>*@
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.EventType" class="form-label">نوع رویداد</label>
+                                    <input type="text" class="form-control" asp-for="Command.EventType">
+                                    <span asp-validation-for="Command.EventType" class="error"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.SupportNumber" class="form-label">شماره پشتیبانی</label>
+                                    <input type="text" class="form-control" asp-for="Command.SupportNumber">
+                                    <span asp-validation-for="Command.SupportNumber" class="error"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.Address" class="form-label">آدرس</label>
+                                    <input type="text" class="form-control" asp-for="Command.Address">
+                                    <span asp-validation-for="Command.Address" class="error"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.Description" class="form-label">توضیحات</label>
+                                    <input type="text" class="form-control" asp-for="Command.Description">
+                                    <span asp-validation-for="Command.Description" class="error"></span>
                                 </div>
                             </div>
                         </div>

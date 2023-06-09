@@ -40,12 +40,14 @@ public class DepartmentQuery : IDepartmentQuery
             ImageCover = x.ImageCover,
             ImageCoverAlt = x.ImageCoverAlt,
             ImageCoverTitle = x.ImageCoverTitle,
-            IsWebinar = x.IsWebinar,
-            IsPrivate = x.IsPrivate,
-            PayByCustomer = x.PayByCustomer,
             SubcategoryId = x.SubcategoryId,
             SubcategorySlug = x.Subcategory.Slug,
             Subcategory = x.Subcategory.SubcategoryName,
+            Address = x.Address,
+            Description = x.Description,
+            EventType = x.EventType,
+            SupportNumber = x.SupportNumber,
+            IsConfirmed = x.IsConfirmed
         }).ToListAsync();
 
         return department;

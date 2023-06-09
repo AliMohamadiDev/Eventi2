@@ -7,5 +7,4 @@ public class EventSearchModel
     public long AccountSideId { get; set; }
     public long PresenterId { get; set; }
     public bool IsWebinar { get; set; }
-    public bool IsPrivate { get; set; }
 }

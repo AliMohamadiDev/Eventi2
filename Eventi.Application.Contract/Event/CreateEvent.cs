@@ -27,10 +27,12 @@ public class CreateEvent
     [Range(1, double.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
     public long DepartmentId { get; set; }
 
-    public bool IsWebinar { get; set; }
-    public bool IsPrivate { get; set; }
-    public bool PayByCustomer { get; set; }
-
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Slug { get; set; }
+
+    public string EventType { get; set; }
+    public string Address { get; set; }
+    public string SupportNumber { get; set; }
+    public string Description { get; set; }
+    public bool IsConfirmed { get; set; }
 }

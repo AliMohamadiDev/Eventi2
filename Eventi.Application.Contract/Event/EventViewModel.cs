@@ -11,7 +11,10 @@ public class EventViewModel
     public string Presenter { get; set; }
     public long AccountSideId { get; set; }
     public string AccountSide { get; set; }
-    public bool IsWebinar { get; set; }
-    public bool IsPrivate { get; set; }
-    public bool PayByCustomer { get; set; }
+
+    public string EventType { get; set; }
+    public string Address { get; set; }
+    public string SupportNumber { get; set; }
+    public string Description { get; set; }
+    public bool IsConfirmed { get; set; }
 }

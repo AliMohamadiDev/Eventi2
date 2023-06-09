@@ -22,51 +22,59 @@ public class Event
 
     public Department Department { get; private set; }
     public long DepartmentId { get; private set; }
-
-    public bool IsWebinar { get; private set; }
-    public bool IsPrivate { get; private set; }
-    public bool PayByCustomer { get; private set; }
+    
     public string Slug { get; private set; }
     public bool IsRemoved { get; private set; }
+
+    public string EventType { get; private set; }
+    public string Address { get; private set; }
+    public string SupportNumber { get; private set; }
+    public string Description { get; private set; }
+    public bool IsConfirmed { get; private set; }
+
 
     protected Event()
     {
     }
 
     public Event(string name, string imageCover, string imageCoverTitle, string imageCoverAlt, string? tags,
-        bool isWebinar, bool isPrivate, bool payByCustomer, string slug, long subcategoryId, long departmentId)
+         string slug, long subcategoryId, long departmentId,string eventType,string address, string supportNumber, string description)
     {
         Name = name;
         ImageCover = imageCover;
         ImageCoverTitle = imageCoverTitle;
         ImageCoverAlt = imageCoverAlt;
         Tags = tags;
-        IsWebinar = isWebinar;
-        IsPrivate = isPrivate;
-        PayByCustomer = payByCustomer;
         Slug = slug;
         SubcategoryId = subcategoryId;
         CreationDate = DateTime.Now;
         DepartmentId = departmentId;
+        EventType = eventType;
+        Address = address;
+        SupportNumber = supportNumber;
+        Description = description;
         IsRemoved = false;
+        IsConfirmed = false;
     }
 
     public void Edit(string name, string imageCover, string imageCoverTitle, string imageCoverAlt, string? tags,
-        bool isWebinar, bool isPrivate, bool payByCustomer, string slug, long subcategoryId, long accountSideId)
+        string slug, long subcategoryId, long accountSideId, string eventType, string address, string supportNumber, string description)
     {
         Name = name;
         ImageCoverTitle = imageCoverTitle;
         ImageCoverAlt = imageCoverAlt;
         Tags = tags;
-        IsWebinar = isWebinar;
-        IsPrivate = isPrivate;
-        PayByCustomer = payByCustomer;
         Slug = slug;
         SubcategoryId = subcategoryId;
         DepartmentId = accountSideId;
 
         if (!string.IsNullOrWhiteSpace(imageCover))
             ImageCover = imageCover;
+
+        EventType = eventType;
+        Address = address;
+        SupportNumber = supportNumber;
+        Description = description;
     }
 
     public void Remove()
@@ -77,5 +85,15 @@ public class Event
     public void Restore()
     {
         IsRemoved = false;
+    }
+
+    public void Confirm()
+    {
+        IsConfirmed = true;
+    }
+
+    public void Cancel()
+    {
+        IsConfirmed = false;
     }
 }

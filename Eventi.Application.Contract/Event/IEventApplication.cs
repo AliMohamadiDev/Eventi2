@@ -9,6 +9,8 @@ public interface IEventApplication
     Task<OperationResult> EditAsync(EditEvent command);
     Task<OperationResult> CreateAsync(CreateEvent command);
     Task<List<EventViewModel>> SearchAsync(EventSearchModel searchModel);
-    void Remove(long id);
-    void Restore(long id);
+    Task<OperationResult> RemoveAsync(long id);
+    Task<OperationResult> RestoreAsync(long id);
+    Task<OperationResult> ConfirmAsync(long id);
+    Task<OperationResult> CancelAsync(long id);
 }

@@ -33,11 +33,11 @@ public class EventApplication : IEventApplication
         var slug = command.Name.Slugify();
 
         var path = $"Events/{command.Name}";
-        var image = _fileUploader.Upload(command.ImageCover, path);
+        var image = _fileUploader.Upload(command.ImageCover!, path);
 
         Event.Edit(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
-            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, slug,
-            command.SubcategoryId, command.DepartmentId);
+            command.Tags, slug, command.SubcategoryId, command.DepartmentId, command.EventType,
+            command.Address, command.SupportNumber, command.Description);
 
         await _eventRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -49,11 +49,11 @@ public class EventApplication : IEventApplication
 
         var slug = command.Name.Slugify();
         var path = $"Events/{command.Name}";
-        var image = _fileUploader.Upload(command.ImageCover, path);
+        var image = _fileUploader.Upload(command.ImageCover!, path);
 
         var Event = new Event(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
-            command.Tags, command.IsWebinar, command.IsPrivate, command.PayByCustomer, slug,
-            command.SubcategoryId, command.DepartmentId);
+            command.Tags, slug, command.SubcategoryId, command.DepartmentId, command.EventType,
+            command.Address, command.SupportNumber, command.Description);
 
         await _eventRepository.CreateAsync(Event);
         await _eventRepository.SaveChangesAsync();
@@ -65,13 +65,63 @@ public class EventApplication : IEventApplication
         return await _eventRepository.SearchAsync(searchModel);
     }
 
-    public void Remove(long id)
+    public async Task<OperationResult> RemoveAsync(long id)
     {
-        _eventRepository.Remove(id);
+        var operation = new OperationResult();
+        var event1 = _eventRepository.GetEvent(id);
+
+        if (event1 == null)
+        {
+            return operation.Failed(ApplicationMessages.RecordNotFound);
+        }
+
+        event1.Remove();
+        await _eventRepository.SaveChangesAsync();
+        return operation.Succeeded();
     }
 
-    public void Restore(long id)
+    public async Task<OperationResult> RestoreAsync(long id)
     {
-        _eventRepository.Restore(id);
+        var operation = new OperationResult();
+        var event1 = _eventRepository.GetEvent(id);
+
+        if (event1 == null)
+        {
+            return operation.Failed(ApplicationMessages.RecordNotFound);
+        }
+
+        event1.Restore();
+        await _eventRepository.SaveChangesAsync();
+        return operation.Succeeded();
+    }
+
+    public async Task<OperationResult> ConfirmAsync(long id)
+    {
+        var operation = new OperationResult();
+        var event1 = _eventRepository.GetEvent(id);
+
+        if (event1 == null)
+        {
+            return operation.Failed(ApplicationMessages.RecordNotFound);
+        }
+
+        event1.Confirm();
+        await _eventRepository.SaveChangesAsync();
+        return operation.Succeeded();
+    }
+
+    public async Task<OperationResult> CancelAsync(long id)
+    {
+        var operation = new OperationResult();
+        var event1 = _eventRepository.GetEvent(id);
+
+        if (event1 == null)
+        {
+            return operation.Failed(ApplicationMessages.RecordNotFound);
+        }
+
+        event1.Cancel();
+        await _eventRepository.SaveChangesAsync();
+        return operation.Succeeded();
     }
 }

@@ -25,8 +25,6 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
         {
             Id = x.Id,
             Name = x.Name,
-            IsWebinar = x.IsWebinar,
-            IsPrivate = x.IsPrivate,
             SubcategoryId = x.SubcategoryId,
             Slug = x.Slug,
             //PresenterId = x.PresenterId,
@@ -34,8 +32,12 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             //ImageCover = x.ImageCover,
             ImageCoverTitle = x.ImageCoverTitle,
             ImageCoverAlt = x.ImageCoverAlt,
-            PayByCustomer = x.PayByCustomer,
-            Tags = x.Tags
+            Tags = x.Tags,
+            Address = x.Address,
+            Description = x.Description,
+            EventType = x.EventType,
+            SupportNumber = x.SupportNumber,
+            IsConfirmed = x.IsConfirmed
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
 
@@ -45,16 +47,18 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
         {
             Id = x.Id,
             Name = x.Name,
-            IsWebinar = x.IsWebinar,
-            IsPrivate = x.IsPrivate,
             ImageCover = x.ImageCover,
-            PayByCustomer = x.PayByCustomer,
             //PresenterId = x.PresenterId,
             //Presenter = x.Presenter.Name,
             SubcategoryId = x.SubcategoryId,
             Subcategory = x.Subcategory.SubcategoryName,
             AccountSideId = x.DepartmentId,
-            AccountSide = x.Department.NationalCode.ToString()
+            AccountSide = x.Department.NationalCode.ToString(),
+            Address = x.Address,
+            Description = x.Description,
+            EventType = x.EventType,
+            SupportNumber = x.SupportNumber,
+            IsConfirmed = x.IsConfirmed
         }).ToListAsync();
     }
 
@@ -64,27 +68,24 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
         {
             Id = x.Id,
             Name = x.Name,
-            IsWebinar = x.IsWebinar,
-            IsPrivate = x.IsPrivate,
             ImageCover = x.ImageCover,
-            PayByCustomer = x.PayByCustomer,
             //PresenterId = x.PresenterId,
             //Presenter = x.Presenter.Name,
             SubcategoryId = x.SubcategoryId,
             Subcategory = x.Subcategory.SubcategoryName,
             AccountSideId = x.DepartmentId,
-            AccountSide = x.Department.NationalCode.ToString()
+            AccountSide = x.Department.NationalCode.ToString(),
+            Address = x.Address,
+            Description = x.Description,
+            EventType = x.EventType,
+            SupportNumber = x.SupportNumber,
+            IsConfirmed = x.IsConfirmed
         });
 
-        if (searchModel.IsPrivate)
-        {
-            query = query.Where(x => x.IsPrivate);
-        }
-        
-        if (searchModel.IsWebinar)
-        {
-            query = query.Where(x => x.IsWebinar);
-        }
+        //if (searchModel.IsWebinar)
+        //{
+        //    query = query.Where(x => x.IsWebinar);
+        //}
 
         if (searchModel.Name != null)
         {

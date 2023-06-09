@@ -19,10 +19,14 @@ public class EventQueryModel
     public Eventi.Domain.EventAgg.Presenter Presenter { get; set; }
     public long AccountSideId { get; set; }
     //public AccountSideQueryModel Department { get; set; }
-    public bool IsWebinar { get; set; }
-    public bool IsPrivate { get; set; }
-    public bool PayByCustomer { get; set; }
+    //public bool IsWebinar { get; set; }
     public string Slug { get; set; }
     public List<string> Tags { get; set; } = new();
     public List<TicketQueryModel> Tickets { get; set; } = new();
+
+    public string EventType { get; set; }
+    public string Address { get; set; }
+    public string SupportNumber { get; set; }
+    public string Description { get; set; }
+    public bool IsConfirmed { get; set; }
 }

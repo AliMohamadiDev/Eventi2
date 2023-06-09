@@ -1,5 +1,6 @@
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventSubcategory;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -7,6 +8,8 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
 {
     public class IndexModel : PageModel
     {
+        [TempData] public string Message { get; set; }
+
         public EventSearchModel SearchModel;
         public List<EventViewModel> Events;
         public SelectList Subcategories;
@@ -26,6 +29,29 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
 
             var subcategories = await _eventSubcategoryApplication.GetEventSubcategoriesAsync();
             Subcategories = new SelectList(subcategories, "SubcategoryId", "SubcategoryName");
+        }
+
+        public async Task<IActionResult> OnGetCancelAsync(long id)
+        {
+            var result = await _eventApplication.CancelAsync(id);
+            if (result.IsSucceeded)
+            {
+                return RedirectToPage("./Index");
+            }
+
+            Message = result.Message;
+            return RedirectToPage("./Index");
+        }
+        public async Task<IActionResult> OnGetConfirmAsync(long id)
+        {
+            var result = await _eventApplication.ConfirmAsync(id);
+            if (result.IsSucceeded)
+            {
+                return RedirectToPage("./Index");
+            }
+
+            Message = result.Message;
+            return RedirectToPage("./Index");
         }
     }
 }

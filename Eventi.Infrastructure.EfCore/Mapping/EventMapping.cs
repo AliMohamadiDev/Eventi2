@@ -17,6 +17,10 @@ public class EventMapping : IEntityTypeConfiguration<Event>
         builder.Property(e => e.ImageCoverTitle).HasMaxLength(512).IsRequired();
         builder.Property(e => e.Tags).HasMaxLength(2024);
         builder.Property(e => e.Slug).HasMaxLength(360).IsRequired();
+        builder.Property(e => e.EventType).HasMaxLength(64).IsRequired();
+        builder.Property(e => e.Address).HasMaxLength(1024).IsRequired();
+        builder.Property(e => e.SupportNumber).HasMaxLength(16).IsRequired();
+        builder.Property(e => e.Description).HasMaxLength(4096).IsRequired();
 
         builder.HasOne(x => x.Subcategory)
             .WithMany(x => x.Events)
