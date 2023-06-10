@@ -37,6 +37,8 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             Description = x.Description,
             EventType = x.EventType,
             SupportNumber = x.SupportNumber,
+            StartTime = x.StartTime.ToString(),
+            EndTime = x.EndTime.ToString(),
             IsConfirmed = x.IsConfirmed
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
@@ -58,6 +60,8 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             Description = x.Description,
             EventType = x.EventType,
             SupportNumber = x.SupportNumber,
+            StartTime = x.StartTime.ToString(),
+            EndTime = x.EndTime.ToString(),
             IsConfirmed = x.IsConfirmed
         }).ToListAsync();
     }
@@ -79,6 +83,8 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             Description = x.Description,
             EventType = x.EventType,
             SupportNumber = x.SupportNumber,
+            StartTime = x.StartTime.ToString(),
+            EndTime = x.EndTime.ToString(),
             IsConfirmed = x.IsConfirmed
         });
 

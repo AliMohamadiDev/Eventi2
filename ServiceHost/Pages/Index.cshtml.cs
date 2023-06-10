@@ -7,7 +7,8 @@ namespace ServiceHost.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<EventQueryModel> Events;
+        public List<EventQueryModel> UpcomingEvents;
+        public List<EventQueryModel> PassedEvents;
         public List<DepartmentQueryModel> Departments;
 
         private readonly IEventQuery _eventQuery;
@@ -23,7 +24,8 @@ namespace ServiceHost.Pages
 
         public async Task OnGetAsync()
         {
-            Events = await _eventQuery.GetLatestEventsAsync(10);
+            UpcomingEvents = await _eventQuery.GetLatestEventsAsync(10, isUpcoming: true, isPassed: false);
+            PassedEvents = await _eventQuery.GetLatestEventsAsync(10, isUpcoming: false, isPassed: true);
             Departments = await _departmentQuery.GetDepartmentsAsync(10);
         }
     }

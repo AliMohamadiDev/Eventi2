@@ -32,7 +32,11 @@ public class DepartmentQuery : IDepartmentQuery
                 Slug = x.Slug,
             }).FirstOrDefaultAsync(x => x.Slug == slug) ?? new DepartmentQueryModel();
 
-        department.Events = await _eventiContext.Events.Include(x=>x.Department).Where(x => x.DepartmentId == department.Id).Select(x => new EventQueryModel
+        department.Events = await _eventiContext.Events
+            .Include(x=>x.Department)
+            .Where(x => x.DepartmentId == department.Id)
+            .Where(x => x.IsConfirmed)
+            .Select(x => new EventQueryModel
         {
             Id = x.Id,
             Name = x.Name,

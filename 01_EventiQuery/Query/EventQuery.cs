@@ -42,13 +42,29 @@ public class EventQuery : IEventQuery
         return event1;
     }
 
-    
 
-    public async Task<List<EventQueryModel>> GetLatestEventsAsync(int number)
+    public async Task<List<EventQueryModel>> GetLatestEventsAsync(int number, bool isUpcoming = true,
+        bool isPassed = true)
     {
-        var events = await _eventContext.Events
+        var events = _eventContext.Events
             .Include(x => x.Subcategory)
-            .Select(x => new EventQueryModel
+            .Where(x => x.IsConfirmed);
+
+        if (isUpcoming && isPassed)
+        {
+        }
+
+        else if (isUpcoming)
+        {
+            events = events.Where(x => x.StartTime >= DateTime.Now);
+        }
+
+        else if (isPassed)
+        {
+            events = events.Where(x => x.EndTime <= DateTime.Now);
+        }
+
+        var finalEvent = await events.Select(x => new EventQueryModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -68,17 +84,17 @@ public class EventQuery : IEventQuery
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id)
-            .Take(number)
-            .ToListAsync();
+            .Take(number).ToListAsync();
 
-        return events;
+        return finalEvent;
     }
 
     public async Task<List<EventQueryModel>> SearchAsync(string value)
     {
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
-            .Where(x=>x.Name.Contains(value))
+            .Where(x => x.IsConfirmed)
+            .Where(x => x.Name.Contains(value))
             .Select(x => new EventQueryModel
             {
                 Id = x.Id,
@@ -107,6 +123,7 @@ public class EventQuery : IEventQuery
     {
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
+            .Where(x => x.IsConfirmed)
             //.ThenInclude(x=>x.Event.EventPresenters)
             //.Where(x=>x.Presenter.Slug == presenterSlug)
             .Select(x => new EventQueryModel
@@ -125,11 +142,13 @@ public class EventQuery : IEventQuery
                 Description = x.Description,
                 EventType = x.EventType,
                 SupportNumber = x.SupportNumber,
+                StartTime = x.StartTime,
+                EndTime = x.EndTime,
                 IsConfirmed = x.IsConfirmed
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id).ToListAsync();
-        
+
         return events;
     }
 

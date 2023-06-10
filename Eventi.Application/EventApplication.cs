@@ -37,7 +37,8 @@ public class EventApplication : IEventApplication
 
         Event.Edit(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
             command.Tags, slug, command.SubcategoryId, command.DepartmentId, command.EventType,
-            command.Address, command.SupportNumber, command.Description);
+            command.Address, command.SupportNumber, command.Description, command.StartTime.ToGeorgianDateTime(),
+            command.EndTime.ToGeorgianDateTime());
 
         await _eventRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -53,7 +54,8 @@ public class EventApplication : IEventApplication
 
         var Event = new Event(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
             command.Tags, slug, command.SubcategoryId, command.DepartmentId, command.EventType,
-            command.Address, command.SupportNumber, command.Description);
+            command.Address, command.SupportNumber, command.Description, command.StartTime.ToGeorgianDateTime(),
+            command.EndTime.ToGeorgianDateTime());
 
         await _eventRepository.CreateAsync(Event);
         await _eventRepository.SaveChangesAsync();

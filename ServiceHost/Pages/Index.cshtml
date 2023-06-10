@@ -6,9 +6,9 @@
 }
 
 
-<h6 class="pb-1 mb-4 text-muted">آخرین رویداد ها</h6>
+<h6 class="pb-1 mb-4 text-muted">رویداد های آتی</h6>
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-    @foreach (var item in Model.Events)
+    @foreach (var item in Model.UpcomingEvents)
     {
         <div class="col-md-4 col-lg-3">
             <div class="card h-100">
@@ -80,9 +80,82 @@
     }
 </div>
 
-<div class="divider mb-5">
-    <div class="divider-text">Eventi</div>
+
+<h6 class="pb-1 mb-4 text-muted">رویداد های برگزار شده</h6>
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    @foreach (var item in Model.PassedEvents)
+    {
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100">
+                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a asp-page="./Event" asp-route-id="@item.Slug">
+                            @item.Name
+                        </a>
+                    </h5>
+                    
+                    @{
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.Tickets.FirstOrDefault().Price
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    رایگان
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                رایگان
+                            </p>
+                        }
+                    }
+                    @{
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="card-text">
+                                    <i class="fa fa-ticket"></i>
+                                    اعلام نشده
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                اعلام نشده
+                            </p>
+                        }
+                    }
+
+                    @*<p class="card-text">@item.Presenter.Name</p>*@
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+
 
 <h6 class="pb-1 mb-4 text-muted">آخرین دپارتمان ها</h6>
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">

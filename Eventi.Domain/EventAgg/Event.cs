@@ -32,13 +32,16 @@ public class Event
     public string Description { get; private set; }
     public bool IsConfirmed { get; private set; }
 
+    public DateTime StartTime { get; private set; }
+    public DateTime EndTime { get; private set; }
+
 
     protected Event()
     {
     }
 
     public Event(string name, string imageCover, string imageCoverTitle, string imageCoverAlt, string? tags,
-         string slug, long subcategoryId, long departmentId,string eventType,string address, string supportNumber, string description)
+         string slug, long subcategoryId, long departmentId,string eventType,string address, string supportNumber, string description, DateTime startTime, DateTime endTime)
     {
         Name = name;
         ImageCover = imageCover;
@@ -53,12 +56,14 @@ public class Event
         Address = address;
         SupportNumber = supportNumber;
         Description = description;
+        StartTime = startTime;
+        EndTime = endTime;
         IsRemoved = false;
         IsConfirmed = false;
     }
 
     public void Edit(string name, string imageCover, string imageCoverTitle, string imageCoverAlt, string? tags,
-        string slug, long subcategoryId, long accountSideId, string eventType, string address, string supportNumber, string description)
+        string slug, long subcategoryId, long accountSideId, string eventType, string address, string supportNumber, string description, DateTime startTime, DateTime endTime)
     {
         Name = name;
         ImageCoverTitle = imageCoverTitle;
@@ -75,6 +80,8 @@ public class Event
         Address = address;
         SupportNumber = supportNumber;
         Description = description;
+        StartTime = startTime;
+        EndTime = endTime;
     }
 
     public void Remove()

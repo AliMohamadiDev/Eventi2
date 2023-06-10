@@ -16,5 +16,7 @@ public class EventViewModel
     public string Address { get; set; }
     public string SupportNumber { get; set; }
     public string Description { get; set; }
+    public string? StartTime { get; set; }
+    public string? EndTime { get; set; }
     public bool IsConfirmed { get; set; }
 }

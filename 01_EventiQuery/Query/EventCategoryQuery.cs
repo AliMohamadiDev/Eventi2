@@ -82,7 +82,7 @@ public class EventCategoryQuery : IEventCategoryQuery
 
     private static List<EventQueryModel> MapEvents(List<Event> events)
     {
-        return events.Select(x => new EventQueryModel
+        return events.Where(x => x.IsConfirmed).Select(x => new EventQueryModel
         {
             Id = x.Id,
             Slug = x.Slug,
