@@ -18,4 +18,15 @@ public class EventsModel : PageModel
     {
         Events = await _eventQuery.GetLatestEventsAsync(100);
     }
+    
+    public async Task OnGetUpcomingAsync()
+    {
+        Events = await _eventQuery.GetLatestEventsAsync(100, isUpcoming: true, isPassed: false);
+    }
+    
+    public async Task OnGetPassedAsync()
+    {
+        Events = await _eventQuery.GetLatestEventsAsync(100,isUpcoming:false, isPassed: true);
+    }
+
 }

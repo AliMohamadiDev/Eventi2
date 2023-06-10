@@ -191,13 +191,52 @@
                             <div>صفحه اصلی</div>
                         </a>
                     </li>
-
-                    <li class="menu-item
-">
-                        <a asp-page="./Events" class="menu-link">
+                    
+                    
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">Layouts</div>
+                        </a>
+
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="layouts-without-menu.html" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-menu"></i>
+                                    <div data-i18n="Without menu">Without menu</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="../vertical-menu-template/" class="menu-link" target="_blank">
+                                    <i class="menu-icon tf-icons bx bx-vertical-center"></i>
+                                    <div data-i18n="Vertical">Vertical</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a asp-page="./Events" class="menu-link menu-toggle">
+                                        <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div>رویداد ها</div>
                         </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a asp-page="./Events" asp-page-handler="Upcoming">
+                                    <div>رویداد های آتی</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-page="./Events" asp-page-handler="Passed" class="menu-link">
+                                    <div>رویداد های برگزار شده</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-page="./Events" class="menu-link">
+                                    <div>همه رویداد ها</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="menu-item">
@@ -303,10 +342,6 @@
 
                         </div>
                     </div>
-
-                    @*<div class="row">
-                   <img src="~/images/Foter.png" style="height: 50px"/>
-               </div>*@
 
                 </div>
             </footer>

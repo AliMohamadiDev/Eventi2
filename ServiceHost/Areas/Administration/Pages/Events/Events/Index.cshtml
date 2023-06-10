@@ -57,7 +57,7 @@
                 <th>نام</th>
                 <th>زیرموضوع</th>
                 <th>ارائه دهنده</th>
-                <th>وضعیت تایید</th>
+                <th>وضعیت</th>
                 <th>عملیات</th>
             </tr>
             </thead>
@@ -75,19 +75,11 @@
                     <td>
                         @if (item.IsConfirmed)
                         {
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#61b710" class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                </svg>
-                            </span>
+                            <span class="badge bg-label-success">تایید شده</span>
                         }
                         else
                         {
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff554e" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                </svg>
-                            </span>
+                            <span class="badge bg-label-danger">تایید نشده</span>
                         }
                     </td>
                     

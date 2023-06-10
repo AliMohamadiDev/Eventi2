@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Events";
 @using _0_Framework.Application
 @model ServiceHost.Pages.EventsModel
 @{
@@ -37,25 +37,25 @@
                         {
                             if (item.Tickets.FirstOrDefault() != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price
-                                </p>
+                                            <p class="card-text">
+                                                <i class="fa fa-ticket"></i>
+                                                @item.Tickets.FirstOrDefault().Price
+                                            </p>
                             }
                             else
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    رایگان
-                                </p>
+                                            <p class="card-text">
+                                                <i class="fa fa-ticket"></i>
+                                                رایگان
+                                            </p>
                             }
                         }
                         else
                         {
-                            <p class="card-text">
-                                <i class="fa fa-ticket"></i>
-                                رایگان
-                            </p>
+                                        <p class="card-text">
+                                            <i class="fa fa-ticket"></i>
+                                            رایگان
+                                        </p>
                         }
                     }
                     @{
@@ -63,25 +63,25 @@
                         {
                             if (item.Tickets.FirstOrDefault() != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
-                                </p>
+                                            <p class="card-text">
+                                                <i class="fa fa-ticket"></i>
+                                                @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                            </p>
                             }
                             else
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    اعلام نشده
-                                </p>
+                                            <p class="card-text">
+                                                <i class="fa fa-ticket"></i>
+                                                اعلام نشده
+                                            </p>
                             }
                         }
                         else
                         {
-                            <p class="card-text">
-                                <i class="fa fa-ticket"></i>
-                                اعلام نشده
-                            </p>
+                                        <p class="card-text">
+                                            <i class="fa fa-ticket"></i>
+                                            اعلام نشده
+                                        </p>
                         }
                     }
 

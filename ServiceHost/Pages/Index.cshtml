@@ -6,8 +6,33 @@
 }
 
 
+<div id="swiper-gallery" class="mb-5">
+    <div class="swiper gallery-top swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+        <div class="swiper-wrapper" id="swiper-wrapper-e6ac1e4117eed541" aria-live="polite">
+            @foreach (var item in Model.Slides)
+            {
+                <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;/Pictures/@item.Picture&quot;); width: 1388px; margin-right: 10px;" role="group"></div>
+            }
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-e6ac1e4117eed541" aria-disabled="false"></div>
+        <div class="swiper-button-prev swiper-button-white swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-e6ac1e4117eed541" aria-disabled="true"></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
+    <div class="swiper gallery-thumbs swiper-initialized swiper-horizontal swiper-pointer-events swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs">
+        <div class="swiper-wrapper" id="swiper-wrapper-9507e17b988581f7" aria-live="polite">
+            @foreach (var item in Model.Slides)
+            {
+                <div class="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active" style="background-image: url(&quot;/Pictures/@item.Picture&quot;); width: 339.5px; margin-right: 10px;" role="group"></div>
+            }
+        </div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
+</div>
+
+
 <h6 class="pb-1 mb-4 text-muted">رویداد های آتی</h6>
-<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
     @foreach (var item in Model.UpcomingEvents)
     {
         <div class="col-md-4 col-lg-3">
@@ -27,7 +52,7 @@
                             {
                                 <p class="card-text">
                                     <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price
+                                    @item.Tickets.FirstOrDefault().Price.ToMoney()
                                 </p>
                             }
                             else
@@ -52,14 +77,14 @@
                             if (item.Tickets.FirstOrDefault() != null)
                             {
                                 <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
+                                    <i class="fa fa-clock"></i>
                                     @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
                                 </p>
                             }
                             else
                             {
                                 <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
+                                    <i class="fa fa-clock"></i>
                                     اعلام نشده
                                 </p>
                             }
@@ -67,7 +92,7 @@
                         else
                         {
                             <p class="card-text">
-                                <i class="fa fa-ticket"></i>
+                                <i class="fa fa-clock"></i>
                                 اعلام نشده
                             </p>
                         }
@@ -78,6 +103,9 @@
             </div>
         </div>
     }
+</div>
+<div class="mb-5 d-flex justify-content-center">
+    <a class="btn btn-primary" asp-page="./Events" asp-page-handler="Upcoming">آرشیو</a>
 </div>
 
 
@@ -102,7 +130,7 @@
                             {
                                 <p class="card-text">
                                     <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price
+                                    @item.Tickets.FirstOrDefault().Price.ToMoney()
                                 </p>
                             }
                             else
@@ -127,14 +155,14 @@
                             if (item.Tickets.FirstOrDefault() != null)
                             {
                                 <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
+                                    <i class="fa fa-clock"></i>
                                     @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
                                 </p>
                             }
                             else
                             {
                                 <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
+                                    <i class="fa fa-clock"></i>
                                     اعلام نشده
                                 </p>
                             }
@@ -142,7 +170,7 @@
                         else
                         {
                             <p class="card-text">
-                                <i class="fa fa-ticket"></i>
+                                <i class="fa fa-clock"></i>
                                 اعلام نشده
                             </p>
                         }
@@ -154,11 +182,13 @@
         </div>
     }
 </div>
+<div class="mb-5 d-flex justify-content-center">
+    <a class="btn btn-primary" asp-page="./Events" asp-page-handler="Passed">آرشیو</a>
+</div>
 
 
-
-<h6 class="pb-1 mb-4 text-muted">آخرین دپارتمان ها</h6>
-<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+<h6 class="pb-1 mb-2 text-muted">آخرین دپارتمان ها</h6>
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
     @foreach (var item in Model.Departments)
     {
         <div class="col-md-6">
@@ -184,9 +214,11 @@
         </div>
     }
 </div>
+<div class="mb-5 d-flex justify-content-center">
+    <a class="btn btn-primary" asp-page="./Departments">آرشیو</a>
+</div>
 
-
-@*@section Css{
+@section Css{
     <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css" />
     <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/ui-carousel.css" />
     
@@ -200,4 +232,4 @@
     <script src="~/theme/assets/js/ui-carousel.js"></script>
     
     <script src="~/theme/assets/js/pages-profile.js"></script>
-}*@
+}
