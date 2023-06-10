@@ -14,7 +14,6 @@
     <Folder Include="Contracts\Account\" />
     <Folder Include="Contracts\Common\" />
     <Folder Include="Contracts\Presenter\" />
-    <Folder Include="Query\" />
   </ItemGroup>
 
 	<ItemGroup>

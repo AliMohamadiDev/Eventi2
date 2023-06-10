@@ -5,6 +5,7 @@ using Eventi.Domain.EventAgg;
 using Eventi.Domain.EventCategoryAgg;
 using Eventi.Domain.OrderAgg;
 using Eventi.Domain.RoleAgg;
+using Eventi.Domain.SlideAgg;
 using Eventi.Infrastructure.EfCore.Mapping;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,7 @@ public class EventiContext : DbContext
     public DbSet<ArticleCategory> ArticleCategories { get; set; }
     //public DbSet<AccountTicket> AccountTickets { get; set; }
     public DbSet<Order> Orders { get; set; }
+    public DbSet<Slide> Slides { get; set; }
 
     public EventiContext(DbContextOptions<EventiContext> options) : base(options)
     {

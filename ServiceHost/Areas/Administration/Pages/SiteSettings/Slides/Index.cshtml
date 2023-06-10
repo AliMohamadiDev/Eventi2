@@ -1,0 +1,148 @@
+﻿@page
+@model ServiceHost.Areas.Administration.Pages.SiteSettings.Slides.IndexModel
+@{
+    ViewData["title"] = "مدیریت اسلاید ها";
+}
+
+<div class="navbar-nav-right d-flex align-items-center mb-4" id="navbar-collapse">
+    <div class="navbar-nav align-items-center">
+        <h4 class="card-header">@ViewData["title"]</h4>
+    </div>
+    <div class="navbar-nav flex-row align-items-center ms-auto">
+        <a class="btn btn-primary btn-lg" href="javascript:;" data-bs-target="#createSlide" data-bs-toggle="modal">ایجاد اسلاید جدید</a>
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">اسلاید ها</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table" id="Datatable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عکس</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>وضعیت</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Slides)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>
+                            <img src="~/Pictures/@item.Picture" style="width: 70px; height: 70px" />
+                        </td>
+                        <td>@item.CreationDate</td>
+                        <td>
+                            @if (item.IsRemoved)
+                            {
+                                <span class="badge bg-danger">غیرفعال</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">فعال</span>
+                            }
+                        </td>
+                        
+                        <td>
+                           
+                            @if (item.IsRemoved)
+                            {
+                                <a asp-page="./Index" asp-page-handler="Restore" asp-route-id="@item.Id"
+                                    class="btn btn-label-success">
+                                    فعالسازی
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@item.Id"
+                                    class="btn btn-label-danger">
+                                    حذف
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="createSlide" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-simple">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="authentication-inner py-4">
+
+                    <div class="card-body">
+                        <h4 class="mb-2">ایجاد اسلاید جدید</h4>
+                        <form id="formAuthentication" class="mb-3" asp-page-handler="Create" method="post" enctype="multipart/form-data">
+                            
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.CreateCommand.Picture" class="control-label">عکس</label>
+                                        <input type="file" class="form-control" asp-for="@Model.CreateCommand.Picture" accept="image/*">
+                                        <span asp-validation-for="@Model.CreateCommand.Picture" class="error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.CreateCommand.PictureAlt" class="form-label">Alt عکس</label>
+                                        <input type="text" class="form-control" asp-for="@Model.CreateCommand.PictureAlt">
+                                        <span asp-validation-for="@Model.CreateCommand.PictureAlt" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.CreateCommand.PictureTitle" class="form-label">عنوان عکس</label>
+                                        <input type="text" class="form-control" asp-for="@Model.CreateCommand.PictureTitle">
+                                        <span asp-validation-for="@Model.CreateCommand.PictureTitle" class="error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.CreateCommand.Link" class="form-label">لینک</label>
+                                        <input type="text" class="form-control" asp-for="@Model.CreateCommand.Link">
+                                        <span asp-validation-for="@Model.CreateCommand.Link" class="error"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary d-grid w-100 mb-4" type="submit">
+                                ایجاد
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Css
+    {
+    <link rel="stylesheet" href="~/AdminTheme/assets/costum/css/dataTables.bootstrap5.min.css" />
+}
+
+    @section Script
+    {
+    <script>
+        $(document).ready(function () {
+            $('#Datatable').DataTable();
+        });
+    </script>
+
+    <script src="~/AdminTheme/assets/costum/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminTheme/assets/costum/js/dataTables.bootstrap5.min.js"></script>
+}

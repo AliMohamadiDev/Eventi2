@@ -8,6 +8,7 @@ using _01_EventiQuery.Contracts.Department;
 using _01_EventiQuery.Contracts.Event;
 using _01_EventiQuery.Contracts.EventCategory;
 using _01_EventiQuery.Contracts.Presenter;
+using _01_EventiQuery.Contracts.Slide;
 using _01_EventiQuery.Query;
 using Eventi.Application;
 using Eventi.Application.Contract.Account;
@@ -21,6 +22,7 @@ using Eventi.Application.Contract.EventSubcategory;
 using Eventi.Application.Contract.Order;
 using Eventi.Application.Contract.Presenter;
 using Eventi.Application.Contract.Role;
+using Eventi.Application.Contract.Slide;
 using Eventi.Application.Contract.Ticket;
 using Eventi.Domain.AccountAgg;
 using Eventi.Domain.ArticleAgg;
@@ -29,6 +31,7 @@ using Eventi.Domain.EventAgg;
 using Eventi.Domain.EventCategoryAgg;
 using Eventi.Domain.OrderAgg;
 using Eventi.Domain.RoleAgg;
+using Eventi.Domain.SlideAgg;
 using Eventi.Infrastructure.Configuration.Permissions;
 using Eventi.Infrastructure.EfCore;
 using Eventi.Infrastructure.EfCore.Repository;
@@ -85,6 +88,10 @@ public class EventiBootstrapper
 
         services.AddTransient<IOrderApplication, OrderApplication>();
         services.AddTransient<IOrderRepository, OrderRepository>();
+        
+        services.AddTransient<ISlideApplication, SlideApplication>();
+        services.AddTransient<ISlideRepository, SlideRepository>();
+        services.AddTransient<ISlideQuery, SlideQuery>();
 
         services.AddTransient<IZarinPalFactory, ZarinPalFactory>();
 
