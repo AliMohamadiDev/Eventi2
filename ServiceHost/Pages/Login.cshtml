@@ -45,6 +45,14 @@
             <div class="authentication-inner">
                 <div class="card">
                     <div class="card-body">
+                        @if (Model.LoginMessage != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                @Model.LoginMessage
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                </button>
+                            </div>
+                        }
                         <div class="app-brand justify-content-center">
                             <a asp-page="/Index" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
@@ -103,7 +111,7 @@
                                        class="form-control"
                                        asp-for="Command.Email"
                                        placeholder="ایمیل"
-                                       autofocus />
+                                       autofocus/>
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
@@ -117,7 +125,7 @@
                                            class="form-control"
                                            asp-for="Command.Password"
                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                           aria-describedby="password" />
+                                           aria-describedby="password"/>
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>

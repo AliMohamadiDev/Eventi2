@@ -1,12 +1,15 @@
 ﻿using _01_EventiQuery.Contracts.Department;
 using _01_EventiQuery.Contracts.Event;
 using _01_EventiQuery.Contracts.Slide;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ServiceHost.Pages;
 
 public class IndexModel : PageModel
 {
+    [TempData] public string LoginMessage { get; set; }
+
     public List<EventQueryModel> UpcomingEvents;
     public List<EventQueryModel> PassedEvents;
     public List<DepartmentQueryModel> Departments;

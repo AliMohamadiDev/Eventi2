@@ -28,7 +28,7 @@ public class AccountApplication : IAccountApplication
         var operation = new OperationResult();
 
         if (_accountRepository.Exists(x => x.Email == command.Email || x.Mobile == command.Mobile))
-            return operation.Failed(ApplicationMessages.DuplicatedRecord);
+            return operation.Failed(ApplicationMessages.DuplicatedRegister);
 
         var password = _passwordHasher.Hash(command.Password);
         var path = $"profilePhotos";

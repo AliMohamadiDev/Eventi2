@@ -6,6 +6,26 @@
 }
 
 
+@if (Model.LoginMessage != null)
+{
+    @*<div class="alert alert-success alert-dismissible col-md-6" role="alert">
+        @Model.LoginMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>*@
+
+<div class="bs-toast toast toast-ex animate__animated my-2 fade bg-primary animate__fade show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <i class="bx bx-bell me-2"></i>
+        <div class="me-auto fw-semibold">ورود</div>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+            @Model.LoginMessage
+    </div>
+</div>
+}
+
 <div id="swiper-gallery" class="mb-5">
     <div class="swiper gallery-top swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
         <div class="swiper-wrapper" id="swiper-wrapper-e6ac1e4117eed541" aria-live="polite">
@@ -29,7 +49,6 @@
         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
     </div>
 </div>
-
 
 <h6 class="pb-1 mb-4 text-muted">رویداد های آتی</h6>
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
@@ -224,6 +243,8 @@
     
     <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/page-profile.css" />
 
+    <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/toastr/toastr.css" />
+    <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/animate-css/animate.css" />
 }
 
 @section Script
@@ -232,4 +253,10 @@
     <script src="~/theme/assets/js/ui-carousel.js"></script>
     
     <script src="~/theme/assets/js/pages-profile.js"></script>
+
+    <script src="~/AdminTheme/assets/vendor/libs/toastr/toastr.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/AdminTheme/assets/js/main.js"></script>
+    <script src="~/AdminTheme/assets/js/ui-toasts.js"></script>
 }

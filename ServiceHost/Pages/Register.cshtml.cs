@@ -31,6 +31,6 @@ public class RegisterModel : PageModel
         }
 
         RegisterMessage = result.Message;
-        return RedirectToPage("/Index");
+        return RedirectToPage();
     }
 }

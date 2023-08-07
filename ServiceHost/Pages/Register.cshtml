@@ -46,6 +46,14 @@
             <div class="authentication-inner">
                 <div class="card">
                     <div class="card-body">
+                        @if (Model.RegisterMessage != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                @Model.RegisterMessage
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                </button>
+                            </div>
+                        }
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
@@ -100,15 +108,14 @@
                         <form id="formAuthentication" class="mb-3" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">نام کامل</label>
-                                <input type="text" class="form-control" asp-for="Command.Fullname" placeholder="نام کامل" />
+                                <input type="text" class="form-control" asp-for="Command.Fullname" placeholder="نام کامل"/>
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">موبایل</label>
                                 <input type="text"
                                        class="form-control"
                                        asp-for="Command.Mobile"
-                                       placeholder="موبایل"
-                                       />
+                                       placeholder="موبایل"/>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Command.Email" class="form-label">ایمیل</label>

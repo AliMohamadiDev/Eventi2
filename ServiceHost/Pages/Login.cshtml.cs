@@ -1,4 +1,4 @@
-using Eventi.Application.Contract.Account;
+﻿using Eventi.Application.Contract.Account;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -31,7 +31,7 @@ public class LoginModel : PageModel
         }
 
         LoginMessage = result.Message;
-        return RedirectToPage("./Index");
+        return RedirectToPage();
     }
 
     public IActionResult OnPostLogoutAsync()
