@@ -35,10 +35,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin}));
+    options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin, Roles.Presenter}));
     options.AddPolicy("Account", b => b.RequireRole(new List<string> {Roles.Administration}));
-    options.AddPolicy("Event", b => b.RequireRole(new List<string> {Roles.Administration}));
-
+    options.AddPolicy("Event", b => b.RequireRole(new List<string> {Roles.Administration, Roles.Presenter}));
 });
 
 builder.Services.AddRazorPages()

@@ -59,7 +59,7 @@
     <div class="app-brand demo bg-dark">
         <a asp-area="" asp-page="/Index" class="app-brand-link">
             <span class="app-brand-logo demo">
-                            <img src="~/images/logo.png" height="60px" />
+                <img src="~/images/logo.png" height="60px"/>
             </span>
         </a>
 
@@ -78,10 +78,8 @@
             </a>
         </li>
 
-        @if (_authHelper.CurrentAccountRole() == Roles.Administration)
+        @if (_authHelper.CurrentAccountRole() == Roles.Administration || _authHelper.CurrentAccountRole() == Roles.Presenter)
         {
-
-
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">رویداد ها</span>
             </li>
@@ -124,7 +122,9 @@
                     </li>
                 </ul>
             </li>
-
+        }
+        @if (_authHelper.CurrentAccountRole() == Roles.Administration)
+        {
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">موضوعات</span>
             </li>
@@ -158,33 +158,39 @@
                 </a>
             </li>
         }
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">بلاگ</span>
-        </li>
+        @if (_authHelper.CurrentAccountRole() == Roles.Administration || _authHelper.CurrentAccountRole() == Roles.BlogAdmin)
+        {
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">بلاگ</span>
+            </li>
 
-        <li class="menu-item">
-            <a asp-page="/Blog/Articles/Index" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">مقالات</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a asp-page="/Blog/ArticleCategories/Index" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">موضوعات مقالات</div>
-            </a>
-        </li>
+            <li class="menu-item">
+                <a asp-page="/Blog/Articles/Index" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-table"></i>
+                    <div data-i18n="Tables">مقالات</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a asp-page="/Blog/ArticleCategories/Index" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-table"></i>
+                    <div data-i18n="Tables">موضوعات مقالات</div>
+                </a>
+            </li>
+        }
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">تنظیمات سایت</span>
-        </li>
+        @if (_authHelper.CurrentAccountRole() == Roles.Administration)
+        {
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">تنظیمات سایت</span>
+            </li>
 
-        <li class="menu-item">
-            <a asp-page="/SiteSettings/Slides/Index" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">اسلاید ها</div>
-            </a>
-        </li>
+            <li class="menu-item">
+                <a asp-page="/SiteSettings/Slides/Index" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-table"></i>
+                    <div data-i18n="Tables">اسلاید ها</div>
+                </a>
+            </li>
+        }
     </ul>
 </aside>
 <div class="layout-page">
@@ -199,13 +205,13 @@
         </div>
 
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            
+
             <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
-                            <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle" />
+                            <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle"/>
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -214,7 +220,7 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
-                                            <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle" />
+                                            <img src="~/Pictures/@currentAccount.ProfilePhoto" alt="Profile of @currentAccount.Fullname" title="Profile of @currentAccount.Fullname" class="w-px-40 h-auto rounded-circle"/>
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
