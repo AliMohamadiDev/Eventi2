@@ -9,6 +9,7 @@ namespace ServiceHost.Pages;
 public class IndexModel : PageModel
 {
     [TempData] public string LoginMessage { get; set; }
+    [TempData] public string RegisterMessage { get; set; }
 
     public List<EventQueryModel> UpcomingEvents;
     public List<EventQueryModel> PassedEvents;

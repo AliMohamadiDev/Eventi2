@@ -26,7 +26,7 @@ public class Ticket
     {
     }
 
-    public Ticket(string title, string? description, int number, double price, DateTime startTime, DateTime endTime, long eventId, double totalPrice, float discountRate)
+    public Ticket(string title, string? description, int number, double price, DateTime startTime, DateTime endTime, long eventId, double totalPrice)
     {
         Title = title;
         Description = description;
@@ -36,13 +36,13 @@ public class Ticket
         EndTime = endTime;
         EventId = eventId;
         TotalPrice = totalPrice;
-        DiscountRate = discountRate;
         IsDeactived = false;
         UsedNumber = 0;
+        DiscountRate = 0;
     }
 
 
-    public void Edit(string title, string? description, int number, double price, DateTime startTime, DateTime endTime, long eventId, double totalPrice, float discountRate)
+    public void Edit(string title, string? description, int number, double price, DateTime startTime, DateTime endTime, long eventId, double totalPrice)
     {
         Title = title;
         Description = description;
@@ -52,7 +52,6 @@ public class Ticket
         EndTime = endTime;
         EventId = eventId;
         TotalPrice = totalPrice;
-        DiscountRate = discountRate;
     }
 
     public void Deactivate()
@@ -68,5 +67,10 @@ public class Ticket
     public void IncreaseUsed()
     {
         UsedNumber++;
+    }
+
+    public void SetDiscountRate(float discountRate)
+    {
+        DiscountRate = discountRate;
     }
 }

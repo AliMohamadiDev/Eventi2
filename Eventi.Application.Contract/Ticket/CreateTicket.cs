@@ -12,7 +12,7 @@ public class CreateTicket
     public int Number { get; set; }
 
     public double TotalPrice { get; set; }
-    public float DiscountRate { get; set; }
+    public float DiscountRate { get; set; } = 0;
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public double Price { get; set; }

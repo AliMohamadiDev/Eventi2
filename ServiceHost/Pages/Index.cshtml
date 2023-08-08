@@ -8,22 +8,30 @@
 
 @if (Model.LoginMessage != null)
 {
-    @*<div class="alert alert-success alert-dismissible col-md-6" role="alert">
-        @Model.LoginMessage
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        </button>
-    </div>*@
+    <div class="bs-toast toast toast-ex animate__animated my-2 fade bg-primary animate__fade show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bx bx-bell me-2"></i>
+            <div class="me-auto fw-semibold">خوش آمدید!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            ورود با موفقیت انجام شد.
+        </div>
+    </div>
+}
 
-<div class="bs-toast toast toast-ex animate__animated my-2 fade bg-primary animate__fade show" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-        <i class="bx bx-bell me-2"></i>
-        <div class="me-auto fw-semibold">ورود</div>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+@if (Model.RegisterMessage != null)
+{
+    <div class="bs-toast toast toast-ex animate__animated my-2 fade bg-primary animate__fade show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bx bx-bell me-2"></i>
+            <div class="me-auto fw-semibold">خوش آمدید!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            ثبت نام با موفقیت انجام شد.
+        </div>
     </div>
-    <div class="toast-body">
-            @Model.LoginMessage
-    </div>
-</div>
 }
 
 <div id="swiper-gallery" class="mb-5">
