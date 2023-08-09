@@ -17,8 +17,8 @@ public class EventQueryModel
 
     public long PresenterId { get; set; }
     public Eventi.Domain.EventAgg.Presenter Presenter { get; set; }
-    public long AccountSideId { get; set; }
-    //public AccountSideQueryModel Department { get; set; }
+    public string? DepartmentName { get; set; }
+    public string? DepartmentSlug { get; set; }
     //public bool IsWebinar { get; set; }
     public string Slug { get; set; }
     public List<string> Tags { get; set; } = new();

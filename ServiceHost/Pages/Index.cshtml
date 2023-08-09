@@ -79,7 +79,7 @@
                             {
                                 <p class="card-text">
                                     <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price.ToMoney()
+                                    @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
                                 </p>
                             }
                             else
@@ -105,7 +105,10 @@
                             {
                                 <p class="card-text">
                                     <i class="fa fa-clock"></i>
-                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                    از
+                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
+                                    تا
+                                    @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
                                 </p>
                             }
                             else
@@ -125,7 +128,10 @@
                         }
                     }
 
-                    @*<p class="card-text">@item.Presenter.Name</p>*@
+                    <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
+                        <i class="fa fa-building"></i>
+                        @item.DepartmentName
+                    </a>
                 </div>
             </div>
         </div>
@@ -149,7 +155,7 @@
                             @item.Name
                         </a>
                     </h5>
-                    
+
                     @{
                         if (item.Tickets != null)
                         {
@@ -157,7 +163,7 @@
                             {
                                 <p class="card-text">
                                     <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price.ToMoney()
+                                    @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
                                 </p>
                             }
                             else
@@ -183,7 +189,10 @@
                             {
                                 <p class="card-text">
                                     <i class="fa fa-clock"></i>
-                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                    از
+                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
+                                    تا
+                                    @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
                                 </p>
                             }
                             else
@@ -203,7 +212,10 @@
                         }
                     }
 
-                    @*<p class="card-text">@item.Presenter.Name</p>*@
+                    <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
+                        <i class="fa fa-building"></i>
+                        @item.DepartmentName
+                    </a>
                 </div>
             </div>
         </div>

@@ -39,7 +39,8 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             SupportNumber = x.SupportNumber,
             StartTime = x.StartTime.ToString(),
             EndTime = x.EndTime.ToString(),
-            IsConfirmed = x.IsConfirmed
+            IsConfirmed = x.IsConfirmed,
+            PresenterIdList = x.EventPresenters.Select(x => x.PresenterId).ToList()
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
 
@@ -62,7 +63,8 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             SupportNumber = x.SupportNumber,
             StartTime = x.StartTime.ToString(),
             EndTime = x.EndTime.ToString(),
-            IsConfirmed = x.IsConfirmed
+            IsConfirmed = x.IsConfirmed,
+            PresenterIdList = x.EventPresenters.Select(x => x.PresenterId).ToList()
         }).ToListAsync();
     }
 
@@ -85,7 +87,8 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             SupportNumber = x.SupportNumber,
             StartTime = x.StartTime.ToString(),
             EndTime = x.EndTime.ToString(),
-            IsConfirmed = x.IsConfirmed
+            IsConfirmed = x.IsConfirmed,
+            PresenterIdList = x.EventPresenters.Select(x => x.PresenterId).ToList()
         });
 
         //if (searchModel.IsWebinar)
@@ -114,6 +117,22 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
         }
 
         return await query.OrderByDescending(x => x.Id).ToListAsync();
+    }
+
+    public async Task CreateEventWithPresentersAsync(Event newEvent, List<Presenter> presenters)
+    {
+        newEvent.EventPresenters =
+            presenters.Select(p => new EventPresenters {PresenterId = p.Id, EventId = newEvent.Id}).ToList();
+        await _context.Events.AddAsync(newEvent);
+    }
+    
+    public async Task EditEventWithPresentersAsync(Event newEvent, List<Presenter> presenters)
+    {
+        var e = await _context.EventPresenters.Where(e => e.EventId == newEvent.Id).ToListAsync();
+        _context.EventPresenters.RemoveRange(e);
+
+        newEvent.EventPresenters =
+            presenters.Select(p => new EventPresenters {PresenterId = p.Id, EventId = newEvent.Id}).ToList();
     }
 
     public void Remove(long id)

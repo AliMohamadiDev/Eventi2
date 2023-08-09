@@ -2,9 +2,9 @@
 
 public class EventPresenters
 {
-    public long EventId { get; private set; }
+    public long EventId { get; set; }
     public Event Event { get; private set; }
 
-    public long PresenterId { get; private set; }
-    public Presenter Presenter { get; private set; }
+    public long PresenterId { get; set; }
+    public Presenter Presenter { get; set; }
 }

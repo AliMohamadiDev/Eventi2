@@ -34,7 +34,9 @@ public class EventQuery : IEventQuery
                 Description = x.Description,
                 EventType = x.EventType,
                 SupportNumber = x.SupportNumber,
-                IsConfirmed = x.IsConfirmed
+                IsConfirmed = x.IsConfirmed,
+                DepartmentName = x.Department.Name,
+                DepartmentSlug = x.Department.Slug
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).FirstOrDefaultAsync(x => x.Slug == slug);
@@ -80,10 +82,12 @@ public class EventQuery : IEventQuery
                 Description = x.Description,
                 EventType = x.EventType,
                 SupportNumber = x.SupportNumber,
-                IsConfirmed = x.IsConfirmed
-                //Presenter = x.Presenter,
-                //PresenterId = x.PresenterId
-            }).OrderByDescending(x => x.Id)
+                IsConfirmed = x.IsConfirmed,
+                DepartmentName = x.Department.Name,
+                DepartmentSlug = x.Department.Slug
+            //Presenter = x.Presenter,
+            //PresenterId = x.PresenterId
+        }).OrderByDescending(x => x.Id)
             .Take(number).ToListAsync();
 
         return finalEvent;
@@ -111,7 +115,9 @@ public class EventQuery : IEventQuery
                 Description = x.Description,
                 EventType = x.EventType,
                 SupportNumber = x.SupportNumber,
-                IsConfirmed = x.IsConfirmed
+                IsConfirmed = x.IsConfirmed,
+                DepartmentName = x.Department.Name,
+                DepartmentSlug = x.Department.Slug
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id).ToListAsync();
@@ -144,7 +150,9 @@ public class EventQuery : IEventQuery
                 SupportNumber = x.SupportNumber,
                 StartTime = x.StartTime,
                 EndTime = x.EndTime,
-                IsConfirmed = x.IsConfirmed
+                IsConfirmed = x.IsConfirmed,
+                DepartmentName = x.Department.Name,
+                DepartmentSlug = x.Department.Slug
                 //Presenter = x.Presenter,
                 //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id).ToListAsync();

@@ -62,12 +62,12 @@ namespace _0_Framework.Application
             return cash;
         }
 
-        public static string ToPersianNumber(this int intNum)
+        public static string ToPersianNumber(this string intNum)
         {
-            var chash = intNum.ToString();
+            var cash = intNum;
             for (var i = 0; i < 10; i++)
-                chash = chash.Replace(En[i], Pn[i]);
-            return chash;
+                cash = cash.Replace(En[i], Pn[i]);
+            return cash;
         }
 
         public static DateTime? FromFarsiDate(this string InDate)

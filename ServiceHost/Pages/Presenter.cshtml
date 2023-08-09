@@ -58,31 +58,23 @@
     {
         <div class="col-md-4 col-lg-3">
             <div class="card h-100">
-                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="Card image cap"/>
+                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
                 <div class="card-body">
                     <h5 class="card-title">
                         <a asp-page="./Event" asp-route-id="@item.Slug">
                             @item.Name
                         </a>
                     </h5>
-                    
+
                     @{
-                            if (item.Tickets != null)
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
                             {
-                                if (item.Tickets.FirstOrDefault() != null)
-                                {
-                                    <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
-                                        @item.Tickets.FirstOrDefault().Price
-                                    </p>
-                                }
-                                else
-                                {
                                 <p class="card-text">
                                     <i class="fa fa-ticket"></i>
-                                    رایگان
+                                    @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
                                 </p>
-                                }
                             }
                             else
                             {
@@ -92,34 +84,48 @@
                                 </p>
                             }
                         }
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-ticket"></i>
+                                رایگان
+                            </p>
+                        }
+                    }
                     @{
-                            if (item.Tickets != null)
+                        if (item.Tickets != null)
+                        {
+                            if (item.Tickets.FirstOrDefault() != null)
                             {
-                                if (item.Tickets.FirstOrDefault() != null)
-                                {
-                                    <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
-                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
-                                    </p>
-                                }
-                                else
-                                {
                                 <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    اعلام نشده
+                                    <i class="fa fa-clock"></i>
+                                    از
+                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
+                                    تا
+                                    @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
                                 </p>
-                                }
                             }
                             else
                             {
                                 <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
+                                    <i class="fa fa-clock"></i>
                                     اعلام نشده
                                 </p>
                             }
                         }
-                    
-                    @*<p class="card-text">@item.Presenter.Name</p>*@
+                        else
+                        {
+                            <p class="card-text">
+                                <i class="fa fa-clock"></i>
+                                اعلام نشده
+                            </p>
+                        }
+                    }
+
+                    <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
+                        <i class="fa fa-building"></i>
+                        @item.DepartmentName
+                    </a>
                 </div>
             </div>
         </div>

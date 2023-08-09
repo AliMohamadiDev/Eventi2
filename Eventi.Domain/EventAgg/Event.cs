@@ -18,7 +18,7 @@ public class Event
 
     public List<Ticket> Tickets { get; private set; } = new();
 
-    public List<EventPresenters> EventPresenters { get; private set; } = new();
+    public List<EventPresenters> EventPresenters { get; set; } = new();
 
     public Department Department { get; private set; }
     public long DepartmentId { get; private set; }

@@ -61,14 +61,14 @@ else
         {
             <div class="col-md-4 col-lg-3">
                 <div class="card h-100">
-                    <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="Card image cap"/>
+                    <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
                     <div class="card-body">
                         <h5 class="card-title">
                             <a asp-page="./Event" asp-route-id="@item.Slug">
                                 @item.Name
                             </a>
                         </h5>
-                        
+
                         @{
                             if (item.Tickets != null)
                             {
@@ -76,7 +76,7 @@ else
                                 {
                                     <p class="card-text">
                                         <i class="fa fa-ticket"></i>
-                                        @item.Tickets.FirstOrDefault().Price
+                                        @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
                                     </p>
                                 }
                                 else
@@ -101,14 +101,17 @@ else
                                 if (item.Tickets.FirstOrDefault() != null)
                                 {
                                     <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
-                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
+                                        <i class="fa fa-clock"></i>
+                                        از
+                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
+                                        تا
+                                        @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
                                     </p>
                                 }
                                 else
                                 {
                                     <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
+                                        <i class="fa fa-clock"></i>
                                         اعلام نشده
                                     </p>
                                 }
@@ -116,13 +119,12 @@ else
                             else
                             {
                                 <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
+                                    <i class="fa fa-clock"></i>
                                     اعلام نشده
                                 </p>
                             }
                         }
-
-                        @*<p class="card-text">@item.Presenter.Name</p>*@
+                        
                     </div>
                 </div>
             </div>

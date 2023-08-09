@@ -4,143 +4,6 @@
     ViewData["Title"] = "ایجاد رویداد جدید";
 }
 
-@*
-<div class="row">
-    <div class="col-md-12">
-        <div class="card mb-4">
-            <div class="card-header">
-                <h3 class="card-title">ایجاد رویداد جدید</h3>
-            </div>
-            <div class="card-body">
-                <form method="post" enctype="multipart/form-data">
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.Name" class="form-label">نام رویداد</label>
-                                <input type="text" class="form-control" asp-for="Command.Name">
-                                <span asp-validation-for="Command.Name" class="error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.Slug" class="form-label">Slug</label>
-                                <input type="text" class="form-control" asp-for="Command.Slug">
-                                <span asp-validation-for="Command.Slug" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <select class="form-select" asp-items="Model.Categories">
-                                <option value="0">موضوع اصلی...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <select class="form-select" asp-for="Command.SubcategoryId" asp-items="Model.Subcategories">
-                                <option value="0">زیرموضوع...</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.PresenterId" class="form-label">شماره ارائه دهنده</label>
-                                <input type="text" class="form-control" asp-for="Command.PresenterId">
-                                <span asp-validation-for="Command.PresenterId" class="error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.DepartmentId" class="form-label">آی دی طرف حساب</label>
-                                <input class="form-control" asp-for="Command.DepartmentId"/>
-                                <span asp-validation-for="Command.DepartmentId" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label asp-for="Command.ImageCover" class="form-label">آدرس عکس</label>
-                                <input class="form-control" asp-for="Command.ImageCover" />
-                                <span asp-validation-for="Command.ImageCover" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.ImageCoverAlt" class="form-label">Alt عکس</label>
-                                <input type="text" class="form-control" asp-for="Command.ImageCoverAlt">
-                                <span asp-validation-for="Command.ImageCoverAlt" class="error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.ImageCoverTitle" class="form-label">عنوان عکس</label>
-                                <input type="text" class="form-control" asp-for="Command.ImageCoverTitle">
-                                <span asp-validation-for="Command.ImageCoverTitle" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.Link" class="form-label">لینک</label>
-                                <input type="text" class="form-control" asp-for="Command.Link">
-                                <span asp-validation-for="Command.Link" class="error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.Tags" class="form-label">تگ ها</label>
-                                <input type="text" class="form-control" asp-for="Command.Tags">
-                                <span asp-validation-for="Command.Tags" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.IsPrivate" class="form-label">خصوصی؟</label>
-                                <input type="checkbox" asp-for="Command.IsPrivate">
-                                <span asp-validation-for="Command.IsPrivate" class="error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.IsWebinar" class="form-label">غیرحضوری؟</label>
-                                <input type="checkbox" asp-for="Command.IsWebinar">
-                                <span asp-validation-for="Command.IsWebinar" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.PayByCustomer" class="form-label">پرداخت توسط مشتری؟</label>
-                                <input type="checkbox" asp-for="Command.PayByCustomer">
-                                <span asp-validation-for="Command.PayByCustomer" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-success">ایجاد</button>
-                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-*@
-
-
-
-
-
 <div class="row">
     <div class="col-12 mb-4">
         <div id="wizard-validation" class="bs-stepper mt-2">
@@ -194,13 +57,6 @@
                                     <span asp-validation-for="Command.Name" class="error"></span>
                                 </div>
                             </div>
-                            @*<div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Command.Slug" class="form-label">اسلاگ</label>
-                                    <input type="text" class="form-control" asp-for="Command.Slug">
-                                    <span asp-validation-for="Command.Slug" class="error"></span>
-                                </div>
-                            </div>*@
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-6">
@@ -232,14 +88,6 @@
                             <small>اطلاعات برگزار کننده و کاور رویداد</small>
                         </div>
                         <div class="row mb-4">
-                            @*<div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Command.PresenterId" class="form-label">شماره ارائه دهنده</label>
-                                    <input type="text" class="form-control" asp-for="Command.PresenterId">
-                                    <span asp-validation-for="Command.PresenterId" class="error"></span>
-                                </div>
-                            </div>*@
-                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Command.ImageCover" class="form-label">عکس</label>
@@ -251,8 +99,6 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Command.DepartmentId" class="form-label">دپارتمان</label>
-                                    @*<input class="form-control" asp-for="Command.DepartmentId" />
-                                    <span asp-validation-for="Command.DepartmentId" class="error"></span>*@
                                     <select class="form-select" asp-for="Command.DepartmentId" asp-items="Model.Departments">
                                         <option value="0">دپارتمان...</option>
                                     </select>
@@ -273,6 +119,17 @@
                                     <label asp-for="Command.ImageCoverTitle" class="form-label">عنوان عکس</label>
                                     <input type="text" class="form-control" asp-for="Command.ImageCoverTitle">
                                     <span asp-validation-for="Command.ImageCoverTitle" class="error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.PresenterIdList" class="form-label">ارائه دهندگان</label>
+                                    <select asp-for="Command.PresenterIdList" asp-items="Model.Presenters" class="multi-select form-select" multiple="multiple" id="my_multi_select3">
+                                    </select>
+                                    <span asp-validation-for="Command.PresenterIdList" class="error"></span>
                                 </div>
                             </div>
                         </div>
@@ -302,32 +159,7 @@
                             <h6 class="mb-0">تنظیمات رویداد</h6>
                             <small>تنظیمات رویداد را وارد کنید</small>
                         </div>
-                        @*<div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Command.IsPrivate" class="form-label">خصوصی؟</label>
-                                    <input type="checkbox" asp-for="Command.IsPrivate">
-                                    <span asp-validation-for="Command.IsPrivate" class="error"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Command.IsWebinar" class="form-label">غیرحضوری؟</label>
-                                    <input type="checkbox" asp-for="Command.IsWebinar">
-                                    <span asp-validation-for="Command.IsWebinar" class="error"></span>
-                                </div>
-                            </div>
-                        </div>*@
-                        @*<div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Command.PayByCustomer" class="form-label">پرداخت توسط مشتری؟</label>
-                                    <input type="checkbox" asp-for="Command.PayByCustomer">
-                                    <span asp-validation-for="Command.PayByCustomer" class="error"></span>
-                                </div>
-                            </div>
-                        </div>*@
-                        
+
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -346,18 +178,21 @@
                         </div>
 
                         <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Command.Address" class="form-label">آدرس</label>
-                                    <input type="text" class="form-control" asp-for="Command.Address">
-                                    <span asp-validation-for="Command.Address" class="error"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label asp-for="Command.Description" class="form-label">توضیحات</label>
-                                    <input type="text" class="form-control" asp-for="Command.Description">
+                                    <textarea class="form-control" id="BodyContent" asp-for="Command.Description" rows="5"></textarea>
                                     <span asp-validation-for="Command.Description" class="error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Command.Address" class="form-label">آدرس</label>
+                                    <textarea class="form-control" asp-for="Command.Address" rows="5"></textarea>
+                                    <span asp-validation-for="Command.Address" class="error"></span>
                                 </div>
                             </div>
                         </div>
@@ -390,8 +225,6 @@
                             </button>
                         </div>
 
-                        @*<button type="submit" class="btn btn-success">ایجاد</button>
-                        <a class="btn btn-primary" asp-page="./Index">بازگشت</a>*@
                     </div>
                 </form>
             </div>
@@ -408,6 +241,7 @@
     <link rel="stylesheet" href="~/AdminTheme/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
 
     <link href="~/AdminTheme/assets/costum/css/persian-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/AdminTheme/assets/jquery-multi-select/multi-select.css" rel="stylesheet" type="text/css" />
 }
 
 @section Script
@@ -440,6 +274,55 @@
             format: 'YYYY/MM/DD',
             autoClose: true,
             initialValueType: "persian"
+        });
+    </script>
+
+    <script type="text/javascript" src="~/AdminTheme/assets/jquery-multi-select/jquery.multi-select.js"></script>
+    <script type="text/javascript" src="~/AdminTheme/assets/jquery-multi-select/jquery.quicksearch.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            $('#my_multi_select3').multiSelect({
+                selectableOptgroup: true,
+                selectableHeader:
+                    "<span>تمام برگزارکنندگان</span><input type='text' class='form-control search-input' autocomplete='off' placeholder='جستجو...'>",
+                selectionHeader:
+                    "<span>انتخاب شده ها</span><input type='text' class='form-control search-input' autocomplete='off' placeholder='جستجو...'>",
+                afterInit: function (ms) {
+                    var that = this,
+                        $selectableSearch = that.$selectableUl.prev(),
+                        $selectionSearch = that.$selectionUl.prev(),
+                        selectableSearchString =
+                            '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+                        selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+
+                    that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                        .on('keydown',
+                            function (e) {
+                                if (e.which === 40) {
+                                    that.$selectableUl.focus();
+                                    return false;
+                                }
+                            });
+
+                    that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                        .on('keydown',
+                            function (e) {
+                                if (e.which == 40) {
+                                    that.$selectionUl.focus();
+                                    return false;
+                                }
+                            });
+                },
+                afterSelect: function () {
+                    this.qs1.cache();
+                    this.qs2.cache();
+                },
+                afterDeselect: function () {
+                    this.qs1.cache();
+                    this.qs2.cache();
+                }
+            });
         });
     </script>
 }

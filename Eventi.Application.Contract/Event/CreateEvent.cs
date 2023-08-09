@@ -21,8 +21,7 @@ public class CreateEvent
 
     public string? Tags { get; set; }
     
-    [Range(1, double.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
-    public long PresenterId { get; set; }
+    public List<long> PresenterIdList { get; set; }
 
     [Range(1, double.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
     public long DepartmentId { get; set; }

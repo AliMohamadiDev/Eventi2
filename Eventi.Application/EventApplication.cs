@@ -6,11 +6,13 @@ namespace Eventi.Application;
 
 public class EventApplication : IEventApplication
 {
+    private readonly IPresenterRepository _presenterRepository;
     private readonly IEventRepository _eventRepository;
     private readonly IFileUploader _fileUploader;
 
-    public EventApplication(IEventRepository eventRepository, IFileUploader fileUploader)
+    public EventApplication(IEventRepository eventRepository, IFileUploader fileUploader, IPresenterRepository presenterRepository)
     {
+        _presenterRepository = presenterRepository;
         _eventRepository = eventRepository;
         _fileUploader = fileUploader;
     }
@@ -40,6 +42,13 @@ public class EventApplication : IEventApplication
             command.Address, command.SupportNumber, command.Description, command.StartTime.ToGeorgianDateTime(),
             command.EndTime.ToGeorgianDateTime());
 
+        var presenters = new List<Presenter>();
+        foreach (var presenterId in command.PresenterIdList)
+        {
+            presenters.Add(_presenterRepository.GetPresenter(presenterId));
+        }
+        await _eventRepository.EditEventWithPresentersAsync(Event, presenters);
+
         await _eventRepository.SaveChangesAsync();
         return operation.Succeeded();
     }
@@ -57,7 +66,13 @@ public class EventApplication : IEventApplication
             command.Address, command.SupportNumber, command.Description, command.StartTime.ToGeorgianDateTime(),
             command.EndTime.ToGeorgianDateTime());
 
-        await _eventRepository.CreateAsync(Event);
+        var presenters = new List<Presenter>();
+        foreach (var presenterId in command.PresenterIdList)
+        {
+            presenters.Add(_presenterRepository.GetPresenter(presenterId));
+        }
+
+        await _eventRepository.CreateEventWithPresentersAsync(Event, presenters);
         await _eventRepository.SaveChangesAsync();
         return operation.Succeeded();
     }
