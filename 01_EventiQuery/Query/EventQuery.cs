@@ -1,4 +1,5 @@
 ﻿using _01_EventiQuery.Contracts.Event;
+using _01_EventiQuery.Contracts.Presenter;
 using Eventi.Domain.EventAgg;
 using Eventi.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,31 @@ public class EventQuery : IEventQuery
         _eventContext = eventContext;
     }
 
+    private async Task<PresenterQueryModel> MapPresenterAsync(long id)
+    {
+        return await _eventContext.Presenters
+            .Include(x => x.EventPresenters)
+            .Select(x => new PresenterQueryModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Logo = x.Logo,
+                LogoTitle = x.LogoTitle,
+                LogoAlt = x.LogoAlt,
+                Description = x.Description,
+                Number = x.Number,
+                Policy = x.Policy,
+                Website = x.Website,
+                Slug = x.Slug,
+                EventCount = _eventContext.EventPresenters.Count(p => p.PresenterId==id)
+            }).FirstOrDefaultAsync(x => x.Id == id) ?? new PresenterQueryModel();
+    }
+
     public async Task<EventQueryModel> GetEventDetailsAsync(string slug)
     {
         var event1 = await _eventContext.Events
             .Include(x => x.Subcategory)
+            .Include(x => x.EventPresenters)
             .Select(x => new EventQueryModel
             {
                 Id = x.Id,
@@ -36,10 +58,17 @@ public class EventQuery : IEventQuery
                 SupportNumber = x.SupportNumber,
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
-                DepartmentSlug = x.Department.Slug
-                //Presenter = x.Presenter,
-                //PresenterId = x.PresenterId
+                DepartmentSlug = x.Department.Slug,
+                PresenterIdList = x.EventPresenters.Select(p => p.PresenterId).ToList()
             }).FirstOrDefaultAsync(x => x.Slug == slug);
+
+        event1!.Presenters = new();
+        foreach (var presenterId in event1.PresenterIdList)
+        {
+            event1.Presenters.Add(await MapPresenterAsync(presenterId));
+        }
+
+        var a = event1;
 
         return event1;
     }
@@ -85,9 +114,7 @@ public class EventQuery : IEventQuery
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
                 DepartmentSlug = x.Department.Slug
-            //Presenter = x.Presenter,
-            //PresenterId = x.PresenterId
-        }).OrderByDescending(x => x.Id)
+            }).OrderByDescending(x => x.Id)
             .Take(number).ToListAsync();
 
         return finalEvent;
@@ -118,8 +145,6 @@ public class EventQuery : IEventQuery
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
                 DepartmentSlug = x.Department.Slug
-                //Presenter = x.Presenter,
-                //PresenterId = x.PresenterId
             }).OrderByDescending(x => x.Id).ToListAsync();
 
         return events;
@@ -127,11 +152,12 @@ public class EventQuery : IEventQuery
 
     public async Task<List<EventQueryModel>> GetEventsByPresenterAsync(string presenterSlug)
     {
+        var presenterId = _eventContext.Presenters.FirstOrDefault(x => x.Slug == presenterSlug)!.Id;
+
         var events = await _eventContext.Events
             .Include(x => x.Subcategory)
+            .Include(x => x.EventPresenters)
             .Where(x => x.IsConfirmed)
-            //.ThenInclude(x=>x.Event.EventPresenters)
-            //.Where(x=>x.Presenter.Slug == presenterSlug)
             .Select(x => new EventQueryModel
             {
                 Id = x.Id,
@@ -152,10 +178,9 @@ public class EventQuery : IEventQuery
                 EndTime = x.EndTime,
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
-                DepartmentSlug = x.Department.Slug
-                //Presenter = x.Presenter,
-                //PresenterId = x.PresenterId
-            }).OrderByDescending(x => x.Id).ToListAsync();
+                DepartmentSlug = x.Department.Slug,
+                PresenterIdList = x.EventPresenters.Select(x => x.PresenterId).ToList()
+            }).Where(x => x.PresenterIdList.Contains(presenterId)).OrderByDescending(x => x.Id).ToListAsync();
 
         return events;
     }
@@ -179,21 +204,7 @@ public class EventQuery : IEventQuery
 
     public bool UserOwned(long eventId, long accountId, long ticketId)
     {
-        /*var event1 = _eventContext.Events.Include(x => x.Tickets).ThenInclude(x => x.AccountTickets)
-            .FirstOrDefault(x => x.Id == eventId);
-
-        var account = event1.Tickets.FirstOrDefault(x=>x.AccountTickets.a)
-
-        if (event1.Tickets.Any(x => x.Id == ticketId && x.AccountTickets.Any(x => x.AccountId == accountId)))
-        {
-            return true;
-        }
-
-        return false;*/
-
-
-        var a = _eventContext.Orders.Include(x => x.Ticket).Any(x =>
+        return _eventContext.Orders.Include(x => x.Ticket).Any(x =>
             x.AccountId == accountId && x.TicketId == ticketId && x.Ticket.EventId == eventId);
-        return a;
     }
 }

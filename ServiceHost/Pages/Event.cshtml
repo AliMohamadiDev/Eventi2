@@ -91,7 +91,7 @@
                         @*<img class="img-fluid rounded my-4" src="~/AdminTheme/assets/img/elements/1.jpg" height="110" width="110" alt="@Model.Event.Presenter.LogoAlt" title="@Model.Event.Presenter.LogoTitle" />*@
                         <div class="user-info text-center">
                             @*<h4 class="mb-2">@Model.Event.Presenter.Name</h4>*@
-                            <span class="badge bg-label-secondary">برگزارکننده</span>
+                            <span class="badge bg-label-secondary">دپارتمان برگزارکننده</span>
                         </div>
                     </div>
                 </div>
@@ -99,33 +99,46 @@
                     <div class="d-flex align-items-start me-4 mt-3 gap-3">
                         <span class="badge bg-label-primary p-2 rounded"><i class='bx bx-check bx-sm'></i></span>
                         <div>
-                            <h5 class="mb-0">@*@Model.Event.Presenter.Events.Count*@000</h5>
+                            <h5 class="mb-0">@Model.Department.Events.Count</h5>
                             <span>تعداد رویداد ها</span>
                         </div>
                     </div>
                 </div>
-                <h5 class="pb-2 border-bottom mb-4">اطلاعات برگزارکننده</h5>
-                @*<div class="info-container">
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <span class="fw-bold me-2">شماره تلفن:</span>
-                            <span>@Model.Event.Presenter.Number</span>
-                        </li>
-                        <li class="mb-3">
-                            <span class="fw-bold me-2">وبسایت:</span>
-                            <span>@Model.Event.Presenter.Website</span>
-                        </li>
-                        <li class="mb-3">
-                            <span class="fw-bold me-2">وضعیت:</span>
-                            <span class="badge bg-label-success">فعال</span>
-                        </li>
-                    </ul>
-                    <div class="d-flex justify-content-center pt-3">
-                        <a asp-page="./Presenter" asp-route-id="@Model.Event.Presenter.Slug" class="btn btn-primary me-3">اطلاعات بیشتر</a>
+                <h5 class="pb-2 border-bottom mb-4">اطلاعات دپارتمان برگزارکننده</h5>
+                <div class="d-flex justify-content-start align-items-center gap-1 flex-sm-row flex-column">
+                    <div class="">
+                        <img class="mb-0 img-fluid" width="125px" src="~/Pictures/@Model.Department.Logo" alt="@Model.Department.LogoAlt" title="@Model.Department.LogoTitle">
                     </div>
-                </div>*@
+                    <div class="d-flex flex-column text-start">
+                        <a asp-page="./Department" asp-route-id="@Model.Department.Slug" class="card-title">@Model.Department.Name</a>
+                        <p class="card-text">@Model.Department.Address</p>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="card card-action mb-4">
+            <div class="card-header align-items-center">
+                <h5 class="card-action-title mb-0">برگزارکنندگان</h5>
+            </div>
+            @foreach (var item in Model.Presenters)
+            {
+                <div class="card-body">
+                    <div class="border p-3 rounded">
+                        <div class="d-flex justify-content-start align-items-center gap-1 flex-sm-row flex-column">
+                            <div class="card-information">
+                                <img class="mb-0 img-fluid" width="100px" src="~/Pictures/@item.Logo" alt="@item.LogoAlt" title="@item.LogoTitle">
+                            </div>
+                            <div class="d-flex flex-column text-start">
+                                <a asp-page="./Presenter" asp-route-id="@item.Slug" class="card-title">@item.Name</a>
+                                <p class="card-text">تعداد رویداد ها: @item.EventCount</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
     </div>
 
 </div>

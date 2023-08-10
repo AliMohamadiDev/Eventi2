@@ -40,7 +40,7 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
             StartTime = x.StartTime.ToString(),
             EndTime = x.EndTime.ToString(),
             IsConfirmed = x.IsConfirmed,
-            PresenterIdList = x.EventPresenters.Select(x => x.PresenterId).ToList()
+            PresenterIdList = x.EventPresenters.Select(p => p.PresenterId).ToList()
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
 

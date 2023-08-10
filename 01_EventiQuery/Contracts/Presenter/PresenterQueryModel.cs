@@ -14,5 +14,6 @@ public class PresenterQueryModel
     public string? Policy { get; set; }
     public string? Description { get; set; }
     public string Slug { get; set; }
+    public int EventCount { get; set; }
     public List<EventQueryModel> Events { get; set; } = new();
 }

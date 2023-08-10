@@ -1,4 +1,5 @@
-﻿using Eventi.Domain.EventAgg;
+﻿using _01_EventiQuery.Contracts.Presenter;
+using Eventi.Domain.EventAgg;
 
 namespace _01_EventiQuery.Contracts.Event;
 
@@ -15,8 +16,8 @@ public class EventQueryModel
     public string Subcategory { get; set; }
     public string SubcategorySlug { get; set; }
 
-    public long PresenterId { get; set; }
-    public Eventi.Domain.EventAgg.Presenter Presenter { get; set; }
+    public List<long> PresenterIdList { get; set; }
+    public List<PresenterQueryModel> Presenters { get; set; } = new();
     public string? DepartmentName { get; set; }
     public string? DepartmentSlug { get; set; }
     //public bool IsWebinar { get; set; }
