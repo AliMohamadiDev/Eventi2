@@ -26,22 +26,8 @@ public class EventMapping : IEntityTypeConfiguration<Event>
             .WithMany(x => x.Events)
             .HasForeignKey(x => x.SubcategoryId);
 
-        /*builder.HasOne(x => x.Presenter)
-            .WithMany(x => x.Events)
-            .HasForeignKey(x => x.PresenterId);*/
-
         builder.HasMany(x => x.Tickets)
             .WithOne(x => x.Event)
             .HasForeignKey(x => x.EventId);
-
-        /*builder.HasOne(x => x.Department)
-            .WithMany(x => x.Events)
-            .HasForeignKey(x => x.DepartmentId);*/
-
-        /*builder.HasOne(e => e.Department)
-            .WithOne(e => e.Event)
-            .HasForeignKey<Department>(x => x.EventId);*/
-
-        //builder.HasMany(x=>x.)
     }
 }

@@ -104,7 +104,5 @@ public class EventiBootstrapper
         services.AddTransient<IPermissionExposer, EventiPermissionExposer>();
 
         services.AddDbContext<EventiContext>(x => x.UseSqlServer(connectionString).EnableSensitiveDataLogging(), ServiceLifetime.Transient);
-
-        
     }
 }

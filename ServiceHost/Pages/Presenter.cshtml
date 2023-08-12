@@ -53,28 +53,44 @@
 </div>
 
 <h6 class="pb-1 mb-4 text-muted">رویداد ها</h6>
-<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-    @foreach (var item in Model.Events)
-    {
-        <div class="col-md-4 col-lg-3">
-            <div class="card h-100">
-                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a asp-page="./Event" asp-route-id="@item.Slug">
-                            @item.Name
-                        </a>
-                    </h5>
+@if (Model.Events.Count == 0)
+{
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger text-center">این برگزارکننده هنوز رویدادی برگزار نکرده است!</div>
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        @foreach (var item in Model.Events)
+        {
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100">
+                    <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a asp-page="./Event" asp-route-id="@item.Slug">
+                                @item.Name
+                            </a>
+                        </h5>
 
-                    @{
-                        if (item.Tickets != null)
-                        {
-                            if (item.Tickets.FirstOrDefault() != null)
+                        @{
+                            if (item.Tickets != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
-                                </p>
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        رایگان
+                                    </p>
+                                }
                             }
                             else
                             {
@@ -84,26 +100,26 @@
                                 </p>
                             }
                         }
-                        else
-                        {
-                            <p class="card-text">
-                                <i class="fa fa-ticket"></i>
-                                رایگان
-                            </p>
-                        }
-                    }
-                    @{
-                        if (item.Tickets != null)
-                        {
-                            if (item.Tickets.FirstOrDefault() != null)
+                        @{
+                            if (item.Tickets != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-clock"></i>
-                                    از
-                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
-                                    تا
-                                    @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
-                                </p>
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-clock"></i>
+                                        از
+                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
+                                        تا
+                                        @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-clock"></i>
+                                        اعلام نشده
+                                    </p>
+                                }
                             }
                             else
                             {
@@ -113,24 +129,17 @@
                                 </p>
                             }
                         }
-                        else
-                        {
-                            <p class="card-text">
-                                <i class="fa fa-clock"></i>
-                                اعلام نشده
-                            </p>
-                        }
-                    }
 
-                    <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
-                        <i class="fa fa-building"></i>
-                        @item.DepartmentName
-                    </a>
+                        <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
+                            <i class="fa fa-building"></i>
+                            @item.DepartmentName
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
 @section Css{
     <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css"/>

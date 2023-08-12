@@ -20,9 +20,5 @@ public class PresenterMapping : IEntityTypeConfiguration<Presenter>
         builder.Property(x => x.Policy).HasMaxLength(20000);
         builder.Property(x => x.Description).HasMaxLength(20000);
         builder.Property(x => x.Slug).HasMaxLength(360).IsRequired();
-
-        /*builder.HasMany(x=>x.Events)
-            .WithOne(x=>x.Presenter)
-            .HasForeignKey(x=>x.PresenterId);*/
     }
 }

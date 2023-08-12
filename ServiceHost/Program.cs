@@ -2,7 +2,6 @@ using _0_Framework.Application;
 using ServiceHost;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
-using _0_Framework.Application.ZarinPal;
 using _0_Framework.Infrastructure;
 using Eventi.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;

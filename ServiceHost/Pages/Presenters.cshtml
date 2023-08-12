@@ -15,31 +15,39 @@
     </div>
 </form>
 
-
-<div class="row mb-4">
-    @foreach (var item in Model.Presenters)
-    {
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img class="card-img card-img-right" src="~/AdminTheme/assets/img/elements/12.jpg" alt="Card image">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Name</h5>
-                            <p class="card-text">
-                                @item.Number
-                            </p>
-                            <p class="card-text"><small class="text-muted">@item.Slug</small></p>
-                            <a asp-page="./Presenter" asp-route-id="@item.Slug" class="btn btn-primary">اطلاعات بیشتر</a>
+@if (Model.Presenters.Count == 0)
+{
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger text-center">هنوز ارائه دهنده ای ثبت نشده است!</div>
+    </div>
+}
+else
+{
+    <div class="row mb-4">
+        @foreach (var item in Model.Presenters)
+        {
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img class="card-img card-img-right" src="~/AdminTheme/assets/img/elements/12.jpg" alt="Card image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text">
+                                    @item.Number
+                                </p>
+                                <p class="card-text"><small class="text-muted">@item.Slug</small></p>
+                                <a asp-page="./Presenter" asp-route-id="@item.Slug" class="btn btn-primary">اطلاعات بیشتر</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
 
 @section Css

@@ -34,53 +34,71 @@
     </div>
 }
 
-<div id="swiper-gallery" class="mb-5">
-    <div class="swiper gallery-top swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-        <div class="swiper-wrapper" id="swiper-wrapper-e6ac1e4117eed541" aria-live="polite">
-            @foreach (var item in Model.Slides)
-            {
-                <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;/Pictures/@item.Picture&quot;); width: 1388px; margin-right: 10px;" role="group"></div>
-            }
+@if (Model.Slides.Count != 0)
+{
+    <div id="swiper-gallery" class="mb-5">
+        <div class="swiper gallery-top swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+            <div class="swiper-wrapper" id="swiper-wrapper-e6ac1e4117eed541" aria-live="polite">
+                @foreach (var item in Model.Slides)
+                {
+                    <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;/Pictures/@item.Picture&quot;); width: 1388px; margin-right: 10px;" role="group"></div>
+                }
+            </div>
+            <div class="swiper-button-next swiper-button-white" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-e6ac1e4117eed541" aria-disabled="false"></div>
+            <div class="swiper-button-prev swiper-button-white swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-e6ac1e4117eed541" aria-disabled="true"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next swiper-button-white" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-e6ac1e4117eed541" aria-disabled="false"></div>
-        <div class="swiper-button-prev swiper-button-white swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-e6ac1e4117eed541" aria-disabled="true"></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-    </div>
-    <div class="swiper gallery-thumbs swiper-initialized swiper-horizontal swiper-pointer-events swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs">
-        <div class="swiper-wrapper" id="swiper-wrapper-9507e17b988581f7" aria-live="polite">
-            @foreach (var item in Model.Slides)
-            {
-                <div class="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active" style="background-image: url(&quot;/Pictures/@item.Picture&quot;); width: 339.5px; margin-right: 10px;" role="group"></div>
-            }
+        <div class="swiper gallery-thumbs swiper-initialized swiper-horizontal swiper-pointer-events swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs">
+            <div class="swiper-wrapper" id="swiper-wrapper-9507e17b988581f7" aria-live="polite">
+                @foreach (var item in Model.Slides)
+                {
+                    <div class="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active" style="background-image: url(&quot;/Pictures/@item.Picture&quot;); width: 339.5px; margin-right: 10px;" role="group"></div>
+                }
+            </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
     </div>
-</div>
+}
 
 <h6 class="pb-1 mb-4 text-muted">رویداد های آتی</h6>
-<div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
-    @foreach (var item in Model.UpcomingEvents)
-    {
-        <div class="col-md-4 col-lg-3">
-            <div class="card h-100">
-                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a asp-page="./Event" asp-route-id="@item.Slug">
-                            @item.Name
-                        </a>
-                    </h5>
+@if (Model.UpcomingEvents.Count == 0)
+{
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger text-center">رویدادی برای برگزاری وجود ندارد!</div>
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
+        @foreach (var item in Model.UpcomingEvents)
+        {
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100">
+                    <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a asp-page="./Event" asp-route-id="@item.Slug">
+                                @item.Name
+                            </a>
+                        </h5>
                     
-                    @{
-                        if (item.Tickets != null)
-                        {
-                            if (item.Tickets.FirstOrDefault() != null)
+                        @{
+                            if (item.Tickets != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
-                                </p>
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        رایگان
+                                    </p>
+                                }
                             }
                             else
                             {
@@ -90,26 +108,26 @@
                                 </p>
                             }
                         }
-                        else
-                        {
-                            <p class="card-text">
-                                <i class="fa fa-ticket"></i>
-                                رایگان
-                            </p>
-                        }
-                    }
-                    @{
-                        if (item.Tickets != null)
-                        {
-                            if (item.Tickets.FirstOrDefault() != null)
+                        @{
+                            if (item.Tickets != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-clock"></i>
-                                    از
-                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
-                                    تا
-                                    @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
-                                </p>
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-clock"></i>
+                                        از
+                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
+                                        تا
+                                        @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-clock"></i>
+                                        اعلام نشده
+                                    </p>
+                                }
                             }
                             else
                             {
@@ -119,52 +137,62 @@
                                 </p>
                             }
                         }
-                        else
-                        {
-                            <p class="card-text">
-                                <i class="fa fa-clock"></i>
-                                اعلام نشده
-                            </p>
-                        }
-                    }
 
-                    <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
-                        <i class="fa fa-building"></i>
-                        @item.DepartmentName
-                    </a>
+                        <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
+                            <i class="fa fa-building"></i>
+                            @item.DepartmentName
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
+
 <div class="mb-5 d-flex justify-content-center">
     <a class="btn btn-primary" asp-page="./Events" asp-page-handler="Upcoming">آرشیو</a>
 </div>
 
 
 <h6 class="pb-1 mb-4 text-muted">رویداد های برگزار شده</h6>
-<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-    @foreach (var item in Model.PassedEvents)
-    {
-        <div class="col-md-4 col-lg-3">
-            <div class="card h-100">
-                <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a asp-page="./Event" asp-route-id="@item.Slug">
-                            @item.Name
-                        </a>
-                    </h5>
+@if (Model.PassedEvents.Count == 0)
+{
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger text-center">رویدادی برگزار نشده است!</div>
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        @foreach (var item in Model.PassedEvents)
+        {
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100">
+                    <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle"/>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a asp-page="./Event" asp-route-id="@item.Slug">
+                                @item.Name
+                            </a>
+                        </h5>
 
-                    @{
-                        if (item.Tickets != null)
-                        {
-                            if (item.Tickets.FirstOrDefault() != null)
+                        @{
+                            if (item.Tickets != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
-                                </p>
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        @item.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-ticket"></i>
+                                        رایگان
+                                    </p>
+                                }
                             }
                             else
                             {
@@ -174,26 +202,26 @@
                                 </p>
                             }
                         }
-                        else
-                        {
-                            <p class="card-text">
-                                <i class="fa fa-ticket"></i>
-                                رایگان
-                            </p>
-                        }
-                    }
-                    @{
-                        if (item.Tickets != null)
-                        {
-                            if (item.Tickets.FirstOrDefault() != null)
+                        @{
+                            if (item.Tickets != null)
                             {
-                                <p class="card-text">
-                                    <i class="fa fa-clock"></i>
-                                    از
-                                    @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
-                                    تا
-                                    @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
-                                </p>
+                                if (item.Tickets.FirstOrDefault() != null)
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-clock"></i>
+                                        از
+                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
+                                        تا
+                                        @item.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">
+                                        <i class="fa fa-clock"></i>
+                                        اعلام نشده
+                                    </p>
+                                }
                             }
                             else
                             {
@@ -203,61 +231,64 @@
                                 </p>
                             }
                         }
-                        else
-                        {
-                            <p class="card-text">
-                                <i class="fa fa-clock"></i>
-                                اعلام نشده
-                            </p>
-                        }
-                    }
 
-                    <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
-                        <i class="fa fa-building"></i>
-                        @item.DepartmentName
-                    </a>
+                        <a class="card-text" asp-page="./Department" asp-route-id="@item.DepartmentSlug" class="btn btn-primary">
+                            <i class="fa fa-building"></i>
+                            @item.DepartmentName
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 <div class="mb-5 d-flex justify-content-center">
     <a class="btn btn-primary" asp-page="./Events" asp-page-handler="Passed">آرشیو</a>
 </div>
 
 
 <h6 class="pb-1 mb-2 text-muted">آخرین دپارتمان ها</h6>
-<div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
-    @foreach (var item in Model.Departments)
-    {
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img class="card-img card-img-right" src="~/Pictures/@item.Logo" alt="@item.LogoAlt" title="@item.LogoTitle">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Name</h5>
-                            <p class="card-text">
-                                آدرس: @item.Address
-                            </p>
-                            <p class="card-text">
-                                کدپستی: @item.PostalCode
-                            </p>
-                            <a asp-page="./Department" asp-route-id="@item.Slug" class="btn btn-primary">اطلاعات بیشتر</a>
+@if (Model.Departments.Count == 0)
+{
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger text-center">رویدادی برای برگزاری وجود ندارد!</div>
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
+        @foreach (var item in Model.Departments)
+        {
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img class="card-img card-img-right" src="~/Pictures/@item.Logo" alt="@item.LogoAlt" title="@item.LogoTitle">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text">
+                                    آدرس: @item.Address
+                                </p>
+                                <p class="card-text">
+                                    کدپستی: @item.PostalCode
+                                </p>
+                                <a asp-page="./Department" asp-route-id="@item.Slug" class="btn btn-primary">اطلاعات بیشتر</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 <div class="mb-5 d-flex justify-content-center">
     <a class="btn btn-primary" asp-page="./Departments">آرشیو</a>
 </div>
 
-@section Css{
+@section Css
+{
     <link rel="stylesheet" href="~/theme/assets/vendor/libs/swiper/swiper.css" />
     <link rel="stylesheet" href="~/theme/assets/vendor/css/pages/ui-carousel.css" />
     
@@ -276,7 +307,6 @@
 
     <script src="~/AdminTheme/assets/vendor/libs/toastr/toastr.js"></script>
 
-    <!-- Main JS -->
     <script src="~/AdminTheme/assets/js/main.js"></script>
     <script src="~/AdminTheme/assets/js/ui-toasts.js"></script>
 }

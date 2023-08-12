@@ -21,32 +21,5 @@ public class RoleMapping : IEntityTypeConfiguration<Role>
             navigationBuilder.Ignore(x => x.Name);
             navigationBuilder.WithOwner(x => x.Role);
         });
-
-/*
-        builder.HasData(new List<Role>()
-        {
-            new Role()
-            {
-                Id = 1,
-                Name = "ادمین سایت",
-                CreationDate = DateTime.Now,
-                
-            },
-            new Role
-            {
-                Id = 2,
-                Name = "کاربر سایت",
-                CreationDate = DateTime.Now,
-                
-            },
-            new Role
-            {
-                Id = 3,
-                Name = "مدیر وبلاگ",
-                CreationDate = DateTime.Now,
-                
-            }
-        });
-*/
     }
 }
