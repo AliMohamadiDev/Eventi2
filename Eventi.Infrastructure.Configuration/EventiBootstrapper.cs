@@ -1,4 +1,5 @@
-﻿using _0_Framework.Application.ZarinPal;
+﻿using _0_Framework.Application;
+using _0_Framework.Application.ZarinPal;
 using _0_Framework.Infrastructure;
 using _01_EventiQuery.Contracts.Account;
 using _01_EventiQuery.Contracts.Article;
@@ -93,12 +94,17 @@ public class EventiBootstrapper
         services.AddTransient<ISlideRepository, SlideRepository>();
         services.AddTransient<ISlideQuery, SlideQuery>();
 
+        services.AddTransient<SeedData>();
+        services.AddTransient<IAuthHelper, AuthHelper>();
         services.AddTransient<IZarinPalFactory, ZarinPalFactory>();
+        services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
         services.AddTransient<IIndexQuery, IndexQuery>();
 
         services.AddTransient<IPermissionExposer, EventiPermissionExposer>();
 
         services.AddDbContext<EventiContext>(x => x.UseSqlServer(connectionString).EnableSensitiveDataLogging(), ServiceLifetime.Transient);
+
+        
     }
 }

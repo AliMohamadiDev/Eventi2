@@ -14,10 +14,10 @@ var connectionString = builder.Configuration.GetConnectionString("EventiDB");
 EventiBootstrapper.Configure(builder.Services, connectionString);
 
 builder.Services.AddTransient<IFileUploader, FileUploader>();
-builder.Services.AddTransient<IAuthHelper, AuthHelper>();
-builder.Services.AddTransient<IZarinPalFactory, ZarinPalFactory>();
-builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
+
+var seedData = builder.Services.BuildServiceProvider().GetRequiredService<SeedData>();
+seedData.SeedDatabase();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
