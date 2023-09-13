@@ -8,7 +8,7 @@ namespace _01_EventiQuery.Contracts.Account;
 public class AccountQueryModel
 {
     public long Id { get; set; }
-    public string Fullname { get; set; }
+    public string? Fullname { get; set; }
     public string? State { get; set; }
     public string? City { get; set; }
     public string Mobile { get; set; }
@@ -18,7 +18,7 @@ public class AccountQueryModel
     public DateTime CreationDate { get; set; }
     public bool IsDeactived { get; set; }
 
-    public string NationalCode { get; set; }
+    public string? NationalCode { get; set; }
     public string? FatherName { get; set; } 
     public bool Gender { get; set; } // 1: male, 0: female
     public string? EducationalCenter { get; set; } 

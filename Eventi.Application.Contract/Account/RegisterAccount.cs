@@ -7,13 +7,10 @@ namespace Eventi.Application.Contract.Account;
 
 public class RegisterAccount
 {
-    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Fullname { get; set; }
 
-    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string Password { get; set; }
     
-    [Required(ErrorMessage = ValidationMessage.IsRequired)]
     public string? Email { get; set; }
 
     [Required(ErrorMessage = ValidationMessage.IsRequired)]
@@ -23,7 +20,7 @@ public class RegisterAccount
     public string? City { get; set; }
     public string? Birthday { get; set; }
 
-    public string NationalCode { get; set; }
+    public string? NationalCode { get; set; }
     public string? FatherName { get; set; } = null;
     public bool Gender { get; set; } // 1: male, 0: female
     public string? EducationalCenter { get; set; } = null;

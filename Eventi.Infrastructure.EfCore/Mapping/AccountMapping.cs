@@ -11,15 +11,15 @@ public class AccountMapping : IEntityTypeConfiguration<Account>
         builder.ToTable("Accounts");
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Fullname).HasMaxLength(100).IsRequired();
+        builder.Property(x => x.Fullname).HasMaxLength(100);
         builder.Property(x => x.Email).HasMaxLength(100);
         builder.Property(x => x.State).HasMaxLength(100);
         builder.Property(x => x.City).HasMaxLength(100);
-        builder.Property(x => x.Password).HasMaxLength(1000).IsRequired();
-        builder.Property(x => x.ProfilePhoto).HasMaxLength(1000).IsRequired();
+        builder.Property(x => x.Password).HasMaxLength(1000);
+        builder.Property(x => x.ProfilePhoto).HasMaxLength(1000);
         builder.Property(x => x.Mobile).HasMaxLength(20).IsRequired();
 
-        builder.Property(x => x.NationalCode).HasMaxLength(24).IsRequired();
+        builder.Property(x => x.NationalCode).HasMaxLength(24);
         builder.Property(x => x.FatherName).HasMaxLength(100);
         builder.Property(x => x.EducationalCenter).HasMaxLength(100);
         builder.Property(x => x.ScientificField).HasMaxLength(100);

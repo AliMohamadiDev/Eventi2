@@ -7,18 +7,18 @@ namespace Eventi.Domain.AccountAgg;
 public class Account
 {
     public long Id { get; private set; }
-    public string Fullname { get; private set; }
+    public string? Fullname { get; private set; } = string.Empty;
     public string? State { get; private set; }
     public string? City { get; private set; }
     public string Mobile { get; private set; }
     public string? Email { get; private set; }
-    public string Password { get; private set; }
+    public string? Password { get; private set; }
     public string? ProfilePhoto { get; private set; }
     public DateTime? Birthday { get; private set; }
     public DateTime CreationDate { get; private set; }
     public bool IsDeactived { get; private set; }
 
-    public string NationalCode { get; private set; }
+    public string? NationalCode { get; private set; }
     public string? FatherName { get; private set; } = null;
     public bool Gender { get; private set; } // 1: male, 0: female
     public string? EducationalCenter { get; private set; } = null;
@@ -41,10 +41,10 @@ public class Account
     {
     }
 
-    public Account(string fullname, string? state, string? city, string mobile, string? email,
-        string password, string? profilePhoto, DateTime? birthday, long roleId, string nationalCode, string fatherName,
-        bool gender, string educationalCenter, string scientificField, string universityDegree, string seminaryDegree,
-        string address, string postalCode)
+    public Account(string? fullname, string? state, string? city, string mobile, string? email,
+        string? password, string? profilePhoto, DateTime? birthday, long roleId, string? nationalCode, string? fatherName,
+        bool gender, string? educationalCenter, string? scientificField, string? universityDegree, string? seminaryDegree,
+        string? address, string? postalCode)
     {
         Fullname = fullname;
         State = state;
@@ -75,12 +75,12 @@ public class Account
         IsDeactived = false;
     }
 
-    public void Edit(string firstname, string? state, string? city, string mobile, string? email,
-        string? profilePhoto, DateTime? birthday, long roleId, string fatherName, bool gender,
-        string educationalCenter, string scientificField, string universityDegree, string seminaryDegree,
-        string address, string? postalCode)
+    public void Edit(string? fullname, string? state, string? city, string mobile, string? email,
+        string? profilePhoto, DateTime? birthday, long roleId, string? fatherName, bool gender,
+        string? educationalCenter, string? scientificField, string? universityDegree, string? seminaryDegree,
+        string? address, string? postalCode)
     {
-        Fullname = firstname;
+        Fullname = fullname;
         State = state;
         City = city;
         Mobile = mobile;
