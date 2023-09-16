@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using _0_Framework.Application;
+using Eventi.Application.Contract.DiscountCode;
 
 namespace Eventi.Application.Contract.Ticket;
 
@@ -24,5 +25,7 @@ public class CreateTicket
     [Range(1, 100_000, ErrorMessage = ValidationMessage.IsRequired)]
     public long EventId { get; set; }
 
-    public int UsedNumber { get; set; }
+    public int UsedNumber { get; set; } = 0;
+
+    public List<CreateDiscountCode> DiscountCodes { get; set; } = new();
 }

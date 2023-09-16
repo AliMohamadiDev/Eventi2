@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using Eventi.Application.Contract.DiscountCode;
 using Eventi.Application.Contract.Ticket;
 using Eventi.Domain.EventAgg;
 
@@ -7,10 +8,12 @@ namespace Eventi.Application;
 public class TicketApplication : ITicketApplication
 {
     private readonly ITicketRepository _ticketRepository;
+    private readonly IDiscountCodeApplication _discountCodeApplication;
 
-    public TicketApplication(ITicketRepository ticketRepository)
+    public TicketApplication(ITicketRepository ticketRepository, IDiscountCodeApplication discountCodeApplication)
     {
         _ticketRepository = ticketRepository;
+        _discountCodeApplication = discountCodeApplication;
     }
 
     public async Task<EditTicket> GetDetailsAsync(long id)
@@ -48,6 +51,19 @@ public class TicketApplication : ITicketApplication
 
         await _ticketRepository.CreateAsync(ticket);
         await _ticketRepository.SaveChangesAsync();
+
+        var ticketId = ticket.Id;
+        if (command.DiscountCodes.Count > 0)
+        {
+            foreach (var code in command.DiscountCodes)
+            {
+                code.TicketId = ticketId;
+                await _discountCodeApplication.CreateDiscountCodeAsync(code);
+            }
+
+            await _ticketRepository.SaveChangesAsync();
+        }
+
         return operation.Succeeded();
     }
 
