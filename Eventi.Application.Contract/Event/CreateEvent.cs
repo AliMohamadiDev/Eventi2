@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using _0_Framework.Application;
+using Eventi.Application.Contract.Ticket;
 using Microsoft.AspNetCore.Http;
 
 namespace Eventi.Application.Contract.Event;
@@ -36,4 +37,6 @@ public class CreateEvent
     public string? StartTime { get; set; }
     public string? EndTime { get; set; }
     public bool IsConfirmed { get; set; }
+
+    public List<CreateTicket> Tickets { get; set; } = new();
 }

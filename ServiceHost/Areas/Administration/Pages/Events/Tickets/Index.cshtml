@@ -4,7 +4,7 @@
 @using RestSharp.Extensions
 @model ServiceHost.Areas.Administration.Pages.Events.Tickets.IndexModel
 @{
-    ViewData["title"] = "مدیریت بلیط ها";
+    ViewData["title"] = "مدیریت بلیت ها";
 }
 
 <div class="navbar-nav-right d-flex align-items-center mb-4" id="navbar-collapse">
@@ -12,21 +12,21 @@
         <h4 class="card-header">@ViewData["title"]</h4>
     </div>
     <div class="navbar-nav flex-row align-items-center ms-auto">
-        <a class="btn btn-primary btn-lg" asp-page="Create">ایجاد بلیط جدید</a>
+        <a class="btn btn-primary btn-lg" asp-page="Create">ایجاد بلیت جدید</a>
     </div>
 </div>
 
 <div class="card mb-4">
-    <h5 class="card-header">جستجو در بلیط ها</h5>
+    <h5 class="card-header">جستجو در بلیت ها</h5>
     <div class="card-body">
         <form role="form" method="get">
             <div class="row gx-3 gy-2 align-items-center" asp-validation-summary="None">
                 <div class="row mb-4">
                     <div class="col-md-3">
-                        <input class="form-control" asp-for="SearchModel.Id" placeholder="شماره بلیط">
+                        <input class="form-control" asp-for="SearchModel.Id" placeholder="شماره بلیت">
                     </div>
                     <div class="col-md-3">
-                        <input class="form-control" asp-for="SearchModel.Title" placeholder="عنوان بلیط">
+                        <input class="form-control" asp-for="SearchModel.Title" placeholder="عنوان بلیت">
                     </div>
                     <div class="col-md-3">
                         <input class="form-control" asp-for="SearchModel.EventId" placeholder="شماره رویداد">
@@ -52,7 +52,7 @@
 
 
 <div class="card">
-    <h5 class="card-header">بلیط ها</h5>
+    <h5 class="card-header">بلیت ها</h5>
     <div class="table-responsive text-nowrap">
         <table class="table" id="Datatable">
             <thead>

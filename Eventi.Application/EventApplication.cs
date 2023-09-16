@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Application;
 using Eventi.Application.Contract.Event;
+using Eventi.Application.Contract.Ticket;
 using Eventi.Domain.EventAgg;
 
 namespace Eventi.Application;
@@ -8,11 +9,13 @@ public class EventApplication : IEventApplication
 {
     private readonly IPresenterRepository _presenterRepository;
     private readonly IEventRepository _eventRepository;
+    private readonly ITicketApplication _ticketApplication;
     private readonly IFileUploader _fileUploader;
 
-    public EventApplication(IEventRepository eventRepository, IFileUploader fileUploader, IPresenterRepository presenterRepository)
+    public EventApplication(IEventRepository eventRepository, IFileUploader fileUploader, IPresenterRepository presenterRepository, ITicketApplication ticketApplication)
     {
         _presenterRepository = presenterRepository;
+        _ticketApplication = ticketApplication;
         _eventRepository = eventRepository;
         _fileUploader = fileUploader;
     }
@@ -74,6 +77,17 @@ public class EventApplication : IEventApplication
 
         await _eventRepository.CreateEventWithPresentersAsync(Event, presenters);
         await _eventRepository.SaveChangesAsync();
+
+        var eventId = Event.Id;
+        if (command.Tickets.Count > 0)
+        {
+            foreach (var ticket in command.Tickets)
+            {
+                ticket.EventId = eventId;
+                await _ticketApplication.CreateTicketAsync(ticket);
+            }
+        }
+
         return operation.Succeeded();
     }
 
