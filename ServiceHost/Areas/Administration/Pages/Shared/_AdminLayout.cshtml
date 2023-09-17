@@ -71,7 +71,7 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <li class="menu-item">
+        <li class="menu-item @(ViewContext.RouteData.Values["page"]?.ToString() == "/Index" ? "active" : "")">
             <a asp-page="/Index" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">داشبورد</div>
@@ -84,38 +84,38 @@
                 <span class="menu-header-text">رویداد ها</span>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events") && !ViewContext.RouteData.Values["page"].ToString().Contains("gories") ? "active" : "")">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-copy"></i>
                     <div data-i18n="Extended UI">رویداد های من</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/Events") ? "active" : "")">
                         <a asp-page="/Events/Events/Index" class="menu-link">
                             <div data-i18n="Perfect Scrollbar">رویداد ها</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/Tickets") ? "active" : "")">
                         <a asp-page="/Events/Tickets/Index" class="menu-link">
                             <div data-i18n="Text Divider">بلیت ها</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/DiscountCodes") ? "active" : "")">
                         <a asp-page="/Events/DiscountCodes/Index" class="menu-link">
                             <div data-i18n="Text Divider">کد تخفیف</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/Orders") ? "active" : "")">
                         <a asp-page="/Events/Orders/Index" class="menu-link">
                             <div data-i18n="Text Divider">پرداخت ها</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/Departments") ? "active" : "")">
                         <a asp-page="/Events/Departments/Index" class="menu-link">
                             <div data-i18n="Text Divider">دپارتمان ها</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/Presenters") ? "active" : "")">
                         <a asp-page="/Events/Presenters/Index" class="menu-link">
                             <div data-i18n="Text Divider">ارائه دهندگان</div>
                         </a>
@@ -128,13 +128,13 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">موضوعات</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/EventCategories") ? "active" : "")">
                 <a asp-page="/Events/EventCategories/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-collection"></i>
                     <div data-i18n="Basic">موضوعات اصلی</div>
                 </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item  @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/EventSubcategories") ? "active" : "")">
                 <a asp-page="/Events/EventSubcategories/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-collection"></i>
                     <div data-i18n="Basic">زیرموضوعات</div>
@@ -145,13 +145,13 @@
                 <span class="menu-header-text">حساب</span>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item  @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Accounts/Accounts") ? "active" : "")">
                 <a asp-page="/Accounts/Accounts/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-table"></i>
                     <div data-i18n="Tables">حساب ها</div>
                 </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Accounts/Roles") ? "active" : "")">
                 <a asp-page="/Accounts/Roles/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-table"></i>
                     <div data-i18n="Tables">نقش ها</div>
@@ -164,13 +164,13 @@
                 <span class="menu-header-text">بلاگ</span>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Blog/Articles") ? "active" : "")">
                 <a asp-page="/Blog/Articles/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-table"></i>
                     <div data-i18n="Tables">مقالات</div>
                 </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Blog/ArticleCategories") ? "active" : "")">
                 <a asp-page="/Blog/ArticleCategories/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-table"></i>
                     <div data-i18n="Tables">موضوعات مقالات</div>
@@ -184,7 +184,7 @@
                 <span class="menu-header-text">تنظیمات سایت</span>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item  @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/SiteSettings/Slides") ? "active" : "")">
                 <a asp-page="/SiteSettings/Slides/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-table"></i>
                     <div data-i18n="Tables">اسلاید ها</div>

@@ -16,17 +16,17 @@ public class EventsModel : PageModel
 
     public async Task OnGetAsync()
     {
-        Events = await _eventQuery.GetLatestEventsAsync(100);
+        Events = await _eventQuery.GetLatestEventsAsync(10000);
     }
     
     public async Task OnGetUpcomingAsync()
     {
-        Events = await _eventQuery.GetLatestEventsAsync(100, isUpcoming: true, isPassed: false);
+        Events = await _eventQuery.GetLatestEventsAsync(10000, isUpcoming: true, isPassed: false);
     }
     
     public async Task OnGetPassedAsync()
     {
-        Events = await _eventQuery.GetLatestEventsAsync(100,isUpcoming:false, isPassed: true);
+        Events = await _eventQuery.GetLatestEventsAsync(10000,isUpcoming:false, isPassed: true);
     }
 
 }

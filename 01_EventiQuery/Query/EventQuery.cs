@@ -87,12 +87,12 @@ public class EventQuery : IEventQuery
 
         else if (isUpcoming)
         {
-            events = events.Where(x => x.StartTime >= DateTime.Now);
+            events = events.Where(x => x.StartTime.Date >= DateTime.Now.Date);
         }
 
         else if (isPassed)
         {
-            events = events.Where(x => x.EndTime <= DateTime.Now);
+            events = events.Where(x => x.EndTime.Date <= DateTime.Now.Date);
         }
 
         var finalEvent = await events.Select(x => new EventQueryModel

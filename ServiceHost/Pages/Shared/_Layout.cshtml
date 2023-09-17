@@ -185,14 +185,14 @@
 
                 <ul class="menu-inner">
 
-                    <li class="menu-item active">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"]?.ToString() == "/Index" ? "active" : "")">
                         <a asp-page="./Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div>صفحه اصلی</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"]?.ToString() == "/Events" ? "active" : "")">
                         <a asp-page="./Events" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div>رویداد ها</div>
@@ -216,28 +216,28 @@
                         </ul>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"]?.ToString() == "/Presenters" ? "active" : "")">
                         <a asp-page="./Presenters" class="menu-link">
                             <i class='menu-icon tf-icons bx bx-microphone'></i>
                             <div>برگزارکنندگان</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"]?.ToString() == "/Departments" ? "active" : "")">
                         <a asp-page="./Departments" class="menu-link">
                             <i class='menu-icon tf-icons bx bx-building'></i>
                             <div>دپارتمان ها</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"]?.ToString() == "/ArticleCategories" ? "active" : "")">
                         <a asp-page="./ArticleCategories" class="menu-link">
                             <i class='menu-icon tf-icons bx bx-book'></i>
                             <div>وبلاگ</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item @(ViewContext.RouteData.Values["page"]?.ToString() == "/Faq" ? "active" : "")">
                         <a asp-page="./Faq" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-help-circle"></i>
                             <div>سوالات متداول</div>
