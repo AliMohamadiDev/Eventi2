@@ -76,17 +76,6 @@
                         </div>
                     </div>
 
-@*
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label asp-for="Command.IsFree" class="form-label">رایگان؟</label>
-                                <input type="checkbox" asp-for="Command.IsFree">
-                                <span asp-validation-for="Command.IsFree" class="error"></span>
-                            </div>
-                        </div>
-                    </div>*@
-
                     <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id"/>
                     <button type="submit" class="btn btn-success">ویرایش</button>
                     <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
@@ -119,9 +108,15 @@
 
     <script>
         $('.persianDateInput').persianDatepicker({
-            format: 'YYYY/MM/DD',
+            format: 'YYYY/MM/DD HH:mm',
             autoClose: true,
-            initialValueType: "persian"
+            initialValueType: "persian",
+            timePicker: {
+                enabled: true,
+                meridiem: {
+                    enabled: true
+                }
+            }
         });
     </script>
 

@@ -1,5 +1,11 @@
 $('.persianDateInput').persianDatepicker({
-    format: 'YYYY/MM/DD',
+    format: 'YYYY/MM/DD HH:mm',
     autoClose: true,
-    initialValueType: "persian"
+    initialValueType: "persian",
+    timePicker: {
+        enabled: true,
+        meridiem: {
+            enabled: true
+        }
+    }
 });

@@ -76,63 +76,6 @@
                         </div>
                     </div>
                     
-                    @*
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label asp-for="Command.IsFree" class="form-label">رایگان؟</label>
-                                <input type="checkbox" asp-for="Command.IsFree">
-                                <span asp-validation-for="Command.IsFree" class="error"></span>
-                            </div>
-                        </div>
-                    </div>*@
-                    
-                    @*<div id="discountCodesContainer">
-
-                        <div class="mb-3">
-                            <div class="repeater-wrapper pt-0 pt-md-4">
-                                <div class="d-flex border rounded position-relative pe-0">
-                                    <div class="row w-100 m-0 p-3">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label asp-for="Command.DiscountCodes[0].Code" class="form-label">کد تخفیف</label>
-                                                <input type="text" class="form-control" asp-for="Command.DiscountCodes[0].Code">
-                                                <span asp-validation-for="Command.DiscountCodes[0].Code" class="error"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label asp-for="Command.DiscountCodes[0].DiscountRate" class="form-label">درصد تخفیف</label>
-                                                <input type="text" class="form-control" asp-for="Command.DiscountCodes[0].DiscountRate">
-                                                <span asp-validation-for="Command.DiscountCodes[0].DiscountRate" class="error"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label asp-for="Command.DiscountCodes[0].Count" class="form-label">تعداد</label>
-                                                <input type="text" class="form-control" asp-for="Command.DiscountCodes[0].Count">
-                                                <span asp-validation-for="Command.DiscountCodes[0].Count" class="error"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center justify-content-between border-start p-2">
-                                        <i class="bx bx-x fs-4 text-muted cursor-pointer deleteDiscountCode"></i>
-                                    </div>
-                                    <button type="button" class="btn btn-danger deleteDiscountCode">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <button type="button" class="btn btn-primary" id="addDiscountCode">Add Item</button>
-                            </div>
-                        </div>
-                    </div>*@
-
-
-
-
                     <h4>کد های تخفیف</h4>
 
                     <div id="discountCodesContainer">
@@ -140,10 +83,6 @@
                     </div>
 
                     <button type="button" id="addDiscountCode" class="btn btn-label-secondary">افزودن کد تخفیف</button>
-
-                    
-                    
-
 
                     <button type="submit" class="btn btn-success">ایجاد</button>
                     <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
@@ -176,9 +115,15 @@
 
     <script>
         $('.persianDateInput').persianDatepicker({
-            format: 'YYYY/MM/DD',
+            format: 'YYYY/MM/DD HH:mm',
             autoClose: true,
-            initialValueType: "persian"
+            initialValueType: "persian",
+            timePicker: {
+                enabled: true,
+                meridiem: {
+                    enabled: true
+                }
+            }
         });
     </script>
 
