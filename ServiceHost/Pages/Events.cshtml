@@ -1,5 +1,4 @@
 ﻿@page "/Events";
-@using _0_Framework.Application
 @model ServiceHost.Pages.EventsModel
 @{
     ViewData["Title"] = "رویداد ها";
@@ -31,73 +30,7 @@ else
     <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
         @foreach (var item in Model.Events)
         {
-            <div class="col-md-4 col-lg-3">
-                <div class="card h-100">
-                    <img class="card-img-top" src="~/Pictures/@item.ImageCover" alt="@item.ImageCoverAlt" title="@item.ImageCoverTitle" />
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a asp-page="./Event" asp-route-id="@item.Slug">
-                                @item.Name
-                            </a>
-                        </h5>
-                    
-                        @{
-                            if (item.Tickets != null)
-                            {
-                                if (item.Tickets.FirstOrDefault() != null)
-                                {
-                                    <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
-                                        @item.Tickets.FirstOrDefault().Price
-                                    </p>
-                                }
-                                else
-                                {
-                                    <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
-                                        رایگان
-                                    </p>
-                                }
-                            }
-                            else
-                            {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    رایگان
-                                </p>
-                            }
-                        }
-                        @{
-                            if (item.Tickets != null)
-                            {
-                                if (item.Tickets.FirstOrDefault() != null)
-                                {
-                                    <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
-                                        @item.Tickets.FirstOrDefault().StartTime.ToFarsi()
-                                    </p>
-                                }
-                                else
-                                {
-                                    <p class="card-text">
-                                        <i class="fa fa-ticket"></i>
-                                        اعلام نشده
-                                    </p>
-                                }
-                            }
-                            else
-                            {
-                                <p class="card-text">
-                                    <i class="fa fa-ticket"></i>
-                                    اعلام نشده
-                                </p>
-                            }
-                        }
-
-                        @* <p class="card-text">@item.Presenter.Name</p>*@
-                    </div>
-                </div>
-            </div>
+            @(await Html.PartialAsync("Partials/_EventCard", item))
         }
     </div>
 }

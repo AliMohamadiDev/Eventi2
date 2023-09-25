@@ -59,6 +59,9 @@ public class EventQuery : IEventQuery
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
                 DepartmentSlug = x.Department.Slug,
+                DepartmentLogo = x.Department.Logo,
+                StartTime = x.StartTime,
+                EndTime = x.EndTime,
                 PresenterIdList = x.EventPresenters.Select(p => p.PresenterId).ToList()
             }).FirstOrDefaultAsync(x => x.Slug == slug);
 
@@ -113,8 +116,11 @@ public class EventQuery : IEventQuery
                 SupportNumber = x.SupportNumber,
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
-                DepartmentSlug = x.Department.Slug
-            }).OrderByDescending(x => x.Id)
+                DepartmentSlug = x.Department.Slug,
+                DepartmentLogo = x.Department.Logo,
+                StartTime = x.StartTime,
+                EndTime = x.EndTime,
+        }).OrderByDescending(x => x.Id)
             .Take(number).ToListAsync();
 
         return finalEvent;
@@ -144,7 +150,10 @@ public class EventQuery : IEventQuery
                 SupportNumber = x.SupportNumber,
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
-                DepartmentSlug = x.Department.Slug
+                DepartmentSlug = x.Department.Slug,
+                DepartmentLogo = x.Department.Logo,
+                StartTime = x.StartTime,
+                EndTime = x.EndTime,
             }).OrderByDescending(x => x.Id).ToListAsync();
 
         return events;
@@ -179,7 +188,8 @@ public class EventQuery : IEventQuery
                 IsConfirmed = x.IsConfirmed,
                 DepartmentName = x.Department.Name,
                 DepartmentSlug = x.Department.Slug,
-                PresenterIdList = x.EventPresenters.Select(x => x.PresenterId).ToList()
+                DepartmentLogo = x.Department.Logo,
+                PresenterIdList = x.EventPresenters.Select(p => p.PresenterId).ToList(),
             }).Where(x => x.PresenterIdList.Contains(presenterId)).OrderByDescending(x => x.Id).ToListAsync();
 
         return events;

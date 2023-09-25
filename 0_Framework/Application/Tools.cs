@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace _0_Framework.Application
 {
@@ -109,6 +108,57 @@ namespace _0_Framework.Application
         public static string ToFileName(this DateTime date)
         {
             return $"{date.Year:0000}-{date.Month:00}-{date.Day:00}-{date.Hour:00}-{date.Minute:00}-{date.Second:00}";
+        }
+
+        public static string GetPersianDayOfWeek(DayOfWeek dayOfWeek)
+        {
+            return dayOfWeek switch
+            {
+                DayOfWeek.Saturday => "شنبه",
+                DayOfWeek.Sunday => "یکشنبه",
+                DayOfWeek.Monday => "دوشنبه",
+                DayOfWeek.Tuesday => "سه‌شنبه",
+                DayOfWeek.Wednesday => "چهارشنبه",
+                DayOfWeek.Thursday => "پنج‌شنبه",
+                DayOfWeek.Friday => "جمعه",
+                _ => ""
+            };
+        }
+
+        public static string GetPersianMonthName(int month)
+        {
+            return month switch
+            {
+                1 => "فروردین",
+                2 => "اردیبهشت",
+                3 => "خرداد",
+                4 => "تیر",
+                5 => "مرداد",
+                6 => "شهریور",
+                7 => "مهر",
+                8 => "آبان",
+                9 => "آذر",
+                10 => "دی",
+                11 => "بهمن",
+                12 => "اسفند",
+                _ => ""
+            };
+        }
+
+        public static string ToPersianDate(this DateTime georgianDateTime)
+        {
+            PersianCalendar persianCalendar = new PersianCalendar();
+            int year = persianCalendar.GetYear(georgianDateTime);
+            int month = persianCalendar.GetMonth(georgianDateTime);
+            int day = persianCalendar.GetDayOfMonth(georgianDateTime);
+            DayOfWeek dayOfWeek = persianCalendar.GetDayOfWeek(georgianDateTime);
+
+            int hour = georgianDateTime.Hour;
+            int minute = georgianDateTime.Minute;
+
+            string dayOfWeekPersian = GetPersianDayOfWeek(dayOfWeek);
+            string monthName = GetPersianMonthName(month);
+            return $"{dayOfWeekPersian} {day} {monthName} {year} ساعت {hour:D2}:{minute:D2}";
         }
     }
 }

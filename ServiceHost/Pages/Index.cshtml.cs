@@ -31,8 +31,8 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        UpcomingEvents = await _eventQuery.GetLatestEventsAsync(8, isUpcoming: true, isPassed: false);
-        PassedEvents = await _eventQuery.GetLatestEventsAsync(8, isUpcoming: false, isPassed: true);
+        UpcomingEvents = await _eventQuery.GetLatestEventsAsync(6, isUpcoming: true, isPassed: false);
+        PassedEvents = await _eventQuery.GetLatestEventsAsync(6, isUpcoming: false, isPassed: true);
         Departments = await _departmentQuery.GetDepartmentsAsync(4);
         Slides = await _slideQuery.GetSlidesAsync();
     }

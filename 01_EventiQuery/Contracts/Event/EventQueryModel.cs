@@ -20,6 +20,7 @@ public class EventQueryModel
     public List<PresenterQueryModel> Presenters { get; set; } = new();
     public string? DepartmentName { get; set; }
     public string? DepartmentSlug { get; set; }
+    public string? DepartmentLogo { get; set; }
     //public bool IsWebinar { get; set; }
     public string Slug { get; set; }
     public List<string> Tags { get; set; } = new();

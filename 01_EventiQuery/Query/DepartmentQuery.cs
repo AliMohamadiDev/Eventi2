@@ -33,26 +33,31 @@ public class DepartmentQuery : IDepartmentQuery
             }).FirstOrDefaultAsync(x => x.Slug == slug) ?? new DepartmentQueryModel();
 
         department.Events = await _eventiContext.Events
-            .Include(x=>x.Department)
+            .Include(x => x.Department)
             .Where(x => x.DepartmentId == department.Id)
             .Where(x => x.IsConfirmed)
             .Select(x => new EventQueryModel
-        {
-            Id = x.Id,
-            Name = x.Name,
-            Slug = x.Slug,
-            ImageCover = x.ImageCover,
-            ImageCoverAlt = x.ImageCoverAlt,
-            ImageCoverTitle = x.ImageCoverTitle,
-            SubcategoryId = x.SubcategoryId,
-            SubcategorySlug = x.Subcategory.Slug,
-            Subcategory = x.Subcategory.SubcategoryName,
-            Address = x.Address,
-            Description = x.Description,
-            EventType = x.EventType,
-            SupportNumber = x.SupportNumber,
-            IsConfirmed = x.IsConfirmed
-        }).ToListAsync();
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Slug = x.Slug,
+                ImageCover = x.ImageCover,
+                ImageCoverAlt = x.ImageCoverAlt,
+                ImageCoverTitle = x.ImageCoverTitle,
+                SubcategoryId = x.SubcategoryId,
+                SubcategorySlug = x.Subcategory.Slug,
+                Subcategory = x.Subcategory.SubcategoryName,
+                Address = x.Address,
+                Description = x.Description,
+                EventType = x.EventType,
+                SupportNumber = x.SupportNumber,
+                IsConfirmed = x.IsConfirmed,
+                DepartmentName = x.Department.Name,
+                DepartmentSlug = x.Department.Slug,
+                DepartmentLogo = x.Department.Logo,
+                StartTime = x.StartTime,
+                EndTime = x.EndTime,
+            }).ToListAsync();
 
         return department;
     }
