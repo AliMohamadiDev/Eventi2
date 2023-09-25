@@ -27,7 +27,7 @@ public class AccountApplication : IAccountApplication
     {
         var operation = new OperationResult();
 
-        if (_accountRepository.Exists(x => x.Email == command.Email || x.Mobile == command.Mobile))
+        if (_accountRepository.Exists(x => /*x.Email == command.Email ||*/ x.Mobile == command.Mobile))
             return operation.Failed(ApplicationMessages.DuplicatedRegister);
 
         var password = _passwordHasher.Hash(command.Password);
@@ -37,7 +37,7 @@ public class AccountApplication : IAccountApplication
 
         long roleId = command.RoleId == 0 ? 2 : command.RoleId;
 
-        var account = new Account(command.Fullname, null, null, command.Mobile, command.Email?.ToLower(),
+        var account = new Account(command.Fullname ?? "", null, null, command.Mobile, command.Email?.ToLower() ?? "",
             password, picturePath, null, roleId, command.NationalCode,
             command.FatherName, command.Gender, command.EducationalCenter, command.ScientificField,
             command.UniversityDegree, command.SeminaryDegree, command.Address, command.PostalCode);
@@ -54,7 +54,7 @@ public class AccountApplication : IAccountApplication
         if (account == null)
             operation.Failed(ApplicationMessages.RecordNotFound);
 
-        if (_accountRepository.Exists(x =>
+        if (!string.IsNullOrWhiteSpace(command.Email) && _accountRepository.Exists(x =>
                 (x.Email == command.Email || x.Mobile == command.Mobile) && x.Id != command.Id))
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
@@ -93,7 +93,7 @@ public class AccountApplication : IAccountApplication
     public async Task<OperationResult> LoginAsync(Login command)
     {
         var operation = new OperationResult();
-        var account = await _accountRepository.GetByAsync(command.Email);
+        var account = await _accountRepository.GetByMobileAsync(command.Mobile);
 
         if (account == null)
             return operation.Failed(ApplicationMessages.WrongUserPass);

@@ -106,10 +106,7 @@
                         <p class="mb-4">ثبت نام کنید!</p>
 
                         <form id="formAuthentication" class="mb-3" method="post">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">نام کامل</label>
-                                <input type="text" class="form-control" asp-for="Command.Fullname" placeholder="نام کامل"/>
-                            </div>
+                            
                             <div class="mb-3">
                                 <label for="username" class="form-label">موبایل</label>
                                 <input type="text"
@@ -117,21 +114,7 @@
                                        asp-for="Command.Mobile"
                                        placeholder="موبایل"/>
                             </div>
-                            <div class="mb-3">
-                                <label asp-for="Command.Email" class="form-label">ایمیل</label>
-                                <input type="text" class="form-control" asp-for="Command.Email" placeholder="ایمیل"/>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Command.NationalCode" class="form-label">کد ملی</label>
-                                <input type="text" class="form-control" asp-for="Command.NationalCode" placeholder="کد ملی"/>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Command.Gender" class="form-label">جنسیت</label>
-                                <select asp-for="Command.Gender" class="form-select">
-                                    <option value="true">مرد</option>
-                                    <option value="false">زن</option>
-                                </select>
-                            </div>
+                            
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">رمز عبور</label>
                                 <div class="input-group input-group-merge">
@@ -143,18 +126,7 @@
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
-                            <div class="mb-3 form-password-toggle">
-                                <label class="form-label" for="password">تایید رمز عبور</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="password"
-                                           id="password"
-                                           class="form-control"
-                                           name="rePassword"
-                                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                           aria-describedby="password"/>
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                                </div>
-                            </div>
+                            
 
                             <div class="mb-3">
                                 <div class="form-check">
@@ -165,7 +137,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <button class="btn btn-primary d-grid w-100">ثبت نام</button>
+                            <button class="btn btn-primary d-grid w-100" id="submit-button" disabled>ثبت نام</button>
                         </form>
 
                         <p class="text-center">
@@ -185,6 +157,14 @@
     <script src="~/theme/assets/vendor/js/bootstrap.js"></script>
     <script src="~/theme/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="~/theme/assets/vendor/js/menu.js"></script>
-    <script src="~/theme/assets/js/main.js"></script>
+<script src="~/theme/assets/js/main.js"></script>
+<script>
+    var checkbox = document.getElementById("terms-conditions");
+    var submitButton = document.getElementById("submit-button");
+
+    checkbox.addEventListener("change", function () { 
+        submitButton.disabled = !checkbox.checked;
+    });
+</script>
 </body>
 </html>

@@ -31,7 +31,7 @@ public class LoginModel : PageModel
         }
 
         LoginMessage = result.Message;
-        return RedirectToPage();
+        return Page();
     }
 
     public IActionResult OnPostLogoutAsync()

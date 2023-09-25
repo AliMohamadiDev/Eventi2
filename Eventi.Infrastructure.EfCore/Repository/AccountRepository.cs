@@ -104,8 +104,13 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         _context.Accounts.Find(id).Activate();
     }
 
-    public  async Task<Account?> GetByAsync(string email)
+    public  async Task<Account?> GetByEmailAsync(string email)
     {
         return await _context.Accounts.FirstOrDefaultAsync(x => x.Email == email);
+    }
+
+    public  async Task<Account?> GetByMobileAsync(string mobile)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(x => x.Mobile == mobile);
     }
 }

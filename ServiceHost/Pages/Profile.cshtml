@@ -271,6 +271,11 @@
                         <label class="form-label" asp-for="EditCommand.FatherName">نام پدر</label>
                         <input type="text" asp-for="EditCommand.FatherName" class="form-control" value="@Model.Account.FatherName"/>
                     </div>
+                    <div class="col-12">
+                        <label class="form-label" asp-for="EditCommand.Email">ایمیل</label>
+                        <input type="text" data-val="true" data-val-required="وارد کردن ایمیل اجباری است" asp-for="EditCommand.Email" class="form-control" value="@Model.Account.Email" />
+                        <span asp-validation-for="EditCommand.Email"></span>
+                        </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" asp-for="EditCommand.ProfilePhoto">عکس پروفایل</label>
                         <input type="file" asp-for="EditCommand.ProfilePhoto" class="form-control" accept="image/*"/>

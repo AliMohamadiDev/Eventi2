@@ -7,7 +7,7 @@ namespace Eventi.Application.Contract.Account;
 
 public class RegisterAccount
 {
-    public string Fullname { get; set; }
+    public string? Fullname { get; set; }
 
     public string Password { get; set; }
     
