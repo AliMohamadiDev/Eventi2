@@ -123,7 +123,7 @@
                                            asp-for="Command.Password"
                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                            aria-describedby="password"/>
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    <span id="passwordToggle" class="input-group-text cursor-pointer"><i id="toggleIcon" class="bx bx-hide"></i></span>
                                 </div>
                             </div>
                             
@@ -166,5 +166,15 @@
         submitButton.disabled = !checkbox.checked;
     });
 </script>
+
+<script>
+    $("#passwordToggle").click(function() {
+        const passwordField = $("#Command_Password");
+        passwordField.attr("type", passwordField.attr("type") === "password" ? "text" : "password");
+
+        $("#toggleIcon").toggleClass("bx-show");
+    });
+</script>
+
 </body>
 </html>

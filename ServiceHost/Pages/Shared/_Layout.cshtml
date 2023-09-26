@@ -243,6 +243,16 @@
                             <div>سوالات متداول</div>
                         </a>
                     </li>
+                    
+                    @if (_authHelper.IsAuthenticated())
+                    {
+                        <li class="menu-item">
+                            <a class="btn btn-primary" asp-page="/CreateEvent">
+                                <i class="menu-icon tf-icons bx bx-pencil"></i>
+                                <div>برگزاری رویداد</div>
+                            </a>
+                        </li>
+                    }
                 </ul>
 
             </div>
@@ -346,6 +356,9 @@
 
 <script src="~/theme/assets/vendor/js/menu.js"></script>
 <script src="~/theme/assets/js/main.js"></script>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 @await RenderSectionAsync("Script", false)
 

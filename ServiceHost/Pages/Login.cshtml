@@ -126,7 +126,7 @@
                                            asp-for="Command.Password"
                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                            aria-describedby="password"/>
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    <span id="passwordToggle" class="input-group-text cursor-pointer"><i id="toggleIcon" class="bx bx-hide"></i></span>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -153,6 +153,14 @@
     <script src="~/theme/assets/vendor/js/bootstrap.js"></script>
     <script src="~/theme/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="~/theme/assets/vendor/js/menu.js"></script>
-    <script src="~/theme/assets/js/main.js"></script>
+<script src="~/theme/assets/js/main.js"></script>
+<script>
+    $("#passwordToggle").click(function() {
+        const passwordField = $("#Command_Password");
+        passwordField.attr("type", passwordField.attr("type") === "password" ? "text" : "password");
+
+        $("#toggleIcon").toggleClass("bx-show");
+    });
+</script>
 </body>
 </html>

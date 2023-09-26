@@ -6,25 +6,16 @@
 
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="card mb-4">
-            <div class="card-header">
-                <h3 class="card-title">ایجاد رویداد جدید</h3>
-            </div>
-            <div class="card-body">
-                <form method="post" enctype="multipart/form-data">
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.EventType" class="form-label">نوع رویداد</label>
-                                <select class="form-select" asp-for="Command.EventType">
-                                    <option value="0">انتخاب نوع رویداد...</option>
-                                    <option value="1">کارگاه</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+    <form method="post" enctype="multipart/form-data">
 
+        <div class="col-12">
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title">تست</h3>
+                </div>
+
+                <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -34,7 +25,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <select class="form-select" asp-items="Model.Categories">
@@ -45,10 +35,30 @@
                             <select class="form-select" asp-for="Command.SubcategoryId" asp-items="Model.Subcategories">
                                 <option value="0">زیرموضوع...</option>
                             </select>
+                            <span asp-validation-for="Command.SubcategoryId" class="error"></span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-12">
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title">تست</h3>
+                </div>
+
+                <div class="card-body">
                     <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.ImageCover" class="form-label">عکس</label>
+                                <input type="file" accept="image/*" class="form-control" asp-for="Command.ImageCover" />
+                                <span asp-validation-for="Command.ImageCover" class="error"></span>
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Command.DepartmentId" class="form-label">دپارتمان</label>
@@ -56,15 +66,6 @@
                                     <option value="0">دپارتمان...</option>
                                 </select>
                                 <span asp-validation-for="Command.DepartmentId" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label asp-for="Command.ImageCover" class="form-label">عکس</label>
-                                <input type="file" accept="image/*" class="form-control" asp-for="Command.ImageCover"/>
-                                <span asp-validation-for="Command.ImageCover" class="error"></span>
                             </div>
                         </div>
                     </div>
@@ -84,8 +85,47 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.PresenterIdList" class="form-label">ارائه دهندگان</label>
+                                <select asp-for="Command.PresenterIdList" asp-items="Model.Presenters" class="multi-select form-select" multiple="multiple" id="my_multi_select3">
+                                </select>
+                                <span asp-validation-for="Command.PresenterIdList" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Command.Tags" class="form-label">تگ ها</label>
+                                <input type="text" class="form-control" asp-for="Command.Tags">
+                                <span asp-validation-for="Command.Tags" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title">تست</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.EventType" class="form-label">نوع رویداد</label>
+                                <input type="text" class="form-control" asp-for="Command.EventType">
+                                <span asp-validation-for="Command.EventType" class="error"></span>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Command.SupportNumber" class="form-label">شماره پشتیبانی</label>
@@ -98,9 +138,9 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label asp-for="Command.Address" class="form-label">آدرس</label>
-                                <textarea class="form-control" asp-for="Command.Address" rows="5"></textarea>
-                                <span asp-validation-for="Command.Address" class="error"></span>
+                                <label asp-for="Command.Description" class="form-label">توضیحات</label>
+                                <textarea class="form-control" id="BodyContent" asp-for="Command.Description" rows="5"></textarea>
+                                <span asp-validation-for="Command.Description" class="error"></span>
                             </div>
                         </div>
                     </div>
@@ -108,9 +148,9 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label asp-for="Command.Description" class="form-label">توضیحات</label>
-                                <textarea class="form-control" id="BodyContent" asp-for="Command.Description" rows="5"></textarea>
-                                <span asp-validation-for="Command.Description" class="error"></span>
+                                <label asp-for="Command.Address" class="form-label">آدرس</label>
+                                <textarea class="form-control" asp-for="Command.Address" rows="5"></textarea>
+                                <span asp-validation-for="Command.Address" class="error"></span>
                             </div>
                         </div>
                     </div>
@@ -131,33 +171,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label asp-for="Command.Tags" class="form-label">تگ ها</label>
-                                <input type="text" class="form-control" asp-for="Command.Tags">
-                                <span asp-validation-for="Command.Tags" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.PresenterIdList" class="form-label">ارائه دهندگان</label>
-                                <select asp-for="Command.PresenterIdList" asp-items="Model.Presenters" class="multi-select form-select" multiple="multiple" id="my_multi_select3">
-                                </select>
-                                <span asp-validation-for="Command.PresenterIdList" class="error"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-success">ایجاد</button>
-                    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div id="ticketsContainer">
+            <button type="button" id="addTicket" class="btn btn-label-primary mb-4">افزودن بلیت</button>
+        </div>
+
+        <button type="submit" class="btn btn-success">ایجاد</button>
+        <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+    </form>
 </div>
 
 @section Css
@@ -180,6 +204,7 @@
 
     <script src="~/AdminTheme/assets/costum/js/persian-date.min.js"></script>
     <script src="~/AdminTheme/assets/costum/js/persian-datepicker.min.js"></script>
+    <script type="text/javascript" src="~/AdminTheme/assets/costum/js/add-ticket-create-event.js"></script>
 
     <script>
         $('.persianDateInput').persianDatepicker({
