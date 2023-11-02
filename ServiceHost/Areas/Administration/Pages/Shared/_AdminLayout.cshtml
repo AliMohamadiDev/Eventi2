@@ -128,12 +128,6 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">موضوعات</span>
             </li>
-            <li class="menu-item @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/EventCategories") ? "active" : "")">
-                <a asp-page="/Events/EventCategories/Index" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-collection"></i>
-                    <div data-i18n="Basic">موضوعات اصلی</div>
-                </a>
-            </li>
             <li class="menu-item  @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/EventSubcategories") ? "active" : "")">
                 <a asp-page="/Events/EventSubcategories/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-collection"></i>

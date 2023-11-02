@@ -5,8 +5,7 @@ namespace ServiceHost.Pages;
 
 public class EventCategoryModel : PageModel
 {
-    public EventCategoryQueryModel EventCategory;
-    public List<EventCategoryQueryModel> EventCategories;
+    public EventSubcategoryQueryModel EventCategory;
     public List<EventSubcategoryQueryModel> EventSubcategories;
 
     private readonly IEventCategoryQuery _eventCategoryQuery;
@@ -18,8 +17,7 @@ public class EventCategoryModel : PageModel
 
     public async Task OnGetAsync(string id)
     {
-        EventCategory = await _eventCategoryQuery.GetEventCategoryAsync(id);
-        EventCategories = await _eventCategoryQuery.GetEventCategoriesAsync();
+        EventCategory = await _eventCategoryQuery.GetEventSubcategoryAsync(id);
         EventSubcategories = await _eventCategoryQuery.GetEventSubcategoriesAsync();
     }
 }

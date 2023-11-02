@@ -16,7 +16,6 @@ public class EventiContext : DbContext
     public DbSet<Account> Accounts { get; set; }
     public DbSet<Role> Roles { get; set; }
     public DbSet<Event> Events { get; set; }
-    public DbSet<EventCategory> EventCategories { get; set; }
     public DbSet<EventSubcategory> EventSubcategories { get; set; }
     public DbSet<Department> Departments { get; set; }
     public DbSet<Presenter> Presenters { get; set; }

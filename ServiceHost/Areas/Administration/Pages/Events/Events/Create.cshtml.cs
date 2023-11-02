@@ -1,6 +1,5 @@
 using Eventi.Application.Contract.Department;
 using Eventi.Application.Contract.Event;
-using Eventi.Application.Contract.EventCategory;
 using Eventi.Application.Contract.EventSubcategory;
 using Eventi.Application.Contract.Presenter;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +11,6 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events;
 public class CreateModel : PageModel
 {
     public CreateEvent Command;
-    public SelectList Categories;
     public SelectList Subcategories;
     public SelectList Presenters;
     public SelectList Departments;
@@ -20,23 +18,18 @@ public class CreateModel : PageModel
     private readonly IEventApplication _eventApplication;
     private readonly IPresenterApplication _presenterApplication;
     private readonly IDepartmentApplication _departmentApplication;
-    private readonly IEventCategoryApplication _eventCategoryApplication;
     private readonly IEventSubcategoryApplication _eventSubcategoryApplication;
 
-    public CreateModel(IEventApplication eventApplication, IEventCategoryApplication eventCategoryApplication, IEventSubcategoryApplication eventSubcategoryApplication, IDepartmentApplication departmentApplication, IPresenterApplication presenterApplication)
+    public CreateModel(IEventApplication eventApplication, IEventSubcategoryApplication eventSubcategoryApplication, IDepartmentApplication departmentApplication, IPresenterApplication presenterApplication)
     {
         _eventApplication = eventApplication;
         _presenterApplication = presenterApplication;
         _departmentApplication = departmentApplication;
-        _eventCategoryApplication = eventCategoryApplication;
         _eventSubcategoryApplication = eventSubcategoryApplication;
     }
 
     public async Task OnGet()
     {
-        var categories = await _eventCategoryApplication.GetEventCategoriesAsync();
-        Categories = new SelectList(categories, "CategoryId", "CategoryName");
-
         var subcategories = await _eventSubcategoryApplication.GetEventSubcategoriesAsync();
         Subcategories= new SelectList(subcategories, "SubcategoryId", "SubcategoryName", "CategoryId");
 

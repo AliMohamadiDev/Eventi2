@@ -23,7 +23,7 @@ public class EventSubcategoryApplication : IEventSubcategoryApplication
 
         var slug = command.SubcategoryName.Slugify();
 
-        var eventSubcategory = new EventSubcategory(command.SubcategoryName, command.CategoryId, slug);
+        var eventSubcategory = new EventSubcategory(command.SubcategoryName, slug);
 
         await _eventSubcategoryRepository.CreateAsync(eventSubcategory);
         await _eventSubcategoryRepository.SaveChangesAsync();
@@ -47,7 +47,7 @@ public class EventSubcategoryApplication : IEventSubcategoryApplication
 
         var slug = command.SubcategoryName.Slugify();
 
-        eventSubcategory.Edit(command.SubcategoryName, command.CategoryId, slug);
+        eventSubcategory.Edit(command.SubcategoryName, slug);
 
         await _eventSubcategoryRepository.SaveChangesAsync();
         return operation.Succeeded();

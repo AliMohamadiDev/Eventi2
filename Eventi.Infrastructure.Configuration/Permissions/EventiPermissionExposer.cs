@@ -51,7 +51,7 @@ public class EventiPermissionExposer : IPermissionExposer
             {
                 "Role", new List<PermissionDto>
                 {
-                    new(EventiPermissions.GetRole, "نمایش نقش"),
+                    new(EventiPermissions.GetRole, "نمایش نقش ها"),
                     new(EventiPermissions.CreateRole, "ایجاد نقش"),
                     new(EventiPermissions.UpdateRole, "ویرایش نقش")
                 }

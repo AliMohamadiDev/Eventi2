@@ -18,7 +18,6 @@ using Eventi.Application.Contract.ArticleCategory;
 using Eventi.Application.Contract.Department;
 using Eventi.Application.Contract.DiscountCode;
 using Eventi.Application.Contract.Event;
-using Eventi.Application.Contract.EventCategory;
 using Eventi.Application.Contract.EventSubcategory;
 using Eventi.Application.Contract.Order;
 using Eventi.Application.Contract.Presenter;
@@ -51,10 +50,7 @@ public class EventiBootstrapper
 
         services.AddTransient<IRoleApplication, RoleApplication>();
         services.AddTransient<IRoleRepository, RoleRepository>();
-
-        services.AddTransient<IEventCategoryApplication, EventCategoryApplication>();
-        services.AddTransient<IEventCategoryRepository, EventCategoryRepository>();
-
+        
         services.AddTransient<IEventSubcategoryApplication, EventSubcategoryApplication>();
         services.AddTransient<IEventSubcategoryRepository, EventSubcategoryRepository>();
 

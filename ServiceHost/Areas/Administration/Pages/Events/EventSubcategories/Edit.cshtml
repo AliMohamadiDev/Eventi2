@@ -28,14 +28,6 @@
                             </div>
                         </div>*@
                     </div>
-                    <div class="row mb-4">
-                        <div class="mb-4 col-md-6">
-                            <select class="form-select" asp-for="Command.CategoryId" asp-items="Model.EventCategories">
-                                <option value="0">موضوع اصلی...</option>
-                            </select>
-                        </div>
-                        <span asp-validation-for="Command.CategoryId" class="error"></span>
-                    </div>
 
                     <input type="hidden" asp-for="Command.SubcategoryId" value="@Model.Command.SubcategoryId" />
                     <button type="submit" class="btn btn-success">ویرایش</button>

@@ -14,10 +14,6 @@ public class EventSubcategoryMapping : IEntityTypeConfiguration<EventSubcategory
         builder.Property(x => x.SubcategoryName).HasMaxLength(255).IsRequired();
         builder.Property(x => x.Slug).HasMaxLength(360).IsRequired();
 
-        builder.HasOne(x => x.Category)
-            .WithMany(x => x.EventSubcategories)
-            .HasForeignKey(x => x.CategoryId);
-
         builder.HasMany(x => x.Events)
             .WithOne(x => x.Subcategory)
             .HasForeignKey(x => x.SubcategoryId);

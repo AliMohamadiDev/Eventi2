@@ -13,13 +13,7 @@ public class EventSubcategoryRepository : RepositoryBase<long, EventSubcategory>
     {
         _context = context;
     }
-
-    public async Task<EventSubcategory> GetSubcategoryWithCategoryAsync(long id)
-    {
-        return (await _context.EventSubcategories
-            .Include(x => x.Category)
-            .FirstOrDefaultAsync(x => x.SubcategoryId == id))!;
-    }
+    
 
     public async Task<List<EventSubcategoryViewModel>> GetEventSubcategoriesAsync()
     {
@@ -28,8 +22,6 @@ public class EventSubcategoryRepository : RepositoryBase<long, EventSubcategory>
             SubcategoryId = x.SubcategoryId,
             SubcategoryName = x.SubcategoryName,
             CreationDate = x.CreationDate.ToString(),
-            CategoryId = x.CategoryId,
-            Category = x.Category.CategoryName
         }).ToListAsync();
     }
 
@@ -45,7 +37,6 @@ public class EventSubcategoryRepository : RepositoryBase<long, EventSubcategory>
             SubcategoryId = x.SubcategoryId,
             SubcategoryName = x.SubcategoryName,
             Slug = x.Slug,
-            CategoryId = x.CategoryId
         }).FirstOrDefaultAsync(x => x.SubcategoryId == id);
     }
 
@@ -62,18 +53,11 @@ public class EventSubcategoryRepository : RepositoryBase<long, EventSubcategory>
             SubcategoryId = x.SubcategoryId,
             SubcategoryName = x.SubcategoryName,
             CreationDate = x.CreationDate.ToString(),
-            CategoryId = x.CategoryId,
-            Category = x.Category.CategoryName
         });
 
         if (!string.IsNullOrWhiteSpace(searchModel.Name))
         {
             query = query.Where(x => x.SubcategoryName.Contains(searchModel.Name));
-        }
-
-        if (searchModel.CategoryId != 0)
-        {
-            query = query.Where(x => x.CategoryId == searchModel.CategoryId);
         }
 
         return await query.OrderByDescending(x => x.SubcategoryId).ToListAsync();

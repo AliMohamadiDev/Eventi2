@@ -27,11 +27,6 @@
                     <input class="form-control" asp-for="SearchModel.Name" placeholder="نام زیرموضوع">
                 </div>
                 <div class="col-md-3">
-                    <select class="form-select" asp-for="SearchModel.CategoryId" asp-items="Model.EventCategories">
-                        <option value="0">موضوع اصلی...</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
                     <button type="submit" class="btn btn-primary d-inline-block">جستجو</button>
                     <a class="btn btn-outline-primary d-inline-block" asp-page="./Index">مشاهده همه</a>
                 </div>
@@ -48,7 +43,6 @@
             <tr>
                 <th>#</th>
                 <th>نام</th>
-                <th>گروه</th>
                 <th>تاریخ ایجاد</th>
                 <th>عملیات</th>
             </tr>
@@ -59,7 +53,6 @@
                 <tr>
                     <td>@item.SubcategoryId</td>
                     <td>@item.SubcategoryName</td>
-                    <td>@item.Category</td>
                     <td>@item.CreationDate.ParseJsonDate(CultureInfo.CurrentCulture).ToFarsi()</td>
                     <td>
                         <a class="" asp-page="Edit" asp-route-id="@item.SubcategoryId">
