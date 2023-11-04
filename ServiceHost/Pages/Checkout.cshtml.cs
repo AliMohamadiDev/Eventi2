@@ -7,6 +7,7 @@ using Eventi.Domain.EventAgg;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace ServiceHost.Pages;
 
@@ -14,6 +15,8 @@ namespace ServiceHost.Pages;
 public class CheckoutModel : PageModel
 {
     public Ticket Ticket;
+    [BindProperty]
+    public string Code { get; set; }
 
     private readonly IAuthHelper _authHelper;
     private readonly ITicketApplication _ticketApplication;
@@ -58,5 +61,61 @@ public class CheckoutModel : PageModel
 
         result = result.Failed("پرداخت ناموفق بود.");
         return RedirectToPage("/PaymentResult", result);
+    }
+
+    public IActionResult OnPostApplyDiscount()
+    {
+        // اینجا می‌توانید کد تخفیف را بررسی کرده و میزان تخفیف را محاسبه کنید.
+        // به عنوان مثال، اگر کد تخفیف "DISCOUNT123" باشد:
+        if (Code == "DISCOUNT123")
+        {
+            // میزان تخفیف 20٪
+            return new JsonResult(new { success = true, discountAmount = 20 });
+        }
+        else
+        {
+            return new JsonResult(new { success = false });
+        }
+    }
+
+    public async Task<IActionResult> CheckCode(string code)
+    {
+
+        if (code == "DISCOUNT123")
+        {
+            // میزان تخفیف 20٪
+            return new JsonResult(new { success = true, discountAmount = 20 });
+        }
+        else
+        {
+            return new JsonResult(new { success = false });
+        }
+
+        // Check if the discount code is in the database
+        /*var discount = await _context.Discounts.FirstOrDefaultAsync(d => d.Code == code);
+
+        // If the discount code is found, return it
+        if (discount != null)
+        {
+            return Json(new DiscountModel
+            {
+                Code = discount.Code,
+                Price = discount.Price,
+                Discount = discount.Discount
+            });
+        }
+
+        // If the discount code is not found, return an error
+        return Json(new { success = false });*/
+    }
+
+    public IActionResult OnGetHelloWorld()
+    {
+        return new JsonResult("Hello, World!");
+    }
+    public JsonResult OnPostGetData()
+    {
+        var data = new { message = "داده‌ها از متد OnPostGetData دریافت شدند" };
+        return new JsonResult(data);
     }
 }
