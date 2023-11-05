@@ -1,3 +1,5 @@
+using _0_Framework.Infrastructure;
+using Eventi.Application.Contract.Account;
 using Eventi.Application.Contract.Department;
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventSubcategory;
@@ -14,16 +16,19 @@ public class CreateModel : PageModel
     public SelectList Subcategories;
     public SelectList Presenters;
     public SelectList Departments;
+    public SelectList EventAccounts;
 
     private readonly IEventApplication _eventApplication;
+    private readonly IAccountApplication _accountApplication;
     private readonly IPresenterApplication _presenterApplication;
     private readonly IDepartmentApplication _departmentApplication;
     private readonly IEventSubcategoryApplication _eventSubcategoryApplication;
 
-    public CreateModel(IEventApplication eventApplication, IEventSubcategoryApplication eventSubcategoryApplication, IDepartmentApplication departmentApplication, IPresenterApplication presenterApplication)
+    public CreateModel(IEventApplication eventApplication, IEventSubcategoryApplication eventSubcategoryApplication, IDepartmentApplication departmentApplication, IPresenterApplication presenterApplication, IAccountApplication accountApplication)
     {
         _eventApplication = eventApplication;
         _presenterApplication = presenterApplication;
+        _accountApplication = accountApplication;
         _departmentApplication = departmentApplication;
         _eventSubcategoryApplication = eventSubcategoryApplication;
     }
@@ -38,6 +43,9 @@ public class CreateModel : PageModel
 
         var presenters = await _presenterApplication.GetPresentersAsync();
         Presenters = new SelectList(presenters, "Id", "Name");
+
+        var eventAccounts = await _accountApplication.GetPresenterAccountsAsync();
+        EventAccounts = new SelectList(eventAccounts, "Id", "Fullname");
     }
 
     public async Task<IActionResult> OnPostAsync(CreateEvent command)

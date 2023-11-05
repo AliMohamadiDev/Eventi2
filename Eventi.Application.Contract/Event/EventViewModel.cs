@@ -20,4 +20,5 @@ public class EventViewModel
     public string? EndTime { get; set; }
     public bool IsConfirmed { get; set; }
     public List<long> PresenterIdList { get; set; } = new();
+    public List<long> AccountIdList { get; set; } = new();
 }

@@ -7,6 +7,7 @@ public interface IAccountApplication
     void Logout();
     Task<EditAccount?> GetDetailsAsync(long id);
     Task<List<AccountViewModel>> GetAccountsAsync();
+    Task<List<AccountViewModel>> GetPresenterAccountsAsync();
     Task<OperationResult> LoginAsync(Login command);
     Task<OperationResult> EditAsync(EditAccount command);
     Task<OperationResult> RegisterAsync(RegisterAccount command);

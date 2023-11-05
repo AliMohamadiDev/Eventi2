@@ -9,6 +9,7 @@ public interface IAccountRepository : IRepository<long, Account>
     Task<Account?> GetByMobileAsync(string username);
     Task<EditAccount?> GetDetailsAsync(long id);
     Task<List<AccountViewModel>> GetAccountsAsync();
+    Task<List<AccountViewModel>> GetPresenterAccountsAsync();
     Task<List<AccountViewModel>> SearchAsync(AccountSearchModel searchModel);
     Task<Account> GetByIdAsync(long id);
     void UpdateAccount(Account account);

@@ -90,6 +90,11 @@ public class AccountApplication : IAccountApplication
         return await _accountRepository.GetAccountsAsync();
     }
 
+    public async Task<List<AccountViewModel>> GetPresenterAccountsAsync()
+    {
+        return await _accountRepository.GetPresenterAccountsAsync();
+    }
+
     public async Task<OperationResult> LoginAsync(Login command)
     {
         var operation = new OperationResult();

@@ -1,3 +1,4 @@
+using Eventi.Application.Contract.Account;
 using Eventi.Application.Contract.Department;
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventSubcategory;
@@ -13,19 +14,22 @@ public class EditModel : PageModel
     public EditEvent Command;
     public SelectList Subcategories;
     public SelectList Departments;
+    public List<SelectListItem> EventAccounts;
     public List<SelectListItem> Presenters;
 
     private readonly IEventApplication _eventApplication;
+    private readonly IAccountApplication _accountApplication;
     private readonly IPresenterApplication _presenterApplication;
     private readonly IDepartmentApplication _departmentApplication;
     private readonly IEventSubcategoryApplication _eventSubcategoryApplication;
 
-    public EditModel(IEventApplication eventApplication, IEventSubcategoryApplication eventSubcategoryApplication, IDepartmentApplication departmentApplication, IPresenterApplication presenterApplication)
+    public EditModel(IEventApplication eventApplication, IEventSubcategoryApplication eventSubcategoryApplication, IDepartmentApplication departmentApplication, IPresenterApplication presenterApplication, IAccountApplication accountApplication)
     {
-        _eventApplication = eventApplication;
         _eventSubcategoryApplication = eventSubcategoryApplication;
         _departmentApplication = departmentApplication;
         _presenterApplication = presenterApplication;
+        _accountApplication = accountApplication;
+        _eventApplication = eventApplication;
     }
 
     public async Task OnGet(long id)
@@ -44,6 +48,14 @@ public class EditModel : PageModel
         {
             bool selected = Command.PresenterIdList.Contains(item.Id);
             Presenters.Add(new SelectListItem(item.Name, item.Id.ToString(), selected: selected));
+        }
+
+        var eventAccounts = await _accountApplication.GetPresenterAccountsAsync();
+        EventAccounts = new List<SelectListItem>();
+        foreach (var item in eventAccounts)
+        {
+            bool selected = Command.AccountIdList.Contains(item.Id);
+            EventAccounts.Add(new SelectListItem(item.Fullname, item.Id.ToString(), selected: selected));
         }
     }
 

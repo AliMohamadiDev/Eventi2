@@ -25,7 +25,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <select class="form-select" asp-for="Command.SubcategoryId" asp-items="Model.Subcategories">
-                                <option value="0">زیرموضوع...</option>
+                                <option value="0">موضوع...</option>
                             </select>
                             <span asp-validation-for="Command.SubcategoryId" class="error"></span>
                         </div>
@@ -81,6 +81,16 @@
                                 <select asp-for="Command.PresenterIdList" asp-items="Model.Presenters" class="multi-select form-select" multiple="multiple" id="my_multi_select3">
                                 </select>
                                 <span asp-validation-for="Command.PresenterIdList" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.AccountIdList" class="form-label">اساتید ارائه دهنده</label>
+                                <select asp-for="Command.AccountIdList" asp-items="Model.EventAccounts" id="select2Multiple" class="select2 form-select" multiple>
+                                </select>
+                                <span asp-validation-for="Command.AccountIdList" class="error"></span>
                             </div>
                         </div>
                     </div>
@@ -182,6 +192,7 @@
     <script src="~/AdminTheme/assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
     <script src="~/AdminTheme/assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="~/AdminTheme/assets/vendor/libs/select2/select2.js"></script>
+    <script src="~/AdminTheme/assets/js/forms-selects.js"></script>
     <script src="~/AdminTheme/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
     <script src="~/AdminTheme/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
     <script src="~/AdminTheme/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>

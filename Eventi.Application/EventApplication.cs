@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Application;
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.Ticket;
+using Eventi.Domain.AccountAgg;
 using Eventi.Domain.EventAgg;
 
 namespace Eventi.Application;
@@ -8,14 +9,16 @@ namespace Eventi.Application;
 public class EventApplication : IEventApplication
 {
     private readonly IPresenterRepository _presenterRepository;
-    private readonly IEventRepository _eventRepository;
+    private readonly IAccountRepository _accountRepository;
     private readonly ITicketApplication _ticketApplication;
+    private readonly IEventRepository _eventRepository;
     private readonly IFileUploader _fileUploader;
 
-    public EventApplication(IEventRepository eventRepository, IFileUploader fileUploader, IPresenterRepository presenterRepository, ITicketApplication ticketApplication)
+    public EventApplication(IEventRepository eventRepository, IFileUploader fileUploader, IPresenterRepository presenterRepository, ITicketApplication ticketApplication, IAccountRepository accountRepository)
     {
         _presenterRepository = presenterRepository;
         _ticketApplication = ticketApplication;
+        _accountRepository = accountRepository;
         _eventRepository = eventRepository;
         _fileUploader = fileUploader;
     }
@@ -50,7 +53,14 @@ public class EventApplication : IEventApplication
         {
             presenters.Add(_presenterRepository.GetPresenter(presenterId));
         }
-        await _eventRepository.EditEventWithPresentersAsync(Event, presenters);
+
+        var accounts = new List<Account>();
+        foreach (var accountId in command.AccountIdList)
+        {
+            accounts.Add(await _accountRepository.GetByIdAsync(accountId));
+        }
+
+        await _eventRepository.EditEventWithPresentersAsync(Event, presenters, accounts);
 
         await _eventRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -75,7 +85,13 @@ public class EventApplication : IEventApplication
             presenters.Add(_presenterRepository.GetPresenter(presenterId));
         }
 
-        await _eventRepository.CreateEventWithPresentersAsync(Event, presenters);
+        var accounts = new List<Account>();
+        foreach (var accountId in command.AccountIdList)
+        {
+            accounts.Add(await _accountRepository.GetByIdAsync(accountId));
+        }
+
+        await _eventRepository.CreateEventWithPresentersAsync(Event, presenters, accounts);
         await _eventRepository.SaveChangesAsync();
 
         var eventId = Event.Id;

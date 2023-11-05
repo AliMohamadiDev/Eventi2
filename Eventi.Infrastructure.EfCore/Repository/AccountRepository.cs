@@ -36,6 +36,17 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         }).ToListAsync();
     }
 
+    public async Task<List<AccountViewModel>> GetPresenterAccountsAsync()
+    {
+        return await _context.Accounts
+            .Where(x => x.RoleId == 1 || x.RoleId == 4)
+            .Select(x => new AccountViewModel
+            {
+                Id = x.Id,
+                Fullname = x.Fullname,
+            }).ToListAsync();
+    }
+
     public async Task<List<AccountViewModel>> SearchAsync(AccountSearchModel searchModel)
     {
         var query = _context.Accounts

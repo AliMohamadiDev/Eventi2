@@ -24,6 +24,8 @@ public class CreateEvent
     
     public List<long> PresenterIdList { get; set; }
 
+    public List<long> AccountIdList { get; set; }
+
     [Range(1, double.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
     public long DepartmentId { get; set; }
 
