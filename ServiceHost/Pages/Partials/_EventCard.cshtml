@@ -1,81 +1,7 @@
 ﻿@using _0_Framework.Application
 @model _01_EventiQuery.Contracts.Event.EventQueryModel
 
-@*<div class="col-md-4 col-lg-3">
-    <div class="card h-100">
-        <img class="card-img-top" src="~/Pictures/@Model.ImageCover" alt="@Model.ImageCoverAlt" title="@Model.ImageCoverTitle"/>
-        <div class="card-body">
-            <h5 class="card-title">
-                <a asp-page="./Event" asp-route-id="@Model.Slug">
-                    @Model.Name
-                </a>
-            </h5>
 
-            @{
-                if (Model.Tickets != null)
-                {
-                    if (Model.Tickets.FirstOrDefault() != null)
-                    {
-                        <p class="card-text">
-                            <i class="fa fa-ticket"></i>
-                            @Model.Tickets.FirstOrDefault().Price.ToMoney().ToPersianNumber()
-                        </p>
-                    }
-                    else
-                    {
-                        <p class="card-text">
-                            <i class="fa fa-ticket"></i>
-                            رایگان
-                        </p>
-                    }
-                }
-                else
-                {
-                    <p class="card-text">
-                        <i class="fa fa-ticket"></i>
-                        رایگان
-                    </p>
-                }
-            }
-            @{
-                if (Model.Tickets != null)
-                {
-                    if (Model.Tickets.FirstOrDefault() != null)
-                    {
-                        <p class="card-text">
-                            <i class="fa fa-clock"></i>
-                            از
-                            @Model.Tickets.FirstOrDefault().StartTime.ToFarsi().ToPersianNumber()
-                            تا
-                            @Model.Tickets.FirstOrDefault().EndTime.ToFarsi().ToPersianNumber()
-                        </p>
-                    }
-                    else
-                    {
-                        <p class="card-text">
-                            <i class="fa fa-clock"></i>
-                            اعلام نشده
-                        </p>
-                    }
-                }
-                else
-                {
-                    <p class="card-text">
-                        <i class="fa fa-clock"></i>
-                        اعلام نشده
-                    </p>
-                }
-            }
-
-            <a class="card-text" asp-page="./Department" asp-route-id="@Model.DepartmentSlug" class="btn btn-primary">
-                <i class="fa fa-building"></i>
-                @Model.DepartmentName
-            </a>
-        </div>
-    </div>
-</div>*@
-
-@* ------------------------------------------------------- *@
 @{
     string price = "";
     var ticket = Model.Tickets.OrderBy(x => x.Price).FirstOrDefault();
@@ -95,62 +21,38 @@
 
 <div class="col-md-6 col-xl-4 mb-4">
     <div class="card h-100">
-        <div class="card-header flex-grow-0">
-            <div class="d-flex">
-                <div class="avatar flex-shrink-0 me-3">
-                    <a asp-page="./Department" asp-route-id="@Model.DepartmentSlug">
-                        <img src="~/Pictures/@Model.DepartmentLogo" alt="Department Logo" title="Department Logo" class="rounded-circle">
-                    </a>
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
-                    <div class="me-2">
-                        <a asp-page="./Event" asp-route-id="@Model.Slug">
-                            <h5 class="mb-0">@Model.Name</h5>
-                        </a>
-                        <small class="text-muted">@Model.StartTime.ToPersianDate()</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <img class="img-fluid" src="~/Pictures/@Model.ImageCover" alt="Card image cap">
-        @*<div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
-            <h5 class="mb-0 text-dark">@Model.StartTime.Day</h5>
-            <span class="text-primary">@Tools.GetPersianMonthName(Model.StartTime.Month)</span>
+        @*<div class="card-header flex-grow-0">
+            
         </div>*@
+            <img class="img-fluid" src="~/Pictures/@Model.ImageCover" alt="Card image cap">
         <div class="card-body">
             <h5 class="text-truncate">
-                <i class="fa fa-location-dot"></i>
-                آدرس: @(Model.Address ?? "مجازی")
+                <a asp-page="./Event" asp-route-id="@Model.Slug">
+                    <h5 class="mb-0">@Model.Name</h5>
+                </a>
+            </h5>
+            <p class="text-truncate">
+                @Html.Raw(Model.Description)
+            </p>
+            <h5 class="text-truncate">
+                زمان برگزاری: @Model.StartTime.ToPersianDate()
             </h5>
             <h5 class="text-truncate">
-                <i class="fa fa-ticket"></i>
-                قیمت: @price
+                مکان برگزاری: @(Model.Address ?? "مجازی")
             </h5>
-            <div class="d-flex gap-2">
-                <span class="badge bg-label-primary">@Model.Subcategory</span>
-            </div>
-            <div class="d-flex my-3">
-                @*<ul class="list-unstyled m-0 d-flex align-items-center avatar-group">
-                    @foreach (var p in Model.Presenters)
-                    {
-                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar pull-up" aria-label="Vinnie Mostowy" data-bs-original-title="Vinnie Mostowy">
-                            <img class="rounded-circle" src="~/Pictures/@p.Logo" alt="Avatar">
-                        </li>
-                    }
-                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar pull-up" aria-label="Vinnie Mostowy" data-bs-original-title="Vinnie Mostowy">
-                        <img class="rounded-circle" src="~/Pictures/@Model.ImageCover" alt="Avatar">
-                    </li>
-                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar pull-up" aria-label="Allen Rieske" data-bs-original-title="Allen Rieske">
-                        <img class="rounded-circle" src="~/Pictures/@Model.ImageCover" alt="Avatar">
-                    </li>
-                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar pull-up" aria-label="Julee Rossignol" data-bs-original-title="Julee Rossignol">
-                        <img class="rounded-circle" src="~/Pictures/@Model.ImageCover" alt="Avatar">
-                    </li>
-                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar pull-up" aria-label="Darcey Nooner" data-bs-original-title="Darcey Nooner">
-                        <img class="rounded-circle" src="~/Pictures/@Model.ImageCover" alt="Avatar">
-                    </li>
-                </ul>*@
-                <a asp-page="./Event" asp-route-id="@Model.Slug" class="btn btn-primary ms-auto" role="button">عضویت</a>
+            <hr/>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="text-truncate">
+                        قیمت: @price
+                    </div>
+                    <div class="d-flex gap-2">
+                        <span class="badge bg-label-primary">@Model.Subcategory</span>
+                    </div>
+                </div>
+                <div class="d-flex my-3">
+                    <a asp-page="./Event" asp-route-id="@Model.Slug" class="btn btn-primary ms-auto" role="button">عضویت</a>
+                </div>
             </div>
         </div>
     </div>

@@ -1,9 +1,11 @@
-using _0_Framework.Application;
-using Eventi.Application.Contract.Event;
+using Eventi.Infrastructure.Configuration.Permissions;
 using Eventi.Application.Contract.EventSubcategory;
-using Microsoft.AspNetCore.Mvc;
+using Eventi.Application.Contract.Event;
+using _0_Framework.Infrastructure;
+using _0_Framework.Application;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.Areas.Administration.Pages.Events.Events
 {
@@ -15,6 +17,7 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
         public List<EventViewModel> Events;
         public SelectList Subcategories;
         private readonly IAuthHelper _authHelper;
+        public string UserRole;
 
         private readonly IEventApplication _eventApplication;
         private readonly IEventSubcategoryApplication _eventSubcategoryApplication;
@@ -29,6 +32,7 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
         public async Task OnGet(EventSearchModel searchModel)
         {
             var userRole = _authHelper.CurrentAccountRole();
+            UserRole = userRole;
             var userId = _authHelper.CurrentAccountId();
 
             Events = await _eventApplication.SearchAsync(searchModel, userRole, userId);
@@ -37,6 +41,7 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
             Subcategories = new SelectList(subcategories, "SubcategoryId", "SubcategoryName");
         }
 
+        //[NeedPermission(EventiPermissions.ConfirmEvent)]
         public async Task<IActionResult> OnGetCancelAsync(long id)
         {
             var result = await _eventApplication.CancelAsync(id);
@@ -48,6 +53,8 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
             Message = result.Message;
             return RedirectToPage("./Index");
         }
+
+        //[NeedPermission(EventiPermissions.ConfirmEvent)]
         public async Task<IActionResult> OnGetConfirmAsync(long id)
         {
             var result = await _eventApplication.ConfirmAsync(id);

@@ -1,4 +1,5 @@
 ﻿@page
+@using _0_Framework.Infrastructure
 @model ServiceHost.Areas.Administration.Pages.Events.Events.IndexModel
 @{
     ViewData["title"] = "مدیریت رویداد ها";
@@ -82,19 +83,22 @@
                             <span class="badge bg-label-danger">تایید نشده</span>
                         }
                     </td>
-                    
+
                     <td>
                         <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-label-primary">
                             ویرایش
                         </a>
 
-                        @if (item.IsConfirmed)
+                        @if (Model.UserRole == Roles.Administration)
                         {
-                            <a asp-page="./Index" asp-page-handler="Cancel" asp-route-id="@item.Id" class="btn btn-label-danger">کنسل</a>
-                        }
-                        else
-                        {
-                            <a asp-page="./Index" asp-page-handler="Confirm" asp-route-id="@item.Id" class="btn btn-label-success">تایید</a>
+                            @if (item.IsConfirmed)
+                            {
+                                <a asp-page="./Index" asp-page-handler="Cancel" asp-route-id="@item.Id" class="btn btn-label-danger">کنسل</a>
+                            }
+                            else
+                            {
+                                <a asp-page="./Index" asp-page-handler="Confirm" asp-route-id="@item.Id" class="btn btn-label-success">تایید</a>
+                            }
                         }
                     </td>
                 </tr>
@@ -113,9 +117,9 @@
 @section Script
 {
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#Datatable').DataTable({
-                order: [[ 0, 'desc' ]]
+                order: [[0, 'desc']]
             });
         });
     </script>

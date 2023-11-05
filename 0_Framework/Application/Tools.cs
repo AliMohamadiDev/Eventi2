@@ -168,7 +168,16 @@ namespace _0_Framework.Application
 
             string dayOfWeekPersian = GetPersianDayOfWeek(dayOfWeek);
             string monthName = GetPersianMonthName(month);
-            return $"{dayOfWeekPersian} {day} {monthName} {year} ساعت {hour:D2}:{minute:D2}";
+            return $"{dayOfWeekPersian} {day.ToString().ToPersianNumber()} {monthName} {year.ToString().ToPersianNumber()}";
+        }
+
+        public static string GenerateRandomString(int length)
+        {
+            var random = new Random();
+            const string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(characters, length)
+                .Select(s => s[random.Next(s.Length)])
+                .ToArray());
         }
     }
 }

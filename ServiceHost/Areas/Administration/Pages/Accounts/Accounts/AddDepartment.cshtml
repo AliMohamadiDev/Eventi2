@@ -4,24 +4,28 @@
     ViewData["Title"] = "انتخاب دپارتمان ها";
 }
 
-<h1>Select Departments</h1>
+<div class="card mb-4">
+    <h4 class="card-header">انتخاب دپارتمان ها</h4>
+    <div class="card-body">
+    
+        <form method="post">
+            <div class="form-group mb-4">
+                <label asp-for="Account.Fullname" class="form-label">نام کاربر</label>
+                <input asp-for="Account.Fullname" class="form-control" readonly />
+            </div>
 
-<form method="post">
-    <div class="form-group mb-4">
-        <label asp-for="Account.Fullname" class="form-label">نام کاربر</label>
-        <input asp-for="Account.Fullname" class="form-control" readonly />
+            <div class="form-group mb-4">
+                <label asp-for="SelectedDepartmentIds" class="form-label">دپارتمان ها</label>
+                <select asp-for="SelectedDepartmentIds" asp-items="Model.DepartmentListItems" id="select2Multiple" class="select2 form-select" multiple>
+                </select>
+            </div>
+
+            <input type="hidden" asp-for="Account.Id" value="@Model.Account.Id" />
+            <button type="submit" class="btn btn-success">Save</button>
+            <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
+        </form>
     </div>
-
-    <div class="form-group mb-4">
-        <label asp-for="SelectedDepartmentIds" class="form-label">دپارتمان ها</label>
-        <select asp-for="SelectedDepartmentIds" asp-items="Model.DepartmentListItems" id="select2Multiple" class="select2 form-select" multiple>
-        </select>
-    </div>
-
-    <input type="hidden" asp-for="Account.Id" value="@Model.Account.Id" />
-    <button type="submit" class="btn btn-success">Save</button>
-    <a class="btn btn-primary" asp-page="./Index">بازگشت</a>
-</form>
+</div>
 
 @section Css
 {

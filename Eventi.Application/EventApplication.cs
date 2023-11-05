@@ -43,7 +43,7 @@ public class EventApplication : IEventApplication
         var path = $"Events/{command.Name}";
         var image = _fileUploader.Upload(command.ImageCover!, path);
 
-        Event.Edit(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
+        Event.Edit(command.Name, image, command.Name, command.Name,
             command.Tags, slug, command.SubcategoryId, command.DepartmentId, command.EventType,
             command.Address, command.SupportNumber, command.Description, command.StartTime.ToGeorgianDateTime(),
             command.EndTime.ToGeorgianDateTime());
@@ -70,11 +70,11 @@ public class EventApplication : IEventApplication
     {
         var operation = new OperationResult();
 
-        var slug = command.Name.Slugify();
+        var slug = command.Name.Slugify() + Tools.GenerateRandomString(5);
         var path = $"Events/{command.Name}";
         var image = _fileUploader.Upload(command.ImageCover!, path);
 
-        var Event = new Event(command.Name, image, command.ImageCoverTitle, command.ImageCoverAlt,
+        var Event = new Event(command.Name, image, command.Name, command.Name,
             command.Tags, slug, command.SubcategoryId, command.DepartmentId, command.EventType,
             command.Address, command.SupportNumber, command.Description, command.StartTime.ToGeorgianDateTime(),
             command.EndTime.ToGeorgianDateTime());

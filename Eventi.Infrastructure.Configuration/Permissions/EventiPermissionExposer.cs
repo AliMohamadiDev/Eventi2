@@ -13,7 +13,8 @@ public class EventiPermissionExposer : IPermissionExposer
                 {
                     new(EventiPermissions.GetEvent, "نمایش رویداد ها"),
                     new(EventiPermissions.CreateEvent, "ایجاد رویداد"),
-                    new(EventiPermissions.UpdateEvent, "ویرایش رویداد")
+                    new(EventiPermissions.UpdateEvent, "ویرایش رویداد"),
+                    new(EventiPermissions.ConfirmEvent, "تایید رویداد")
                 }
             },
             {

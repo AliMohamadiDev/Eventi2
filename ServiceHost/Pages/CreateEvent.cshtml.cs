@@ -31,8 +31,10 @@ public class CreateEventModel : PageModel
     }
 
     [NeedPermission(EventiPermissions.CreateEvent)]
-    public async Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync()
     {
+        return RedirectToPage();
+
         var subcategories = await _eventSubcategoryApplication.GetEventSubcategoriesAsync();
         Subcategories = new SelectList(subcategories, "SubcategoryId", "SubcategoryName", "CategoryId");
 
@@ -46,6 +48,7 @@ public class CreateEventModel : PageModel
     [NeedPermission(EventiPermissions.CreateEvent)]
     public async Task<IActionResult> OnPostAsync(CreateEvent command)
     {
+        return RedirectToPage();
         var result = await _eventApplication.CreateAsync(command);
         return RedirectToPage("/Profile");
     }

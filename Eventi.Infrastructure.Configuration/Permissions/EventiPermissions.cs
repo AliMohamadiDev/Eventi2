@@ -6,6 +6,7 @@ public class EventiPermissions
     public const int GetEvent = 10;
     public const int CreateEvent = 11;
     public const int UpdateEvent = 12;
+    public const int ConfirmEvent = 13;
 
     // EventCategory
     public const int GetEventCategory = 20;
