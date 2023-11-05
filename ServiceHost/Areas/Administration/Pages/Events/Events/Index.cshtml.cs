@@ -1,3 +1,4 @@
+using _0_Framework.Application;
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventSubcategory;
 using Microsoft.AspNetCore.Mvc;
@@ -13,19 +14,24 @@ namespace ServiceHost.Areas.Administration.Pages.Events.Events
         public EventSearchModel SearchModel;
         public List<EventViewModel> Events;
         public SelectList Subcategories;
+        private readonly IAuthHelper _authHelper;
 
         private readonly IEventApplication _eventApplication;
         private readonly IEventSubcategoryApplication _eventSubcategoryApplication;
 
-        public IndexModel(IEventApplication eventApplication, IEventSubcategoryApplication eventSubcategoryApplication)
+        public IndexModel(IEventApplication eventApplication, IEventSubcategoryApplication eventSubcategoryApplication, IAuthHelper authHelper)
         {
             _eventApplication = eventApplication;
             _eventSubcategoryApplication = eventSubcategoryApplication;
+            _authHelper = authHelper;
         }
 
         public async Task OnGet(EventSearchModel searchModel)
         {
-            Events = await _eventApplication.SearchAsync(searchModel);
+            var userRole = _authHelper.CurrentAccountRole();
+            var userId = _authHelper.CurrentAccountId();
+
+            Events = await _eventApplication.SearchAsync(searchModel, userRole, userId);
 
             var subcategories = await _eventSubcategoryApplication.GetEventSubcategoriesAsync();
             Subcategories = new SelectList(subcategories, "SubcategoryId", "SubcategoryName");

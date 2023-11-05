@@ -68,7 +68,7 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
         }).ToListAsync();
     }
 
-    public async Task<List<EventViewModel>> SearchAsync(EventSearchModel searchModel)
+    public async Task<List<EventViewModel>> SearchAsync(EventSearchModel searchModel, string userRole, long userId)
     {
         var query = _context.Events.Select(x => new EventViewModel
         {
@@ -114,6 +114,11 @@ public class EventRepository : RepositoryBase<long, Event>, IEventRepository
         if (searchModel.AccountSideId != 0)
         {
             query = query.Where(x => x.AccountSideId == searchModel.AccountSideId);
+        }
+
+        if (userRole == Roles.Presenter)
+        {
+            query = query.Where(x => x.PresenterIdList.Contains(userId));
         }
 
         return await query.OrderByDescending(x => x.Id).ToListAsync();

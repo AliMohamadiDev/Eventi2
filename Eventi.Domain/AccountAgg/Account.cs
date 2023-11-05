@@ -28,14 +28,14 @@ public class Account
     public string? Address { get; private set; } = null;
     public string? PostalCode { get; private set; } = null;
 
-
     public long RoleId { get; private set; }
     public Role Role { get; private set; }
 
-    //public List<Event> MyEvents { get; set; } = new();
-    //public List<AccountTicket> AccountTickets { get; set; } = new();
     public List<DepartmentAccount> DepartmentAccounts { get; set; } = new();
     public List<Order> Orders { get; set; } = new();
+
+    public List<EventAccount> EventAccounts { get; set; } = new();
+
 
     public Account()
     {

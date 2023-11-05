@@ -91,9 +91,9 @@ public class EventApplication : IEventApplication
         return operation.Succeeded();
     }
 
-    public async Task<List<EventViewModel>> SearchAsync(EventSearchModel searchModel)
+    public async Task<List<EventViewModel>> SearchAsync(EventSearchModel searchModel, string userRole, long userId)
     {
-        return await _eventRepository.SearchAsync(searchModel);
+        return await _eventRepository.SearchAsync(searchModel, userRole, userId);
     }
 
     public async Task<OperationResult> RemoveAsync(long id)

@@ -35,6 +35,8 @@ public class Event
     public DateTime StartTime { get; private set; }
     public DateTime EndTime { get; private set; }
 
+    public List<EventAccount> EventAccounts { get; set; } = new();
+
 
     protected Event()
     {
