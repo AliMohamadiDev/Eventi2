@@ -36,7 +36,9 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminArea", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin, Roles.Presenter}));
     options.AddPolicy("Account", b => b.RequireRole(new List<string> {Roles.Administration}));
+    options.AddPolicy("AdminAction", b => b.RequireRole(new List<string> {Roles.Administration}));
     options.AddPolicy("Event", b => b.RequireRole(new List<string> {Roles.Administration, Roles.Presenter}));
+    options.AddPolicy("Blog", b => b.RequireRole(new List<string> {Roles.Administration, Roles.BlogAdmin}));
 });
 
 builder.Services.AddRazorPages()
@@ -46,6 +48,8 @@ builder.Services.AddRazorPages()
         options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
         options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
         options.Conventions.AuthorizeAreaFolder("Administration", "/Events", "Event");
+        options.Conventions.AuthorizeAreaFolder("Administration", "/Blog", "Blog");
+        options.Conventions.AuthorizeAreaFolder("Administration", "/SiteSettings", "AdminAction");
     });
 
 var app = builder.Build();

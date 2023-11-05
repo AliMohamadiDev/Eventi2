@@ -1,7 +1,9 @@
+using _0_Framework.Infrastructure;
 using Eventi.Application.Contract.Department;
 using Eventi.Application.Contract.Event;
 using Eventi.Application.Contract.EventSubcategory;
 using Eventi.Application.Contract.Presenter;
+using Eventi.Infrastructure.Configuration.Permissions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -28,6 +30,7 @@ public class CreateEventModel : PageModel
         _eventSubcategoryApplication = eventSubcategoryApplication;
     }
 
+    [NeedPermission(EventiPermissions.CreateEvent)]
     public async Task OnGetAsync()
     {
         var subcategories = await _eventSubcategoryApplication.GetEventSubcategoriesAsync();
@@ -40,6 +43,7 @@ public class CreateEventModel : PageModel
         Departments = new SelectList(departments, "Id", "Name");
     }
 
+    [NeedPermission(EventiPermissions.CreateEvent)]
     public async Task<IActionResult> OnPostAsync(CreateEvent command)
     {
         var result = await _eventApplication.CreateAsync(command);

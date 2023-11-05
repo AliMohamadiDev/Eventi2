@@ -123,7 +123,7 @@
                 </ul>
             </li>
         }
-        @if (_authHelper.CurrentAccountRole() == Roles.Administration)
+        @if (_authHelper.CurrentAccountRole() == Roles.Administration || _authHelper.CurrentAccountRole() == Roles.Presenter)
         {
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">موضوعات</span>
@@ -131,10 +131,12 @@
             <li class="menu-item  @(ViewContext.RouteData.Values["page"].ToString().StartsWith("/Events/EventSubcategories") ? "active" : "")">
                 <a asp-page="/Events/EventSubcategories/Index" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-collection"></i>
-                    <div data-i18n="Basic">زیرموضوعات</div>
+                    <div data-i18n="Basic">موضوعات</div>
                 </a>
             </li>
-
+                    }
+        @if (_authHelper.CurrentAccountRole() == Roles.Administration)
+        {
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">حساب</span>
             </li>

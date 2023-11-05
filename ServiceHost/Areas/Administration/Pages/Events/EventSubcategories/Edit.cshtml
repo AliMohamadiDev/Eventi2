@@ -1,14 +1,14 @@
 ﻿@page "{id:long}"
 @model ServiceHost.Areas.Administration.Pages.Events.EventSubcategories.EditModel
 @{
-    ViewData["Title"] = "ویرایش زیرموضوع" + @Model.Command.SubcategoryName;
+    ViewData["Title"] = "ویرایش موضوع" + @Model.Command.SubcategoryName;
 }
 
 <div class="row">
     <div class="col-md-12">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title">ویرایش زیرموضوع: @Model.Command.SubcategoryName</h3>
+                <h3 class="card-title">ویرایش موضوع: @Model.Command.SubcategoryName</h3>
             </div>
             <div class="card-body">
                 <form method="post" enctype="multipart/form-data">
