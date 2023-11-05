@@ -150,7 +150,7 @@
                         else
                         {
                             <li>
-                                <a class="dropdown-item" asp-page="./Login">
+                                <a class="dropdown-item" data-bs-target="#login" data-bs-toggle="modal">
                                     <i class="bx bx-user me-2"></i>
                                     <span class="align-middle">ورود</span>
                                 </a>
@@ -160,7 +160,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item" asp-page="/Register">
+                                <a class="dropdown-item" data-bs-target="#register" data-bs-toggle="modal">
                                     <i class="bx bxs-user-plus me-2"></i>
                                     <span class="align-middle">ثبت نام</span>
                                 </a>
@@ -262,6 +262,98 @@
             @RenderBody()
         </div>
 
+        <div class="modal fade" id="login" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-simple">
+                <div class="modal-content p-3 p-md-5">
+                    <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="authentication-inner py-4">
+                        
+                        <h4 class="mb-2">لطفا ابتدا وارد اکانت خود شوید.</h4>
+
+                        <form id="formAuthentication" class="mb-3" method="post" asp-page="/Login">
+                            <div class="mb-3">
+                                <label for="mobile" class="form-label">موبایل</label>
+                                <input type="text" class="form-control" placeholder="موبایل" autofocus="" data-val="true" data-val-required="این فیلد نمیتواند خالی باشد" id="Command_Mobile" name="Command.Mobile" value="">
+                            </div>
+                            <div class="mb-3 form-password-toggle">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label" >رمز عبور</label>
+                                    <a asp-page="./ForgotPassword">
+                                        <small>رمز عبور خود را فراموش کرده اید؟</small>
+                                    </a>
+                                </div>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" class="form-control" placeholder="············" aria-describedby="password" data-val="true" data-val-required="این فیلد نمیتواند خالی باشد" id="Command_Password" name="Command.Password">
+                                    <span id="passwordToggle" class="input-group-text cursor-pointer"><i id="toggleIcon" class="bx bx-hide"></i></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-grid w-100" type="submit">ورود</button>
+                            </div>
+                        </form>
+
+                        <p class="text-center">
+                            <span>کاربر جدید هستید؟</span>
+                            <a asp-page="./Register">
+                                <span>اکانت بسازید</span>
+                            </a>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="register" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-simple">
+                <div class="modal-content p-3 p-md-5">
+                    <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="authentication-inner py-4">
+                        
+                        <h4 class="mb-2">لطفا ابتدا ثبت نام کنید.</h4>
+
+                        <form id="formAuthenticationR" class="mb-3" method="post" asp-page="/Register">
+                            
+                            <div class="mb-3">
+                                <label for="username" class="form-label">موبایل</label>
+                                <input type="text" class="form-control" placeholder="موبایل" data-val="true" data-val-required="این فیلد نمیتواند خالی باشد" id="Command_Mobile" name="Command.Mobile">
+                            </div>
+                            
+                            <div class="mb-3 form-password-toggleR">
+                                <label class="form-label" for="password">رمز عبور</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" class="form-control" placeholder="············" aria-describedby="password" data-val="true" data-val-required="The Password field is required." id="Command_Password" name="Command.Password">
+@*                                    <span id="passwordToggleR" class="input-group-text cursor-pointer"><i id="toggleIconR" class="bx bx-hide"></i></span>
+*@                                </div>
+                            </div>
+                            
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms"/>
+                                    <label class="form-check-label" for="terms-conditions">
+                                        موافقت با
+                                        <a asp-page="./TermsOfUse">شرایط استفاده</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary d-grid w-100" id="submit-button" disabled>ثبت نام</button>
+                        </form>
+
+                        <p class="text-center">
+                            <span>حساب دارید؟</span>
+                            <a asp-page="./Login">
+                                <span>وارد شوید</span>
+                            </a>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
         <section id="adv-footer">
             <footer class="footer bg-dark">
@@ -359,6 +451,32 @@
 
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $("#passwordToggle").click(function () {
+        const passwordField = $("#Command_Password");
+        passwordField.attr("type", passwordField.attr("type") === "password" ? "text" : "password");
+
+        $("#toggleIcon").toggleClass("bx-show");
+    });
+</script>
+
+    <script>
+        var checkbox = document.getElementById("terms-conditions");
+        var submitButton = document.getElementById("submit-button");
+
+        checkbox.addEventListener("change", function () {
+            submitButton.disabled = !checkbox.checked;
+        });
+    </script>
+
+    <script>
+        $("#passwordToggleR").click(function () {
+            const passwordField = $("#Command_Password");
+            passwordField.attr("type", passwordField.attr("type") === "password" ? "text" : "password");
+
+            $("#toggleIconR").toggleClass("bx-show");
+        });
+    </script>
 
 @await RenderSectionAsync("Script", false)
 
