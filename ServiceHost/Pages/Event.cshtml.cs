@@ -13,6 +13,7 @@ public class EventModel : PageModel
     public DepartmentQueryModel Department;
     public List<PresenterQueryModel> Presenters;
     public bool IsOwned;
+    public bool IsConfirmed;
 
     private readonly IAuthHelper _authHelper;
     private readonly IEventQuery _eventQuery;
@@ -31,6 +32,13 @@ public class EventModel : PageModel
         Event = await _eventQuery.GetEventDetailsAsync(id);
         Department = await _departmentQuery.GetDepartmentAsync(Event.DepartmentSlug);
         Presenters = Event.Presenters;
+
+        IsConfirmed = Event.IsConfirmed;
+
+        if (!Event.IsConfirmed)
+        {
+            return;
+        }
 
         bool isOwned = false;
         foreach (var ticket in Event.Tickets)

@@ -5,140 +5,152 @@
     ViewData["Title"] = "رویداد ها";
 }
 
+@if (Model.IsConfirmed)
+{
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> رویدادها / @Model.Event.Subcategory / </span> @Model.Event.Name
+    </h4>
+    <div class="row">
+        <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
 
-<h4 class="fw-bold py-3 mb-4">
-    <span class="text-muted fw-light"> رویدادها / @Model.Event.Subcategory / </span> @Model.Event.Name
-</h4>
-<div class="row">
-    <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-
-        <div class="card mb-4">
-            <div class="card-header">
-                <div class="img-fluid text-center mb-4">
-                    <div>
-                        <img width="100%" src="~/Pictures/@Model.Event.ImageCover"/>
-                    </div>
-                </div>
-
-                <h5 class="card-title mb-2">@Model.Event.Name</h5>
-                @*<span class="card-subtitle">@(Model.Event.EventInfo != null ? Model.Event.EventInfo.Description : "" )</span>*@
-            </div>
-            <div class="card-header">بلیط ها</div>
-            <div class="card-body">
-                <div class="">
-                    @if (Model.IsOwned)
-                    {
-                        <div class="card shadow-none bg-transparent border border-primary mb-3">
-                            <div class="row">
-
-                                <div class="card-body col">
-                                    <h5 class="card-title">@Model.Ticket.Title</h5>
-                                    <p class="card-text">
-                                        @Model.Ticket.StartTime.ToFarsi() - @Model.Ticket.EndTime.ToFarsi()
-                                    </p>
-                                    <p class="card-text">قیمت: @(Model.Ticket.Price == 0 ? "رایگان" : Model.Ticket.Price + " تومان")</p>
-                                    <a class="btn btn-success" href="#">شرکت در رویداد</a>
-                                    <button class="btn btn-primary me-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-@Model.Ticket.Id" aria-expanded="false" aria-controls="collapseExample">
-                                        بیشتر
-                                    </button>
-                                    <div id="collapseExample-@Model.Ticket.Id" class="collapse">
-                                        <p class="card-text">@Html.Raw(Model.Ticket.Description)</p>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="img-fluid text-center mb-4">
+                        <div>
+                            <img width="100%" src="~/Pictures/@Model.Event.ImageCover"/>
                         </div>
-                    }
-                    else
-                    {
-                        @foreach (var item in Model.Event.Tickets)
+                    </div>
+
+                    <h5 class="card-title mb-2">@Model.Event.Name</h5>
+                    @*<span class="card-subtitle">@(Model.Event.EventInfo != null ? Model.Event.EventInfo.Description : "" )</span>*@
+                </div>
+                <div class="card-header">بلیط ها</div>
+                <div class="card-body">
+                    <div class="">
+                        @if (Model.IsOwned)
                         {
                             <div class="card shadow-none bg-transparent border border-primary mb-3">
                                 <div class="row">
 
                                     <div class="card-body col">
-                                        <h5 class="card-title">@item.Title</h5>
+                                        <h5 class="card-title">@Model.Ticket.Title</h5>
                                         <p class="card-text">
-                                            @item.StartTime.ToFarsi() - @item.EndTime.ToFarsi()
+                                            @Model.Ticket.StartTime.ToFarsi() - @Model.Ticket.EndTime.ToFarsi()
                                         </p>
-                                        <p class="card-text">قیمت: @(item.Price == 0 ? "رایگان" : item.Price + " تومان")</p>
-                                        <a class="btn btn-success" asp-page="/Checkout" asp-route-id="@item.Id">خرید بلیط</a>
-                                        <button class="btn btn-primary me-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-@item.Id" aria-expanded="false" aria-controls="collapseExample">
+                                        <p class="card-text">قیمت: @(Model.Ticket.Price == 0 ? "رایگان" : Model.Ticket.Price + " تومان")</p>
+                                        <a class="btn btn-success" href="#">شرکت در رویداد</a>
+                                        <button class="btn btn-primary me-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-@Model.Ticket.Id" aria-expanded="false" aria-controls="collapseExample">
                                             بیشتر
                                         </button>
-                                        <div id="collapseExample-@item.Id" class="collapse">
-                                            <p class="card-text">@Html.Raw(item.Description)</p>
+                                        <div id="collapseExample-@Model.Ticket.Id" class="collapse">
+                                            <p class="card-text">@Html.Raw(Model.Ticket.Description)</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         }
-                    }
+                        else
+                        {
+                            @foreach (var item in Model.Event.Tickets)
+                            {
+                                <div class="card shadow-none bg-transparent border border-primary mb-3">
+                                    <div class="row">
+
+                                        <div class="card-body col">
+                                            <h5 class="card-title">@item.Title</h5>
+                                            <p class="card-text">
+                                                @item.StartTime.ToFarsi() - @item.EndTime.ToFarsi()
+                                            </p>
+                                            <p class="card-text">قیمت: @(item.Price == 0 ? "رایگان" : item.Price + " تومان")</p>
+                                            <a class="btn btn-success" asp-page="/Checkout" asp-route-id="@item.Id">خرید بلیط</a>
+                                            <button class="btn btn-primary me-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-@item.Id" aria-expanded="false" aria-controls="collapseExample">
+                                                بیشتر
+                                            </button>
+                                            <div id="collapseExample-@item.Id" class="collapse">
+                                                <p class="card-text">@Html.Raw(item.Description)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
                     
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
     
 
-    <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
+        <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="user-avatar-section">
-                    <div class=" d-flex align-items-center flex-column">
-                        @*<img class="img-fluid rounded my-4" src="~/AdminTheme/assets/img/elements/1.jpg" height="110" width="110" alt="@Model.Event.Presenter.LogoAlt" title="@Model.Event.Presenter.LogoTitle" />*@
-                        <div class="user-info text-center">
-                            @*<h4 class="mb-2">@Model.Event.Presenter.Name</h4>*@
-                            <span class="badge bg-label-secondary">دپارتمان برگزارکننده</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-around flex-wrap my-4 py-3">
-                    <div class="d-flex align-items-start me-4 mt-3 gap-3">
-                        <span class="badge bg-label-primary p-2 rounded"><i class='bx bx-check bx-sm'></i></span>
-                        <div>
-                            <h5 class="mb-0">@Model.Department.Events.Count</h5>
-                            <span>تعداد رویداد ها</span>
-                        </div>
-                    </div>
-                </div>
-                <h5 class="pb-2 border-bottom mb-4">اطلاعات دپارتمان برگزارکننده</h5>
-                <div class="d-flex justify-content-start align-items-center gap-1 flex-sm-row flex-column">
-                    <div class="">
-                        <img class="mb-0 img-fluid" width="125px" src="~/Pictures/@Model.Department.Logo" alt="@Model.Department.LogoAlt" title="@Model.Department.LogoTitle">
-                    </div>
-                    <div class="d-flex flex-column text-start">
-                        <a asp-page="./Department" asp-route-id="@Model.Department.Slug" class="card-title">@Model.Department.Name</a>
-                        <p class="card-text">@Model.Department.Address</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card card-action mb-4">
-            <div class="card-header align-items-center">
-                <h5 class="card-action-title mb-0">برگزارکنندگان</h5>
-            </div>
-            @foreach (var item in Model.Presenters)
-            {
+            <div class="card mb-4">
                 <div class="card-body">
-                    <div class="border p-3 rounded">
-                        <div class="d-flex justify-content-start align-items-center gap-1 flex-sm-row flex-column">
-                            <div class="card-information">
-                                <img class="mb-0 img-fluid" width="100px" src="~/Pictures/@item.Logo" alt="@item.LogoAlt" title="@item.LogoTitle">
-                            </div>
-                            <div class="d-flex flex-column text-start">
-                                <a asp-page="./Presenter" asp-route-id="@item.Slug" class="card-title">@item.Name</a>
-                                <p class="card-text">تعداد رویداد ها: @item.EventCount</p>
+                    <div class="user-avatar-section">
+                        <div class=" d-flex align-items-center flex-column">
+                            @*<img class="img-fluid rounded my-4" src="~/AdminTheme/assets/img/elements/1.jpg" height="110" width="110" alt="@Model.Event.Presenter.LogoAlt" title="@Model.Event.Presenter.LogoTitle" />*@
+                            <div class="user-info text-center">
+                                @*<h4 class="mb-2">@Model.Event.Presenter.Name</h4>*@
+                                <span class="badge bg-label-secondary">دپارتمان برگزارکننده</span>
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-around flex-wrap my-4 py-3">
+                        <div class="d-flex align-items-start me-4 mt-3 gap-3">
+                            <span class="badge bg-label-primary p-2 rounded"><i class='bx bx-check bx-sm'></i></span>
+                            <div>
+                                <h5 class="mb-0">@Model.Department.Events.Count</h5>
+                                <span>تعداد رویداد ها</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="pb-2 border-bottom mb-4">اطلاعات دپارتمان برگزارکننده</h5>
+                    <div class="d-flex justify-content-start align-items-center gap-1 flex-sm-row flex-column">
+                        <div class="">
+                            <img class="mb-0 img-fluid" width="125px" src="~/Pictures/@Model.Department.Logo" alt="@Model.Department.LogoAlt" title="@Model.Department.LogoTitle">
+                        </div>
+                        <div class="d-flex flex-column text-start">
+                            <a asp-page="./Department" asp-route-id="@Model.Department.Slug" class="card-title">@Model.Department.Name</a>
+                            <p class="card-text">@Model.Department.Address</p>
+                        </div>
+                    </div>
                 </div>
-            }
+            </div>
+
+            <div class="card card-action mb-4">
+                <div class="card-header align-items-center">
+                    <h5 class="card-action-title mb-0">برگزارکنندگان</h5>
+                </div>
+                @foreach (var item in Model.Presenters)
+                {
+                    <div class="card-body">
+                        <div class="border p-3 rounded">
+                            <div class="d-flex justify-content-start align-items-center gap-1 flex-sm-row flex-column">
+                                <div class="card-information">
+                                    <img class="mb-0 img-fluid" width="100px" src="~/Pictures/@item.Logo" alt="@item.LogoAlt" title="@item.LogoTitle">
+                                </div>
+                                <div class="d-flex flex-column text-start">
+                                    <a asp-page="./Presenter" asp-route-id="@item.Slug" class="card-title">@item.Name</a>
+                                    <p class="card-text">تعداد رویداد ها: @item.EventCount</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
         </div>
 
     </div>
-
-</div>
+}
+else
+{
+    <div class="row">
+        <div class="card mb-4">
+            <div class="card-body">
+                <p>دسترسی غیرمجاز</p>
+            </div>
+        </div>
+    </div>
+}

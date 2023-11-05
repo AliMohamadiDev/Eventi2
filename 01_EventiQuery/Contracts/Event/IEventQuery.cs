@@ -7,4 +7,5 @@ public interface IEventQuery
     Task<List<EventQueryModel>> SearchAsync(string value);
     Task<List<EventQueryModel>> GetEventsByPresenterAsync(string presenterSlug);
     bool UserOwned(long eventId, long accountId, long ticketId);
+    bool IsConfirmed(long eventId);
 }

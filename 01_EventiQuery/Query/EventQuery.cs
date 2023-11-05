@@ -217,4 +217,9 @@ public class EventQuery : IEventQuery
         return _eventContext.Orders.Include(x => x.Ticket).Any(x =>
             x.AccountId == accountId && x.TicketId == ticketId && x.Ticket.EventId == eventId);
     }
+
+    public bool IsConfirmed(long eventId)
+    {
+        return _eventContext.Events.Where(x => x.Id == eventId).Select(x => x.IsConfirmed).FirstOrDefault();
+    }
 }

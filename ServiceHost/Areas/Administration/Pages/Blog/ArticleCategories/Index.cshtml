@@ -90,7 +90,9 @@
 {
     <script>
         $(document).ready(function () {
-            $('#Datatable').DataTable();
+            $('#Datatable').DataTable({
+                order: [[0, 'desc']]
+            });
         });
     </script>
 
