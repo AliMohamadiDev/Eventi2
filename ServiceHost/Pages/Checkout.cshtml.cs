@@ -3,39 +3,37 @@ using _0_Framework.Application;
 using _0_Framework.Application.ZarinPal;
 using Eventi.Application.Contract.Order;
 using Eventi.Application.Contract.Ticket;
-using Eventi.Domain.EventAgg;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.Pages;
 
 [Authorize]
 public class CheckoutModel : PageModel
 {
-    public Ticket Ticket;
-    [BindProperty]
-    public string Code { get; set; }
+    public EditTicket? Ticket;
+    public bool HasThisTicket;
 
     private readonly IAuthHelper _authHelper;
     private readonly ITicketApplication _ticketApplication;
-    private readonly ITicketRepository _ticketRepository;
     private readonly IOrderApplication _orderApplication;
     private readonly IZarinPalFactory _zarinPalFactory;
 
-    public CheckoutModel(ITicketApplication ticketApplication, ITicketRepository ticketRepository, IOrderApplication orderApplication, IAuthHelper authHelper, IZarinPalFactory zarinPalFactory)
+    public CheckoutModel(ITicketApplication ticketApplication, IOrderApplication orderApplication, IAuthHelper authHelper, IZarinPalFactory zarinPalFactory)
     {
         _ticketApplication = ticketApplication;
-        _ticketRepository = ticketRepository;
         _orderApplication = orderApplication;
         _authHelper = authHelper;
         _zarinPalFactory = zarinPalFactory;
     }
 
-    public void OnGet(long id)
+    public async Task OnGet(long id)
     {
-        Ticket = _ticketRepository.GetTicket(id);
+        var userId = _authHelper.CurrentAccountId();
+        HasThisTicket = await _ticketApplication.UserHasTicketAsync(userId, id);
+
+        Ticket = await _ticketApplication.GetDetailsAsync(id);
     }
 
     public async Task<IActionResult> OnPostPay(long id)
@@ -63,59 +61,4 @@ public class CheckoutModel : PageModel
         return RedirectToPage("/PaymentResult", result);
     }
 
-    public IActionResult OnPostApplyDiscount()
-    {
-        // اینجا می‌توانید کد تخفیف را بررسی کرده و میزان تخفیف را محاسبه کنید.
-        // به عنوان مثال، اگر کد تخفیف "DISCOUNT123" باشد:
-        if (Code == "DISCOUNT123")
-        {
-            // میزان تخفیف 20٪
-            return new JsonResult(new { success = true, discountAmount = 20 });
-        }
-        else
-        {
-            return new JsonResult(new { success = false });
-        }
-    }
-
-    public async Task<IActionResult> CheckCode(string code)
-    {
-
-        if (code == "DISCOUNT123")
-        {
-            // میزان تخفیف 20٪
-            return new JsonResult(new { success = true, discountAmount = 20 });
-        }
-        else
-        {
-            return new JsonResult(new { success = false });
-        }
-
-        // Check if the discount code is in the database
-        /*var discount = await _context.Discounts.FirstOrDefaultAsync(d => d.Code == code);
-
-        // If the discount code is found, return it
-        if (discount != null)
-        {
-            return Json(new DiscountModel
-            {
-                Code = discount.Code,
-                Price = discount.Price,
-                Discount = discount.Discount
-            });
-        }
-
-        // If the discount code is not found, return an error
-        return Json(new { success = false });*/
-    }
-
-    public IActionResult OnGetHelloWorld()
-    {
-        return new JsonResult("Hello, World!");
-    }
-    public JsonResult OnPostGetData()
-    {
-        var data = new { message = "داده‌ها از متد OnPostGetData دریافت شدند" };
-        return new JsonResult(data);
-    }
 }

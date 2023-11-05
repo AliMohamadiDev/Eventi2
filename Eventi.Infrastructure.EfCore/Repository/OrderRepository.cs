@@ -16,7 +16,7 @@ public class OrderRepository : RepositoryBase<long, Order>, IOrderRepository
 
     public Order GetOrder(long id)
     {
-        throw new NotImplementedException();
+        return _context.Orders.FirstOrDefault(x => x.Id == id)!;
     }
 
     public double GetAmountBy(long id)

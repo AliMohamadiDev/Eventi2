@@ -79,6 +79,11 @@ public class TicketApplication : ITicketApplication
         await _ticketRepository.SaveChangesAsync();
     }
 
+    public async Task<bool> UserHasTicketAsync(long userId, long ticketId)
+    {
+        return await _ticketRepository.UserHasTicketAsync(userId, ticketId);
+    }
+
     public void Deactivate(long id)
     {
         _ticketRepository.Deactivate(id);

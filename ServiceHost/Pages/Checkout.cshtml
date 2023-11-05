@@ -5,49 +5,50 @@
     ViewData["Title"] = "صفحه پرداخت";
 }
 
-
-<div class="row">
-    <div class="card mb-4">
-        <div class="card-header">
-            <h4 class="card-title">
-                پرداخت صورت حساب رویداد @Model.Ticket.Title
-            </h4>
-        </div>
-        <div class="card-body">
+@if (!Model.HasThisTicket)
+{
+    <div class="row">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="card-title">
+                    پرداخت صورت حساب رویداد @Model.Ticket.Title
+                </h4>
+            </div>
+            <div class="card-body">
             
-            <form method="post">
-                <div class="table-responsive mb-4">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th class="">عنوان</th>
-                            <th class="">قیمت</th>
-                            <th class="">درصد تخفیف</th>
-                            <th class="">قیمت نهایی</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="">
-                                @Model.Ticket.Title
-                            </td>
-                            <td class="">
-                                <span>@Model.Ticket.Price.ToMoney()</span>
-                                تومان
-                            </td>
-                            <td class="">
-                                @Model.Ticket.DiscountRate%
-                            </td>
-                            <td class="">
-                                <span>@Model.Ticket.TotalPrice.ToMoney()</span>
-                                تومان
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <form method="post">
+                    <div class="table-responsive mb-4">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="">عنوان</th>
+                                <th class="">قیمت</th>
+                                <th class="">درصد تخفیف</th>
+                                <th class="">قیمت نهایی</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="">
+                                    @Model.Ticket.Title
+                                </td>
+                                <td class="">
+                                    <span>@Model.Ticket.Price.ToMoney()</span>
+                                    تومان
+                                </td>
+                                <td class="">
+                                    @Model.Ticket.DiscountRate%
+                                </td>
+                                <td class="">
+                                    <span>@Model.Ticket.TotalPrice.ToMoney()</span>
+                                    تومان
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                @*<div class="row mb-4">
+                    @*<div class="row mb-4">
                     <div class="">
                         <label class="form-label">افزودن کد تخفیف</label>
                     </div>
@@ -65,19 +66,30 @@
                     </div>
                 </div>*@
                 
-                <div class="row">
-                    <div class="col-lg-6 col-12 d-flex">
-                        <div class="card-footer">
-                            <div class="card-action">
-                                <input type="hidden" asp-for="Ticket.Id" value="@Model.Ticket.Id" />
-                                <button class="btn btn-primary" asp-page-handler="Pay">پرداخت</button>
+                    <div class="row">
+                        <div class="col-lg-6 col-12 d-flex">
+                            <div class="card-footer">
+                                <div class="card-action">
+                                    <input type="hidden" asp-for="Ticket.Id" value="@Model.Ticket.Id" />
+                                    <button class="btn btn-primary" asp-page-handler="Pay">پرداخت</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
+            </div>
         </div>
     </div>
-</div>
 
+}
+else
+{
+    <div class="row">
+        <div class="card mb-4">
+            <div class="card-body">
+                <p>شما بلیط این رویداد را دارید.</p>
+            </div>
+        </div>
+    </div>
+}

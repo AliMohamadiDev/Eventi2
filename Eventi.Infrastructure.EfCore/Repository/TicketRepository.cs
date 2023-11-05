@@ -98,6 +98,18 @@ public class TicketRepository : RepositoryBase<long, Ticket>, ITicketRepository
         return await query.OrderByDescending(x => x.Id).ToListAsync();
     }
 
+    public async Task<bool> UserHasTicketAsync(long userId, long ticketId)
+    {
+        var userOrders = await _context.Orders
+            .Include(x => x.Ticket)
+            .ThenInclude(x => x.Event)
+            .Where(x => x.AccountId == userId)
+            .Select(x => x.TicketId)
+            .ToListAsync();
+
+        return userOrders.Contains(ticketId);
+    }
+
     public void Deactivate(long id)
     {
         _context.Tickets.Find(id)?.Deactivate();
