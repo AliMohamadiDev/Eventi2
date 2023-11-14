@@ -37,13 +37,13 @@ public class DepartmentApplication: IDepartmentApplication
 
         var logoTitle = $"لوگوی {command.Name}";
         var logoAlt = $"لوگوی {command.Name}";
-        var slug = $"{command.Name}".Slugify();
+        //var slug = $"{command.Name}".Slugify() + Tools.GenerateRandomString(5);
 
-        var path = $"Departments/{slug}";
+        var path = $"Departments/{command.Slug}";
         var logo = _fileUploader.Upload(command.Logo, path);
 
         department.Edit(command.Name, command.NationalCode, command.PostalCode, command.Address, logo, logoAlt,
-            logoTitle, slug, command.Description);
+            logoTitle, department.Slug, command.Description);
 
         await _departmentRepository.SaveChangesAsync();
         return operation.Succeeded();
@@ -59,7 +59,7 @@ public class DepartmentApplication: IDepartmentApplication
 
         var logoTitle = $"لوگوی {command.Name}";
         var logoAlt = $"لوگوی {command.Name}";
-        var slug = $"{command.Name}".Slugify();
+        var slug = $"{command.Name}".Slugify() + Tools.GenerateRandomString(5);
 
         var path = $"Departments/{slug}";
         var logo = _fileUploader.Upload(command.Logo, path);
