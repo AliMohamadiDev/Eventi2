@@ -20,10 +20,26 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
         return await _context.Accounts.Select(x => new EditAccount
         {
             Id = x.Id,
+            //ProfilePhoto = x.ProfilePhoto,
             Fullname = x.Fullname,
+            Email = x.Email,
+            Birthday = x.Birthday.ToFarsi(),
+            State = x.State,
+            City = x.City,
             Mobile = x.Mobile,
+            //Role = x.Role,
             RoleId = x.RoleId,
-            Email = x.Email
+            //CreationDate = x.CreationDate,
+            IsDeactived = x.IsDeactived,
+            FatherName = x.FatherName,
+            EducationalCenter = x.EducationalCenter,
+            NationalCode = x.NationalCode,
+            PostalCode = x.PostalCode,
+            Address = x.Address,
+            Gender = x.Gender,
+            ScientificField = x.ScientificField,
+            SeminaryDegree = x.SeminaryDegree,
+            UniversityDegree = x.UniversityDegree,
         }).FirstOrDefaultAsync(x => x.Id == id);
     }
 
