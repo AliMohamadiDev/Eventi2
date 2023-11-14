@@ -16,14 +16,14 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.Name" class="form-label">نام رویداد</label>
+                                <label asp-for="Command.Name" class="form-label">نام رویداد*</label>
                                 <input type="text" class="form-control" asp-for="Command.Name">
                                 <span asp-validation-for="Command.Name" class="error"></span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-4">
+
                         <div class="col-md-6">
+                            <label asp-for="Command.SubcategoryId" class="form-label">موضوع*</label>
                             <select class="form-select" asp-for="Command.SubcategoryId" asp-items="Model.Subcategories">
                                 <option value="0">موضوع...</option>
                             </select>
@@ -41,7 +41,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.ImageCover" class="form-label">عکس</label>
+                                <label asp-for="Command.ImageCover" class="form-label">عکس*</label>
                                 <input type="file" accept="image/*" class="form-control" asp-for="Command.ImageCover" />
                                 <span asp-validation-for="Command.ImageCover" class="error"></span>
                             </div>
@@ -49,7 +49,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.DepartmentId" class="form-label">دپارتمان</label>
+                                <label asp-for="Command.DepartmentId" class="form-label">دپارتمان*</label>
                                 <select class="form-select" asp-for="Command.DepartmentId" asp-items="Model.Departments">
                                     <option value="0">دپارتمان...</option>
                                 </select>
@@ -57,27 +57,11 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.ImageCoverAlt" class="form-label">Alt عکس</label>
-                                <input type="text" class="form-control" asp-for="Command.ImageCoverAlt">
-                                <span asp-validation-for="Command.ImageCoverAlt" class="error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Command.ImageCoverTitle" class="form-label">عنوان عکس</label>
-                                <input type="text" class="form-control" asp-for="Command.ImageCoverTitle">
-                                <span asp-validation-for="Command.ImageCoverTitle" class="error"></span>
-                            </div>
-                        </div>
-                    </div>*@
-
+                    
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.PresenterIdList" class="form-label">ارائه دهندگان</label>
+                                <label asp-for="Command.PresenterIdList" class="form-label">ارائه دهندگان*</label>
                                 <select asp-for="Command.PresenterIdList" asp-items="Model.Presenters" class="multi-select form-select" multiple="multiple" id="my_multi_select3">
                                 </select>
                                 <span asp-validation-for="Command.PresenterIdList" class="error"></span>
@@ -87,7 +71,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.AccountIdList" class="form-label">اساتید ارائه دهنده</label>
+                                <label asp-for="Command.AccountIdList" class="form-label">اساتید ارائه دهنده*</label>
                                 <select asp-for="Command.AccountIdList" asp-items="Model.EventAccounts" id="select2Multiple" class="select2 form-select" multiple>
                                 </select>
                                 <span asp-validation-for="Command.AccountIdList" class="error"></span>
@@ -115,14 +99,14 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.EventType" class="form-label">نوع رویداد</label>
+                                <label asp-for="Command.EventType" class="form-label">نوع رویداد*</label>
                                 <input type="text" class="form-control" asp-for="Command.EventType">
                                 <span asp-validation-for="Command.EventType" class="error"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.SupportNumber" class="form-label">شماره پشتیبانی</label>
+                                <label asp-for="Command.SupportNumber" class="form-label">شماره پشتیبانی*</label>
                                 <input type="text" class="form-control" asp-for="Command.SupportNumber">
                                 <span asp-validation-for="Command.SupportNumber" class="error"></span>
                             </div>
@@ -142,7 +126,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label asp-for="Command.Address" class="form-label">آدرس</label>
+                                <label asp-for="Command.Address" class="form-label">آدرس*</label>
                                 <textarea class="form-control" asp-for="Command.Address" rows="5"></textarea>
                                 <span asp-validation-for="Command.Address" class="error"></span>
                             </div>
@@ -152,14 +136,14 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.StartTime" class="form-label">تاریخ شروع</label>
+                                <label asp-for="Command.StartTime" class="form-label">تاریخ شروع*</label>
                                 <input type="text" class="form-control persianDateInput" asp-for="Command.StartTime">
                                 <span asp-validation-for="Command.StartTime" class="error"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.EndTime" class="form-label">تاریخ پایان</label>
+                                <label asp-for="Command.EndTime" class="form-label">تاریخ پایان*</label>
                                 <input type="text" class="form-control persianDateInput" asp-for="Command.EndTime">
                                 <span asp-validation-for="Command.EndTime" class="error"></span>
                             </div>

@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label class="form-label" asp-for="Command.Mobile">موبایل</label>
+                                <label class="form-label" asp-for="Command.Mobile">موبایل*</label>
                                 <input type="text" asp-for="Command.Mobile" class="form-control"/>
                                 <span asp-validation-for="Command.Mobile" class="error"></span>
                             </div>
@@ -157,7 +157,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.Password" class="form-label">رمز عبور</label>
+                                <label asp-for="Command.Password" class="form-label">رمز عبور*</label>
                                 <input type="password" class="form-control" asp-for="Command.Password">
                                 <span asp-validation-for="Command.Password" class="error"></span>
                             </div>
@@ -171,3 +171,17 @@
         </div>
     </div>
 </div>
+
+@section Script
+{
+    <script src="~/AdminTheme/assets/costum/js/persian-date.min.js"></script>
+    <script src="~/AdminTheme/assets/costum/js/persian-datepicker.min.js"></script>
+
+    <script>
+        $('.persianDateInput').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            autoClose: true,
+            initialValueType: "persian"
+        });
+    </script>
+}

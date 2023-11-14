@@ -15,14 +15,14 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.Code" class="form-label">کد</label>
+                                <label asp-for="Command.Code" class="form-label">کد*</label>
                                 <input type="text" class="form-control" asp-for="Command.Code">
                                 <span asp-validation-for="Command.Code" class="error"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.DiscountRate" class="form-label">درصد تخفیف</label>
+                                <label asp-for="Command.DiscountRate" class="form-label">درصد تخفیف*</label>
                                 <input type="text" class="form-control" asp-for="Command.DiscountRate">
                                 <span asp-validation-for="Command.DiscountRate" class="error"></span>
                             </div>
@@ -31,14 +31,14 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.Count" class="form-label">تعداد</label>
+                                <label asp-for="Command.Count" class="form-label">تعداد*</label>
                                 <input type="text" class="form-control" asp-for="Command.Count">
                                 <span asp-validation-for="Command.Count" class="error"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.TicketId" class="form-label">بلیط</label>
+                                <label asp-for="Command.TicketId" class="form-label">بلیط*</label>
                                 <select class="form-select" asp-for="Command.TicketId" asp-items="Model.Tickets">
                                     <option value="0">بلیط...</option>
                                 </select>
